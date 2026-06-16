@@ -5,7 +5,7 @@
 | 2 | Output an Image||
 |2.1||[The PPM Image Format ✔️](the_ppm_image_format/note.ipynb)|
 |2.2||[Creating an Image File ✔️](creating_an_image_file/note.ipynb)|
-|2.3||Adding a Progress Indicator|
+|2.3||[Adding a Progress Indicator ✔️](adding_a_progress_indicator/note.ipynb)|
 | 3 | The vec3 Class||
 |3.1||Color Utility Functions|
 | 4 | Rays, a Simple Camera, and Background||
