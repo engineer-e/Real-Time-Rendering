@@ -9,7 +9,7 @@
 | 3 | [The vec3 Class ✔️](the_vec3_class/note.ipynb)||
 |3.1||[Color Utility Functions ✔️](color_utility_functions/note.ipynb)|
 | 4 | Rays, a Simple Camera, and Background||
-|4.1||The ray Class|
+|4.1||[The ray Class ✔️](ray_class/note.ipynb)|
 |4.2||Creating Our First Raytraced Image|
 | 5 | Adding a Sphere||
 |5.1||Ray-Sphere Intersection|

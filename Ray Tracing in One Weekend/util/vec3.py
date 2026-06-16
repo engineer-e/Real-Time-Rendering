@@ -58,6 +58,10 @@ class Vec3:
             self.e[1] * t,
             self.e[2] * t
         )
+    
+    # Reverse multiplication
+    def __rmul__(self, t):
+       return self.__mul__(t)
 
     # Division
     def __truediv__(self, t):
