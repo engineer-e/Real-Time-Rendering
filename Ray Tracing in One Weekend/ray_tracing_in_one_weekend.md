@@ -15,7 +15,7 @@
 |5.1||[Ray-Sphere Intersection ✔️](ray_sphere_interaction/note.ipynb)|
 |5.2||[Creating Our First Raytraced Image ✔️](creating_our_first_raytracer_image/note.ipynb)|
 | 6 | Surface Normals and Multiple Objects||
-|6.1||Shading with Surface Normals|
+|6.1||[Shading with Surface Normals ✔️](shading_with_surface_normals/note.ipynb)|
 |6.2||Simplifying the Ray-Sphere Intersection Code|
 |6.3||An Abstraction for Hittable Objects|
 |6.4||Front Faces Versus Back Faces|
