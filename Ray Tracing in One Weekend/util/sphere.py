@@ -1,4 +1,5 @@
 from util.hittable import Hittable
+import math
 
 class Sphere(Hittable):
     def __init__(self, center, radius):
@@ -20,7 +21,6 @@ class Sphere(Hittable):
 
         sqrtd = math.sqrt(discriminant)
 
-        # first root
         root = (h - sqrtd) / a
         if root <= tmin or root >= tmax:
             root = (h + sqrtd) / a
@@ -30,7 +30,8 @@ class Sphere(Hittable):
         rec.t = root
         rec.p = ray.at(rec.t)
 
-        # normal = (P - center) / radius
-        rec.normal = (rec.p - self.center) * (1.0 / self.radius)
+        outward_normal = (rec.p - self.center) * (1.0 / self.radius)
+
+        rec.set_face_normal(ray, outward_normal)
 
         return True
