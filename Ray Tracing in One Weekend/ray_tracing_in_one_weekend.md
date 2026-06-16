@@ -4,7 +4,7 @@
 | 1 | [Overview ❌](overview/note.ipynb) |  |
 | 2 | Output an Image||
 |2.1||[The PPM Image Format ✔️](the_ppm_image_format/note.ipynb)|
-|2.2||Creating an Image File|
+|2.2||[Creating an Image File ✔️](creating_an_image_file/note.ipynb)|
 |2.3||Adding a Progress Indicator|
 | 3 | The vec3 Class||
 |3.1||Color Utility Functions|
