@@ -12,8 +12,8 @@
 |4.1||[The ray Class ✔️](ray_class/note.ipynb)|
 |4.2||[Sending Rays Into the Scene ✔️](sending_rays_into_the_scene/note.ipynb)|
 | 5 | Adding a Sphere||
-|5.1||Ray-Sphere Intersection|
-|5.2||Creating Our First Raytraced Image|
+|5.1||[Ray-Sphere Intersection ✔️](ray_sphere_interaction/note.ipynb)|
+|5.2||[Creating Our First Raytraced Image ✔️](creating_our_first_raytracer_image/note.ipynb)|
 | 6 | Surface Normals and Multiple Objects||
 |6.1||Shading with Surface Normals|
 |6.2||Simplifying the Ray-Sphere Intersection Code|
