@@ -17,7 +17,7 @@
 | 6 | Surface Normals and Multiple Objects||
 |6.1||[Shading with Surface Normals ✔️](shading_with_surface_normals/note.ipynb)|
 |6.2||[Simplifying the Ray-Sphere Intersection Code ✔️](simple_ray_sphere_interaction/note.ipynb)|
-|6.3||An Abstraction for Hittable Objects|
+|6.3||[An Abstraction for Hittable Objects ✔️](an_abstract_for_hittable_object/note.ipynb)|
 |6.4||Front Faces Versus Back Faces|
 |6.5||A List of Hittable Objects|
 |6.6||Some New C++ Features|
