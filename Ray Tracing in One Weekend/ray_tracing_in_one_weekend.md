@@ -10,7 +10,7 @@
 |3.1||[Color Utility Functions ✔️](color_utility_functions/note.ipynb)|
 | 4 | Rays, a Simple Camera, and Background||
 |4.1||[The ray Class ✔️](ray_class/note.ipynb)|
-|4.2||[Sending Rays Into the Scene ]()|
+|4.2||[Sending Rays Into the Scene ✔️](sending_rays_into_the_scene/note.ipynb)|
 | 5 | Adding a Sphere||
 |5.1||Ray-Sphere Intersection|
 |5.2||Creating Our First Raytraced Image|
