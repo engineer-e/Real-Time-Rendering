@@ -96,3 +96,7 @@ def cross(u, v):
 # Unit vector
 def unit_vector(v):
     return v / v.length()
+
+
+Point3 = Vec3
+Color = Vec3 

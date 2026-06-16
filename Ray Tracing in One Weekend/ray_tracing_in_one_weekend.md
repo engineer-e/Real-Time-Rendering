@@ -7,7 +7,7 @@
 |2.2||[Creating an Image File ✔️](creating_an_image_file/note.ipynb)|
 |2.3||[Adding a Progress Indicator ✔️](adding_a_progress_indicator/note.ipynb)|
 | 3 | [The vec3 Class ✔️](the_vec3_class/note.ipynb)||
-|3.1||Color Utility Functions|
+|3.1||[Color Utility Functions ✔️](color_utility_functions/note.ipynb)|
 | 4 | Rays, a Simple Camera, and Background||
 |4.1||The ray Class|
 |4.2||Creating Our First Raytraced Image|
