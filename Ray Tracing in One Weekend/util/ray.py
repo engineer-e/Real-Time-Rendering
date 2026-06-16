@@ -16,3 +16,5 @@ class Ray:
 
     def at(self, t):
         return self.orig + t * self.dir
+    
+    

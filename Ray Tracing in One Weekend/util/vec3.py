@@ -99,7 +99,12 @@ def cross(u, v):
 
 # Unit vector
 def unit_vector(v):
-    return v / v.length()
+    len_v = v.length()
+
+    if len_v < 1e-8:
+        return Vec3(0, 0, 0)
+
+    return v / len_v
 
 
 Point3 = Vec3
