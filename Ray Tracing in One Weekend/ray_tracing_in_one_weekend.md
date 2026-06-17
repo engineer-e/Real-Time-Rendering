@@ -33,8 +33,8 @@
 |8.2||Generating Pixels with Multiple Samples|
 | 9 | Diffuse Materials||
 |9.1||[A Simple Diffuse Material ✔️](a_simple_diffuse_material/note.ipynb)|
-|9.2||[Limiting the Number of Child Rays] |
-|9.3||Fixing Shadow Acne|
+|9.2||[Limiting the Number of Child Rays ✔️](limiting_the_number_of_child_rays/note.ipynb) |
+|9.3||[Fixing Shadow Acne ✔️](fixing_shadow_acne/note.ipynb)|
 |9.4||True Lambertian Reflection|
 |9.5||Using Gamma Correction for Accurate Color Intensity|
 | 10 | Metal||

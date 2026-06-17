@@ -3,6 +3,8 @@
 
 > how to do this in python code with learning notes, formula, formula description , with purpose of each step in markdown table format using latex for math equation in \$...$ inline , \$$...$$ for block
 
+> give the code with comment, of each step and what changed from before in comment.
+
 ### Git Issue
 
 ```git
