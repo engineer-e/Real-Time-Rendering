@@ -25,8 +25,8 @@
 |6.4||[Front Faces Versus Back Faces ✔️](front_face_vs_back_face/note.ipynb)|
 |6.5||[A List of Hittable Objects ✔️](a_list_of_hittable_objects/note.ipynb)|
 |6.6||[Some New C++ to Python Features ✔️](some_new_cpp_to_python_features/note.ipynb)|
-|6.7||[Common Constants and Utility Functions](common_constants_and_utility_functions/note.ipynb)|
-|6.8||An Interval Class|
+|6.7||[Common Constants and Utility Functions ✔️](common_constants_and_utility_functions/note.ipynb)|
+|6.8||[An Interval Class ✔️](an_interval_class/note.ipynb)|
 | 7 | Moving Camera Code Into Its Own Class||
 | 8 | Antialiasing||
 |8.1||Some Random Number Utilities|
