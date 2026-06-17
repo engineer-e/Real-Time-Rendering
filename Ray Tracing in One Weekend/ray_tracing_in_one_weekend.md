@@ -27,13 +27,13 @@
 |6.6||[Some New C++ to Python Features ✔️](some_new_cpp_to_python_features/note.ipynb)|
 |6.7||[Common Constants and Utility Functions ✔️](common_constants_and_utility_functions/note.ipynb)|
 |6.8||[An Interval Class ✔️](an_interval_class/note.ipynb)|
-| 7 | Moving Camera Code Into Its Own Class||
-| 8 | Antialiasing||
-|8.1||Some Random Number Utilities|
+| 7 | [Moving Camera Code Into Its Own Class ✔️](moving_camera_code_into_its_own_class/note.ipynb)||
+| 8 | [Antialiasing ✔️](antialiasing/note.ipynb)||
+|8.1||Some Random Number Utilities |
 |8.2||Generating Pixels with Multiple Samples|
 | 9 | Diffuse Materials||
-|9.1||A Simple Diffuse Material|
-|9.2||Limiting the Number of Child Rays|
+|9.1||[A Simple Diffuse Material ✔️](a_simple_diffuse_material/note.ipynb)|
+|9.2||[Limiting the Number of Child Rays] |
 |9.3||Fixing Shadow Acne|
 |9.4||True Lambertian Reflection|
 |9.5||Using Gamma Correction for Accurate Color Intensity|

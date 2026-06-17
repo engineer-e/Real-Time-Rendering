@@ -31,6 +31,19 @@ class Interval:
         """
         return self.min < x < self.max
 
+    def clamp(self, x):
+        """
+        Clamp x into [min,max]
+        """
+
+        if x < self.min:
+            return self.min
+
+        if x > self.max:
+            return self.max
+
+        return x
+
 
 # Static intervals
 Interval.empty = Interval(float("inf"), float("-inf"))

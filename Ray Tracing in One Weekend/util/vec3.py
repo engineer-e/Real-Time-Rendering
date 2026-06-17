@@ -1,11 +1,14 @@
 import math
+import random
 
 
 class Vec3:
     def __init__(self, x=0, y=0, z=0):
         self.e = [x, y, z]
 
-    # Accessors
+    # --------------------------
+    # Properties
+    # --------------------------
     @property
     def x(self):
         return self.e[0]
@@ -18,94 +21,134 @@ class Vec3:
     def z(self):
         return self.e[2]
 
-    # Negative vector
+    # --------------------------
+    # Operators
+    # --------------------------
     def __neg__(self):
-        return Vec3(-self.e[0], -self.e[1], -self.e[2])
+        return Vec3(-self.x, -self.y, -self.z)
 
-    # Index access
-    def __getitem__(self, i):
-        return self.e[i]
-
-    def __setitem__(self, i, value):
-        self.e[i] = value
-
-    # Addition
     def __add__(self, other):
         return Vec3(
-            self.e[0] + other.e[0],
-            self.e[1] + other.e[1],
-            self.e[2] + other.e[2]
+            self.x + other.x,
+            self.y + other.y,
+            self.z + other.z
         )
 
-    # Subtraction
     def __sub__(self, other):
         return Vec3(
-            self.e[0] - other.e[0],
-            self.e[1] - other.e[1],
-            self.e[2] - other.e[2]
+            self.x - other.x,
+            self.y - other.y,
+            self.z - other.z
         )
 
-    # Multiplication
     def __mul__(self, t):
         if isinstance(t, Vec3):
             return Vec3(
-                self.e[0] * t.e[0],
-                self.e[1] * t.e[1],
-                self.e[2] * t.e[2]
+                self.x * t.x,
+                self.y * t.y,
+                self.z * t.z
             )
-        return Vec3(
-            self.e[0] * t,
-            self.e[1] * t,
-            self.e[2] * t
-        )
-    
-    # Reverse multiplication
-    def __rmul__(self, t):
-       return self.__mul__(t)
 
-    # Division
+        return Vec3(
+            self.x * t,
+            self.y * t,
+            self.z * t
+        )
+
+    def __rmul__(self, t):
+        return self.__mul__(t)
+
     def __truediv__(self, t):
         return self * (1 / t)
 
-    # Length squared
+    def __str__(self):
+        return f"{self.x} {self.y} {self.z}"
+
+    # --------------------------
+    # Length
+    # --------------------------
     def length_squared(self):
         return (
-            self.e[0]**2 +
-            self.e[1]**2 +
-            self.e[2]**2
+            self.x * self.x +
+            self.y * self.y +
+            self.z * self.z
         )
 
-    # Length
     def length(self):
         return math.sqrt(self.length_squared())
 
-    def __str__(self):
-        return f"{self.e[0]} {self.e[1]} {self.e[2]}"
+    # --------------------------
+    # Random vectors
+    # --------------------------
+    @staticmethod
+    def random():
+        return Vec3(
+            random.random(),
+            random.random(),
+            random.random()
+        )
+
+    @staticmethod
+    def random_range(min_v, max_v):
+        return Vec3(
+            random.uniform(min_v, max_v),
+            random.uniform(min_v, max_v),
+            random.uniform(min_v, max_v)
+        )
 
 
-# Dot product
+# --------------------------
+# Utility functions
+# --------------------------
 def dot(u, v):
-    return u.e[0]*v.e[0] + u.e[1]*v.e[1] + u.e[2]*v.e[2]
-
-
-# Cross product
-def cross(u, v):
-    return Vec3(
-        u.e[1]*v.e[2] - u.e[2]*v.e[1],
-        u.e[2]*v.e[0] - u.e[0]*v.e[2],
-        u.e[0]*v.e[1] - u.e[1]*v.e[0]
+    return (
+        u.x * v.x +
+        u.y * v.y +
+        u.z * v.z
     )
 
 
-# Unit vector
+def cross(u, v):
+    return Vec3(
+        u.y * v.z - u.z * v.y,
+        u.z * v.x - u.x * v.z,
+        u.x * v.y - u.y * v.x
+    )
+
+
 def unit_vector(v):
-    len_v = v.length()
+    return v / v.length()
 
-    if len_v < 1e-8:
-        return Vec3(0, 0, 0)
 
-    return v / len_v
+# --------------------------
+# Diffuse helpers
+# --------------------------
+def random_unit_vector():
+    """
+    Rejection sampling inside unit sphere
+    """
+
+    while True:
+        p = Vec3.random_range(-1, 1)
+
+        lensq = p.length_squared()
+
+        if 1e-160 < lensq <= 1:
+            return p / math.sqrt(lensq)
+
+
+def random_on_hemisphere(normal):
+    """
+    Keep ray in outward hemisphere
+    """
+
+    on_unit_sphere = random_unit_vector()
+
+    if dot(on_unit_sphere, normal) > 0.0:
+        return on_unit_sphere
+
+    return -on_unit_sphere
 
 
 Point3 = Vec3
-Color = Vec3 
+Color = Vec3
