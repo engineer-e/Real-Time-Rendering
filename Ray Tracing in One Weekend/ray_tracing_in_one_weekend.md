@@ -46,10 +46,10 @@
 |10.6||[Fuzzy Reflection ✔️](fuzzy_reflection/note.ipynb)|
 | 11 | Dielectrics||
 |11.1||[Refraction ✔️](refraction/note.ipynb)|
-|11.2||Snell's Law|
-|11.3||Total Internal Reflection|
-|11.4||Schlick Approximation|
-|11.5||Modeling a Hollow Glass Sphere|
+|11.2||[Snell's Law ✔️](snells_law/note.ipynb)|
+|11.3||[Total Internal Reflection ✔️](total_internal_reflection/note.ipynb)|
+|11.4||[Schlick Approximation ✔️](schlick_approximation/note.ipynb)|
+|11.5||[Modeling a Hollow Glass Sphere ✔️](modeling_a_hollow_glass_sphere/note.ipynb)|
 | 12 | Positionable Camera||
 |12.1||Camera Viewing Geometry|
 |12.2||Positioning and Orienting the Camera|

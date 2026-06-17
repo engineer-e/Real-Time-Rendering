@@ -206,6 +206,27 @@ def reflect(v, n):
 
     return v - 2 * dot(v, n) * n
 
+def refract(uv, n, etai_over_etat):
+    """
+    uv: unit direction of incoming ray
+    n : surface normal
+    etai_over_etat: ratio of refractive indices (η / η')
+    """
+
+    # STEP 1: compute cos(theta)
+    # CHANGED: we use dot product instead of angle
+    cos_theta = min((-uv).dot(n), 1.0)
+
+    # STEP 2: perpendicular component (bending part)
+    # CHANGED: scales direction using Snell’s Law form
+    r_out_perp = (uv + n * cos_theta) * etai_over_etat
+
+    # STEP 3: parallel component (keeps unit length)
+    # CHANGED: ensures physical constraint |R'| = 1
+    r_out_parallel = n * (-math.sqrt(abs(1.0 - r_out_perp.length_squared())))
+
+    # STEP 4: final refracted ray
+    return r_out_perp + r_out_parallel
 
 Point3 = Vec3
 Color = Vec3
