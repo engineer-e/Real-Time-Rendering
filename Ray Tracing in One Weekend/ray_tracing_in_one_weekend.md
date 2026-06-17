@@ -51,13 +51,13 @@
 |11.4||[Schlick Approximation ✔️](schlick_approximation/note.ipynb)|
 |11.5||[Modeling a Hollow Glass Sphere ✔️](modeling_a_hollow_glass_sphere/note.ipynb)|
 | 12 | Positionable Camera||
-|12.1||[Camera Viewing Geometry✔️](camera_viewing_geometry/note.ipynb)|
-|12.2||Positioning and Orienting the Camera|
+|12.1||[Camera Viewing Geometry ✔️](camera_viewing_geometry/note.ipynb)|
+|12.2||[Positioning and Orienting the Camera ✔️](positioning_and_orienting_the_camera/note.ipynb)|
 | 13 | Defocus Blur||
-|13.1|| A Thin Lens Approximation|
-|13.2|| Generating Sample Rays|
+|13.1|| [A Thin Lens Approximation ✔️](a_thin_lens_approximation/note.ipynb)|
+|13.2|| [Generating Sample Rays ✔️](genereating_sample_ray/note.ipynb)|
 | 14 | Where Next?||
-|14.1||A Final Render|
+|14.1||[A Final Render]()|
 |14.2||Next Steps|
 |14.2.1||Book 2: Ray Tracing: The Next Week|
 |14.2.2||Book 3: Ray Tracing: The Rest of Your Life|
