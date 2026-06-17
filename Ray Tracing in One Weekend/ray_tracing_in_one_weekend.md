@@ -19,8 +19,8 @@
 |6.2||[Simplifying the Ray-Sphere Intersection Code ✔️](simple_ray_sphere_interaction/note.ipynb)|
 |6.3||[An Abstraction for Hittable Objects ✔️](an_abstract_for_hittable_object/note.ipynb)|
 |6.4||[Front Faces Versus Back Faces ✔️](front_face_vs_back_face/note.ipynb)|
-|6.5||A List of Hittable Objects|
-|6.6||Some New C++ Features|
+|6.5||[A List of Hittable Objects ✔️](a_list_of_hittable_objects/note.ipynb)|
+|6.6||[Some New C++ to Python Features ✔️]()|
 |6.7||Common Constants and Utility Functions|
 |6.8||An Interval Class|
 | 7 | Moving Camera Code Into Its Own Class||
