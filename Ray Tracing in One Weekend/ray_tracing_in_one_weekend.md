@@ -38,7 +38,7 @@
 |9.4||[True Lambertian Reflection ✔️](true_lambertian_reflection/note.ipynb)|
 |9.5||[Using Gamma Correction for Accurate Color Intensity ✔️](using_gamma_correction_for_accurate_color_intensity/note.ipynb)|
 | 10 | Metal||
-|10.1||An Abstract Class for Materials|
+|10.1||[An Abstract Class for Materials ✔️](an_abstract_class_for_materials/note.ipynb)|
 |10.2||A Data Structure to Describe Ray-Object Intersections|
 |10.3||Modeling Light Scatter and Reflectance|
 |10.4||Mirrored Light Reflection|
