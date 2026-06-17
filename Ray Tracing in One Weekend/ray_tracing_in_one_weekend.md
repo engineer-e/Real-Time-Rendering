@@ -51,7 +51,7 @@
 |11.4||[Schlick Approximation ✔️](schlick_approximation/note.ipynb)|
 |11.5||[Modeling a Hollow Glass Sphere ✔️](modeling_a_hollow_glass_sphere/note.ipynb)|
 | 12 | Positionable Camera||
-|12.1||Camera Viewing Geometry|
+|12.1||[Camera Viewing Geometry✔️](camera_viewing_geometry/note.ipynb)|
 |12.2||Positioning and Orienting the Camera|
 | 13 | Defocus Blur||
 |13.1|| A Thin Lens Approximation|
