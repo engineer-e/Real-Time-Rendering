@@ -57,11 +57,11 @@
 |13.1|| [A Thin Lens Approximation ✔️](a_thin_lens_approximation/note.ipynb)|
 |13.2|| [Generating Sample Rays ✔️](genereating_sample_ray/note.ipynb)|
 | 14 | Where Next?||
-|14.1||[A Final Render]()|
+|14.1||[A Final Render ✔️](final_render/note.ipynb)|
 |14.2||Next Steps|
-|14.2.1||Book 2: Ray Tracing: The Next Week|
-|14.2.2||Book 3: Ray Tracing: The Rest of Your Life|
-|14.2.3||Other Directions|
+|14.2.1||[Book 2: Ray Tracing: The Next Week ❌](book2/note.ipynb)|
+|14.2.2||[Book 3: Ray Tracing: The Rest of Your Life ❌](book2/note.ipynb)|
+|14.2.3||[Other Directions ❌](other_direction/note.ipynb)|
 | 15 | Acknowledgments||
 | 16 | Citing This Book||
 
