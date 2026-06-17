@@ -5,7 +5,9 @@
 
 ### Git Issue
 
-> git diff e71f02d 2121305 > diffuse.patch, git apply diffuse.patch , git apply --reject --whitespace=fix diffuse.patch
+```git
+git diff e71f02d 2121305 > diffuse.patch, git apply diffuse.patch , git apply --reject --whitespace=fix diffuse.patch
+```
 
 [![Electronic Profile](https://img.shields.io/badge/Electronic%20Profile-engineer--e-181717?logo=github)](https://github.com/engineer-e/) 
 [![Work Profile](https://img.shields.io/badge/Work%20Profile-engineer--work-181717?logo=github)](https://github.com/engineer-work/) 
