@@ -78,6 +78,30 @@ class Vec3:
         return math.sqrt(self.length_squared())
 
     # --------------------------
+    # NEW: Near-zero check
+    #
+    # Purpose:
+    # Detect vectors very close to (0,0,0)
+    #
+    # Formula:
+    #
+    # |x| < ε
+    # |y| < ε
+    # |z| < ε
+    #
+    # where ε = 10^-8
+    # --------------------------
+    def near_zero(self):
+
+        s = 1e-8
+
+        return (
+            abs(self.x) < s
+            and abs(self.y) < s
+            and abs(self.z) < s
+        )
+
+    # --------------------------
     # Random vectors
     # --------------------------
     @staticmethod
