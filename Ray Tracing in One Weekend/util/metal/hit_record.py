@@ -3,56 +3,56 @@ from util.vec3 import dot
 
 class HitRecord:
     def __init__(self):
-        # Hit point (NEW: stores where ray hit)
+
+        # ==========================================
+        # Hit position
+        # ==========================================
         self.p = None
 
-        # Surface normal (already existed)
+        # ==========================================
+        # Surface normal (final corrected normal)
+        # ==========================================
         self.normal = None
 
-        # NEW: material pointer/reference
-        # Before: no material info
-        # Now: allows ray_color() to call material.scatter()
+        # ==========================================
+        # Material at hit point
+        # ==========================================
         self.mat = None
 
-        # Distance along ray
+        # ==========================================
+        # Ray parameter
+        # ==========================================
         self.t = 0.0
 
-        # NEW: tells whether ray hit outside or inside
+        # ==========================================
+        # Whether ray hit outside surface
+        # ==========================================
         self.front_face = False
 
+    # ==========================================
+    # COPY HIT RECORD
+    # ==========================================
     def copy(self, other):
-        # Copy all values from another hit record
-
         self.p = other.p
         self.normal = other.normal
-
-        # NEW: copy material too
         self.mat = other.mat
-
         self.t = other.t
         self.front_face = other.front_face
 
+    # ==========================================
+    # FIX NORMAL DIRECTION
+    #
+    # FORMULA:
+    # front_face = dot(D, N) < 0
+    # ==========================================
     def set_face_normal(self, ray, outward_normal):
-        """
-        NEW FUNCTION IMPROVEMENT:
-        Before:
-            rec.normal = outward_normal
 
-        Problem:
-            if ray comes from inside sphere,
-            normal direction becomes wrong.
-
-        Now:
-            normal always opposes incoming ray.
-        """
-
-        # Formula:
-        # front_face = D.N < 0
         self.front_face = dot(ray.direction(), outward_normal) < 0
 
-        # If outside → normal stays same
-        if self.front_face:
-            self.normal = outward_normal
-        else:
-            # If inside → flip normal
-            self.normal = outward_normal * -1
+        # IMPORTANT FIX:
+        # always assign in one line (clean + safe)
+        self.normal = (
+            outward_normal
+            if self.front_face
+            else -outward_normal
+        )

@@ -41,11 +41,11 @@
 |10.1||[An Abstract Class for Materials ✔️](an_abstract_class_for_materials/note.ipynb)|
 |10.2||[A Data Structure to Describe Ray-Object Intersections ✔️](a_data_structure_to_describe_ray_object_intersection/note.ipynb)|
 |10.3||[Modeling Light Scatter and Reflectance ✔️](modeling_light_scatter_and_reflection/note.ipynb)|
-|10.4||[Mirrored Light Reflection]()|
-|10.5||A Scene with Metal Spheres|
-|10.6||Fuzzy Reflection|
+|10.4||[Mirrored Light Reflection ✔️](mirrored_light_reflection/note.ipynb)|
+|10.5||[A Scene with Metal Spheres ✔️](a_scene_with_metal_sphere/note.ipynb)|
+|10.6||[Fuzzy Reflection ✔️](fuzzy_reflection/note.ipynb)|
 | 11 | Dielectrics||
-|11.1||Refraction|
+|11.1||[Refraction ✔️](refraction/note.ipynb)|
 |11.2||Snell's Law|
 |11.3||Total Internal Reflection|
 |11.4||Schlick Approximation|

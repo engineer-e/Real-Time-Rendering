@@ -1,6 +1,6 @@
 import math
 import random
-
+import numpy as np
 
 class Vec3:
     def __init__(self, x=0, y=0, z=0):
@@ -59,7 +59,8 @@ class Vec3:
         return self.__mul__(t)
 
     def __truediv__(self, t):
-        return self * (1 / t)
+     # CHANGE: avoid divide-by-zero crashes in normalization
+     return self * (1 / (t if t != 0 else 1e-12))
 
     def __str__(self):
         return f"{self.x} {self.y} {self.z}"
@@ -140,8 +141,8 @@ def cross(u, v):
     )
 
 
-def unit_vector(v):
-    return v / v.length()
+#def unit_vector(v):
+#    return v / v.length()
 
 
 # --------------------------
@@ -172,6 +173,38 @@ def random_on_hemisphere(normal):
         return on_unit_sphere
 
     return -on_unit_sphere
+
+# =========================
+# Unit vector (normalization)
+# =========================
+def unit_vector(v):
+    len_v = v.length()
+
+    # CHANGE:
+    # prevents NaN when vector is zero
+    if len_v < 1e-12:
+        return Vec3(0, 0, 0)
+
+    return v / len_v
+
+
+# =========================
+# REFLECTION FUNCTION
+# =========================
+def reflect(v, n):
+    """
+    PURPOSE:
+    Mirror reflection of vector v around normal n
+
+    FORMULA:
+        r = v - 2(v·n)n
+
+    WHY:
+    - removes normal component twice
+    - flips direction symmetrically
+    """
+
+    return v - 2 * dot(v, n) * n
 
 
 Point3 = Vec3
