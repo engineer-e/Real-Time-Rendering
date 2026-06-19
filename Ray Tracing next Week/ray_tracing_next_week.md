@@ -11,7 +11,7 @@
 | 1| [Overview ✔️](overview/note.ipynb) |  |
 | 2| Motion Blur||
 | 2.1 || [Introduction to SpaceTime Ray Tracing ✔️](motion_blur/introduction_of_spacetime_ray_tracing/note.ipynb) |
-| 2.2 || Managing Time|
+| 2.2 || [Managing Time ✔️](motion_blur/managing_time/note.ipynb) |
 | 2.3 || Updating the Camera to Simulate Motion Blur |
 | 2.4 || Adding Moving Spheres |
 | 2.5 || Tracking the Time of Ray Intersection |
