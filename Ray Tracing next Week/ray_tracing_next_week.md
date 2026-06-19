@@ -15,7 +15,7 @@
 | 2.3 || [Updating the Camera to Simulate Motion Blur ✔️](motion_blur/updating_the_camera_to_simulate_motion_blur/note.ipynb) |
 | 2.4 || [Adding Moving Spheres ✔️](motion_blur/adding_moving_spheres/note.ipynb) |
 | 2.5 || [Tracking the Time of Ray Intersection ✔️](motion_blur/tracking_the_time_of_ray_intersection/note.ipynb) |
-| 2.6 || [Putting Everything Together]() |
+| 2.6 || [Putting Everything Together ✔️](motion_blur/putting_everything_together/note.ipynb) |
 | 3| Bounding Volume Hierarchies ||
 | 3.1 || The Key Idea |
 | 3.2 || Hierarchies of Bounding Volumes |
