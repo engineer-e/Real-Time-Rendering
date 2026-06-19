@@ -8,7 +8,7 @@
 
 | Ray Tracing: The Next Week | | |
 | --- | --- | ---|
-| 1| Overview | |
+| 1| [Overview ✔️](overview/note.ipynb) |  |
 | 2| Motion Blur||
 | 2.1 || Introduction to SpaceTime Ray Tracing |
 | 2.2 || Managing Time|
