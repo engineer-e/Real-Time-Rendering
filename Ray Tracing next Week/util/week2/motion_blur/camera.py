@@ -6,7 +6,7 @@ import concurrent.futures
 from tqdm import tqdm
 
 from util.week1.vec3 import Vec3, unit_vector, cross
-from util.week1.ray import Ray
+from util.week2.ray import Ray
 from util.week1.hitrecord import HitRecord
 from util.week1.interval import Interval
 from util.week1.image_viewer import image_viewer
@@ -381,4 +381,3 @@ class Camera:
                     f.write(row_data + "\n")
 
         print(f"Render complete → {self.output_file}")
-

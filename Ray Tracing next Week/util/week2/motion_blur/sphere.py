@@ -2,7 +2,7 @@ import math
 
 from util.week1.vec3 import dot
 from util.week1.hittable import Hittable
-from util.week1.ray import Ray
+from util.week2.ray import Ray
 
 
 class Sphere(Hittable):
