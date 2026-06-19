@@ -13,7 +13,7 @@
 | 2.1 || [Introduction to SpaceTime Ray Tracing ✔️](motion_blur/introduction_of_spacetime_ray_tracing/note.ipynb) |
 | 2.2 || [Managing Time ✔️](motion_blur/managing_time/note.ipynb) |
 | 2.3 || [Updating the Camera to Simulate Motion Blur ✔️](motion_blur/updating_the_camera_to_simulate_motion_blur/note.ipynb) |
-| 2.4 || Adding Moving Spheres |
+| 2.4 || [Adding Moving Spheres ✔️](motion_blur/adding_moving_spheres/note.ipynb) |
 | 2.5 || Tracking the Time of Ray Intersection |
 | 2.6 || Putting Everything Together |
 | 3| Bounding Volume Hierarchies ||
