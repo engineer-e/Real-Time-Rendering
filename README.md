@@ -1,15 +1,12 @@
 # Real-Time-Rendering
-> learning purpose (git add . && git commit -m "" && git pull && git push)
 
-> how to do this in python code with learning notes, formula, formula description , with purpose of each step in markdown table format using latex for math equation in \$...$ inline , \$$...$$ for block
 
-> give the code with comment, of each step and what changed from before in comment.
+- I am Gobal Krishnan V. I just doing for my learning purpose. 
+- I Using material [RayTracingInOneWeekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html#overview), they done in C++, But I doing in Python & Javascript.
 
-### Git Issue
 
-```git
-git diff e71f02d 2121305 > diffuse.patch, git apply diffuse.patch , git apply --reject --whitespace=fix diffuse.patch
-```
+![book cover](image/bookcover.png)
+
 
 [![Electronic Profile](https://img.shields.io/badge/Electronic%20Profile-engineer--e-181717?logo=github)](https://github.com/engineer-e/) 
 [![Work Profile](https://img.shields.io/badge/Work%20Profile-engineer--work-181717?logo=github)](https://github.com/engineer-work/) 
