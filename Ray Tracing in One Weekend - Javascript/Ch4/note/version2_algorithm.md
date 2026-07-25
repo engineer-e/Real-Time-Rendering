@@ -24,33 +24,33 @@ Here is the clean, structured algorithm based on the camera initialization steps
 
 * $\text{aspect ratio} \leftarrow \frac{\text{image width}}{\text{image height}}$
 
-* $\text{viewport width} \leftarrow \text{viewport height} \times \text{aspect\_ratio}$
+* $\text{viewport width} \leftarrow \text{viewport height} \times \text{aspect ratio}$
 
 
 3. **Define Viewport Spatial Edge Vectors**
 
-* $\vec{u}_{\text{viewport}} \leftarrow (\text{viewport\_width},\ 0,\ 0)$
+* $\vec{u}_{\text{viewport}} \leftarrow (\text{viewport width},\ 0,\ 0)$
 
-* $\vec{v}_{\text{viewport}} \leftarrow (0,\ -\text{viewport\_height},\ 0)$ *(Negative $Y$ ensures top-to-bottom scanlines)*
+* $\vec{v}_{\text{viewport}} \leftarrow (0,\ -\text{viewport height},\ 0)$ *(Negative $Y$ ensures top-to-bottom scanlines)*
 
 
 4. **Compute Per-Pixel Step Vectors**
 
-* $\Delta\vec{u}_{\text{pixel}} \leftarrow \frac{\vec{u}_{\text{viewport}}}{\text{image\_width}}$
+* $\Delta\vec{u}_{\text{pixel}} \leftarrow \frac{\vec{u}_{\text{viewport}}}{\text{image width}}$
 
-* $\Delta\vec{v}_{\text{pixel}} \leftarrow \frac{\vec{v}_{\text{viewport}}}{\text{image\_height}}$
+* $\Delta\vec{v}_{\text{pixel}} \leftarrow \frac{\vec{v}_{\text{viewport}}}{\text{image height}}$
 
 
 5. **Position Viewport Boundaries**
 
-* $\text{viewport\_center} \leftarrow \text{camera\_center} - (0,\ 0,\ \text{focal\_length})$
+* $\text{viewport center} \leftarrow \text{camera center} - (0,\ 0,\ \text{focal length})$
 
-* $\text{viewport\_upper\_left} \leftarrow \text{viewport\_center} - \frac{\vec{u}_{\text{viewport}}}{2} - \frac{\vec{v}_{\text{viewport}}}{2}$
+* $\text{viewport upper left} \leftarrow \text{viewport center} - \frac{\vec{u}_{\text{viewport}}}{2} - \frac{\vec{v}_{\text{viewport}}}{2}$
 
 
 6. **Locate Center of Pixel $(0, 0)$**
 
-* $\text{pixel00\_loc} \leftarrow \text{viewport\_upper\_left} + 0.5 \times (\Delta\vec{u}_{\text{pixel}} + \Delta\vec{v}_{\text{pixel}})$
+* $\text{pixel00 loc} \leftarrow \text{viewport upper left} + 0.5 \times (\Delta\vec{u}_{\text{pixel}} + \Delta\vec{v}_{\text{pixel}})$
 
 
 
@@ -60,12 +60,12 @@ Here is the clean, structured algorithm based on the camera initialization steps
 
 The setup yields:
 
-* **Camera Origin:** $\text{camera\_center}$
-* **Starting Pixel Center:** $\text{pixel00\_loc}$
+* **Camera Origin:** $\text{camera center}$
+* **Starting Pixel Center:** $\text{pixel00 loc}$
 * **Horizontal Delta Vector:** $\Delta\vec{u}_{\text{pixel}}$
 * **Vertical Delta Vector:** $\Delta\vec{v}_{\text{pixel}}$
 
-*(For any pixel $(i, j)$, its exact 3D center location is computed as: $\text{pixel00\_loc} + (i \times \Delta\vec{u}_{\text{pixel}}) + (j \times \Delta\vec{v}_{\text{pixel}})$)*
+*(For any pixel $(i, j)$, its exact 3D center location is computed as: $\text{pixel00 loc} + (i \times \Delta\vec{u}_{\text{pixel}}) + (j \times \Delta\vec{v}_{\text{pixel}})$)*
 
 
 ---
@@ -134,12 +134,12 @@ Plugging $\vec{u} = (1, 0, 0)$ and $\vec{v} = (0, 1, 0)$ into the generalized vi
 
 1. **Horizontal Edge Vector:**
 
-$$\vec{u}_{\text{viewport}} = \text{viewport\_width} \cdot \vec{u} = \text{viewport\_width} \cdot (1, 0, 0) = (\text{viewport\_width},\ 0,\ 0)$$
+$$\vec{u}_{\text{viewport}} = \text{viewport width} \cdot \vec{u} = \text{viewport width} \cdot (1, 0, 0) = (\text{viewport width},\ 0,\ 0)$$
 
 
 2. **Vertical Edge Vector:**
 
-$$\vec{v}_{\text{viewport}} = -\text{viewport\_height} \cdot \vec{v} = -\text{viewport\_height} \cdot (0, 1, 0) = (0,\ -\text{viewport\_height},\ 0)$$
+$$\vec{v}_{\text{viewport}} = -\text{viewport height} \cdot \vec{v} = -\text{viewport height} \cdot (0, 1, 0) = (0,\ -\text{viewport height},\ 0)$$
 
 
 
@@ -149,7 +149,7 @@ $$\blacksquare$$
 
 ### **Conclusion**
 
-This completes the proof. The simple hardcoded vectors $(\text{viewport\_width},\ 0,\ 0)$ and $(0,\ -\text{viewport\_height},\ 0)$ are not arbitrary rules of thumb — they are the exact mathematical result of applying an **Orthonormal Basis (ONB)** to a camera at the origin looking down $-Z$.
+This completes the proof. The simple hardcoded vectors $(\text{viewport width},\ 0,\ 0)$ and $(0,\ -\text{viewport height},\ 0)$ are not arbitrary rules of thumb — they are the exact mathematical result of applying an **Orthonormal Basis (ONB)** to a camera at the origin looking down $-Z$.
 
 ---
 
