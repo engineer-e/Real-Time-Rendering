@@ -17,40 +17,40 @@ Here is the clean, structured algorithm based on the camera initialization steps
 
 1. **Define Camera Position**
 
-* $\text{camera\_center} \leftarrow (0, 0, 0)$
+* $\mathbf{camera\_center} \leftarrow (0, 0, 0)$
 
 
 2. **Determine Viewport Dimensions**
 
-* $\text{aspect\_ratio} \leftarrow \frac{\text{image\_width}}{\text{image\_height}}$
+* $\mathbf{aspect\_ratio} \leftarrow \frac{\mathbf{image\_width}}{\mathbf{image\_height}}$
 
-* $\text{viewport\_width} \leftarrow \text{viewport\_height} \times \text{aspect\_ratio}$
+* $\mathbf{viewport\_width} \leftarrow \mathbf{viewport\_height} \times \mathbf{aspect\_ratio}$
 
 
 3. **Define Viewport Spatial Edge Vectors**
 
-* $\vec{u}_{\text{viewport}} \leftarrow (\text{viewport\_width},\ 0,\ 0)$
+* $\vec{u}_{\mathbf{viewport}} \leftarrow (\mathbf{viewport\_width},\ 0,\ 0)$
 
-* $\vec{v}_{\text{viewport}} \leftarrow (0,\ -\text{viewport\_height},\ 0)$ *(Negative $Y$ ensures top-to-bottom scanlines)*
+* $\vec{v}_{\mathbf{viewport}} \leftarrow (0,\ -\mathbf{viewport\_height},\ 0)$ *(Negative $Y$ ensures top-to-bottom scanlines)*
 
 
 4. **Compute Per-Pixel Step Vectors**
 
-* $\Delta\vec{u}_{\text{pixel}} \leftarrow \frac{\vec{u}_{\text{viewport}}}{\text{image\_width}}$
+* $\Delta\vec{u}_{\mathbf{pixel}} \leftarrow \frac{\vec{u}_{\mathbf{viewport}}}{\mathbf{image\_width}}$
 
-* $\Delta\vec{v}_{\text{pixel}} \leftarrow \frac{\vec{v}_{\text{viewport}}}{\text{image\_height}}$
+* $\Delta\vec{v}_{\mathbf{pixel}} \leftarrow \frac{\vec{v}_{\mathbf{viewport}}}{\mathbf{image\_height}}$
 
 
 5. **Position Viewport Boundaries**
 
-* $\text{viewport\_center} \leftarrow \text{camera\_center} - (0,\ 0,\ \text{focal\_length})$
+* $\mathbf{viewport\_center} \leftarrow \mathbf{camera\_center} - (0,\ 0,\ \mathbf{focal\_length})$
 
-* $\text{viewport\_upper\_left} \leftarrow \text{viewport\_center} - \frac{\vec{u}_{\text{viewport}}}{2} - \frac{\vec{v}_{\text{viewport}}}{2}$
+* $\mathbf{viewport\_upper\_left} \leftarrow \mathbf{viewport\_center} - \frac{\vec{u}_{\mathbf{viewport}}}{2} - \frac{\vec{v}_{\mathbf{viewport}}}{2}$
 
 
 6. **Locate Center of Pixel $(0, 0)$**
 
-* $\text{pixel00\_loc} \leftarrow \text{viewport\_upper\_left} + 0.5 \times (\Delta\vec{u}_{\text{pixel}} + \Delta\vec{v}_{\text{pixel}})$
+* $\mathbf{pixel00\_loc} \leftarrow \mathbf{viewport\_upper\_left} + 0.5 \times (\Delta\vec{u}_{\mathbf{pixel}} + \Delta\vec{v}_{\mathbf{pixel}})$
 
 
 
@@ -60,15 +60,15 @@ Here is the clean, structured algorithm based on the camera initialization steps
 
 The setup yields:
 
-* **Camera Origin:** $\text{camera\_center}$
+* **Camera Origin:** $\mathbf{camera\_center}$
 
-* **Starting Pixel Center:** $\text{pixel00\_loc}$
+* **Starting Pixel Center:** $\mathbf{pixel00\_loc}$
 
-* **Horizontal Delta Vector:** $\Delta\vec{u}_{\text{pixel}}$
+* **Horizontal Delta Vector:** $\Delta\vec{u}_{\mathbf{pixel}}$
 
-* **Vertical Delta Vector:** $\Delta\vec{v}_{\text{pixel}}$
+* **Vertical Delta Vector:** $\Delta\vec{v}_{\mathbf{pixel}}$
 
-*(For any pixel $(i, j)$, its exact 3D center location is computed as: $\text{pixel00\_loc} + (i \times \Delta\vec{u}_{\text{pixel}}) + (j \times \Delta\vec{v}_{\text{pixel}})$)*
+*(For any pixel $(i, j)$, its exact 3D center location is computed as: $\mathbf{pixel00\_loc} + (i \times \Delta\vec{u}_{\mathbf{pixel}}) + (j \times \Delta\vec{v}_{\mathbf{pixel}})$)*
 
 
 ---
@@ -81,7 +81,7 @@ To prove that the simple axis-aligned camera vectors are a direct mathematical c
 
 1. **Camera Position ($\mathbf{E}$):** $(0, 0, 0)$
 2. **Target Point ($\mathbf{T}$):** Looking down the negative $Z$-axis $\rightarrow (0, 0, -1)$
-3. **World Up Vector ($\vec{v}_{\text{up}}$):** $(0, 1, 0)$
+3. **World Up Vector ($\vec{v}_{\mathbf{up}}$):** $(0, 1, 0)$
 
 ---
 
@@ -102,14 +102,14 @@ $$\vec{w} = \frac{(0, 0, 1)}{\Vert{}(0, 0, 1)\Vert{}} = (0, 0, 1)$$
 
 #### **Step 2: Compute Unit Vector $\vec{u}$ (Local $X$-axis)**
 
-$\vec{u}$ represents the camera's local "Right" direction, found using the cross product $\vec{v}_{\text{up}} \times \vec{w}$:
+$\vec{u}$ represents the camera's local "Right" direction, found using the cross product $\vec{v}_{\mathbf{up}} \times \vec{w}$:
 
-$$\vec{u}_{\text{raw}} = \vec{v}_{\text{up}} \times \vec{w} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{vmatrix}$$
+$$\vec{u}_{\mathbf{raw}} = \vec{v}_{\mathbf{up}} \times \vec{w} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{vmatrix}$$
 
 Expanding the determinant:
 
 
-$$\vec{u}_{\text{raw}} = \mathbf{i}(1 \cdot 1 - 0 \cdot 0) - \mathbf{j}(0 \cdot 1 - 0 \cdot 0) + \mathbf{k}(0 \cdot 0 - 1 \cdot 0) = (1, 0, 0)$$
+$$\vec{u}_{\mathbf{raw}} = \mathbf{i}(1 \cdot 1 - 0 \cdot 0) - \mathbf{j}(0 \cdot 1 - 0 \cdot 0) + \mathbf{k}(0 \cdot 0 - 1 \cdot 0) = (1, 0, 0)$$
 
 Normalizing:
 
@@ -137,12 +137,12 @@ Plugging $\vec{u} = (1, 0, 0)$ and $\vec{v} = (0, 1, 0)$ into the generalized vi
 
 1. **Horizontal Edge Vector:**
 
-$$\vec{u}_{\text{viewport}} = \text{viewport\_width} \cdot \vec{u} = \text{viewport\_width} \cdot (1, 0, 0) = (\text{viewport\_width},\ 0,\ 0)$$
+$$\vec{u}_{\mathbf{viewport}} = \mathbf{viewport\_width} \cdot \vec{u} = \mathbf{viewport\_width} \cdot (1, 0, 0) = (\mathbf{viewport\_width},\ 0,\ 0)$$
 
 
 2. **Vertical Edge Vector:**
 
-$$\vec{v}_{\text{viewport}} = -\text{viewport\_height} \cdot \vec{v} = -\text{viewport\_height} \cdot (0, 1, 0) = (0,\ -\text{viewport\_height},\ 0)$$
+$$\vec{v}_{\mathbf{viewport}} = -\mathbf{viewport\_height} \cdot \vec{v} = -\mathbf{viewport\_height} \cdot (0, 1, 0) = (0,\ -\mathbf{viewport\_height},\ 0)$$
 
 
 
@@ -152,7 +152,7 @@ $$\blacksquare$$
 
 ### **Conclusion**
 
-This completes the proof. The simple hardcoded vectors $(\text{viewport\_width},\ 0,\ 0)$ and $(0,\ -\text{viewport\_height},\ 0)$ are not arbitrary rules of thumb — they are the exact mathematical result of applying an **Orthonormal Basis (ONB)** to a camera at the origin looking down $-Z$.
+This completes the proof. The simple hardcoded vectors $(\mathbf{viewport\_width},\ 0,\ 0)$ and $(0,\ -\mathbf{viewport\_height},\ 0)$ are not arbitrary rules of thumb — they are the exact mathematical result of applying an **Orthonormal Basis (ONB)** to a camera at the origin looking down $-Z$.
 
 ---
 
