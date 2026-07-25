@@ -47,7 +47,12 @@ class HelloWorld{
             progress(Math.floor((j / image_height) * 100),image_height - j);   // Progress %
 
             for (var i = 0; i <= image_width; i++) {
-              var u = (i) / (image_width-1);
+              
+              /** 
+               * ========================================================
+               * Version 1 - Percantage Based rendering
+               * ========================================================
+               * var u = (i) / (image_width-1);
               var v = (image_height-j) / (image_height-1);
 
               // 1. Calculate u * horizontal and v * vertical
@@ -59,8 +64,17 @@ class HelloWorld{
               
               // 3. Add the result + (v * vertical)
               const direction = Vec3.add(corner_plus_u, v_vert);
+              */
 
-              var ray = new Ray(origin, direction)
+              /**
+               * ========================================================
+               * Version 2 - Pixel Center Based rendering
+               * ======================================================== 
+               */
+             
+             var pixel_center = Vec3.add(this.screen.pixel00_loc, Vec3.add( Vec3.mul({t:i ,v: this.screen.pixel_delta_u}) , Vec3.mul({t:j ,v: this.screen.pixel_delta_v})));
+             var ray_direction = Vec3.sub(pixel_center,this.screen.camera_center)
+             var ray = new Ray(this.screen.camera_center, ray_direction)
 
              // var pixel_color = new Vec3(r,g,b)
 

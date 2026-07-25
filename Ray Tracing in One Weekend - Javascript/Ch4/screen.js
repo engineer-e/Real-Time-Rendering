@@ -12,9 +12,30 @@ class Screen{
      this.height = (this.height < 1)? 1 : this.height
 
      // Viewport widths less than one are ok since they are real valued.
+
+     // Camera
+
+     this.focal_length = 1.0
      this.viewport_height = 2.0
      this.viewport_width = this.viewport_height * ((this.width)/this.height)
+     this.camera_center = new Point3(0, 0, 0);
 
+     // Calculate the vectors across the horizontal and down the vertical viewport edges.
+     this.viewport_u = new Vec3(this.viewport_width, 0, 0);
+     this.viewport_v = new Vec3(0, -this.viewport_height, 0);
+
+     // Calculate the horizontal and vertical delta vectors from pixel to pixel.
+     this.pixel_delta_u = Vec3.div(this.viewport_u,this.width);
+     this.pixel_delta_v = Vec3.div(this.viewport_v,this.height);
+
+     // Calculate the location of the upper left pixel.
+     var viewport_u_half = Vec3.div(this.viewport_u,2)
+     var viewport_v_half = Vec3.div(this.viewport_v,2)
+     
+     this.viewport_upper_left = Vec3.sub(Vec3.sub(Vec3.sub(this.camera_center,new Vec3(0, 0, this.focal_length)),viewport_u_half),viewport_v_half)
+     this.pixel00_loc = Vec3.add(this.viewport_upper_left,Vec3.mul({t: 0.5 ,v:Vec3.add(this.pixel_delta_u,this.pixel_delta_v)}));
+     
+     console.log(this.pixel00_loc)
      this.image = this.$2.createImageData(this.width,this.height)
      this.imageData = this.image.data
 
