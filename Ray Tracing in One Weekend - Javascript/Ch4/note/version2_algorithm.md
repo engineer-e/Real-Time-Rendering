@@ -16,30 +16,40 @@ Here is the clean, structured algorithm based on the camera initialization steps
 ### **Algorithm**
 
 1. **Define Camera Position**
+
 * $\text{camera\_center} \leftarrow (0, 0, 0)$
 
 
 2. **Determine Viewport Dimensions**
+
 * $\text{aspect\_ratio} \leftarrow \frac{\text{image\_width}}{\text{image\_height}}$
+
 * $\text{viewport\_width} \leftarrow \text{viewport\_height} \times \text{aspect\_ratio}$
 
 
 3. **Define Viewport Spatial Edge Vectors**
+
 * $\vec{u}_{\text{viewport}} \leftarrow (\text{viewport\_width},\ 0,\ 0)$
+
 * $\vec{v}_{\text{viewport}} \leftarrow (0,\ -\text{viewport\_height},\ 0)$ *(Negative $Y$ ensures top-to-bottom scanlines)*
 
 
 4. **Compute Per-Pixel Step Vectors**
+
 * $\Delta\vec{u}_{\text{pixel}} \leftarrow \frac{\vec{u}_{\text{viewport}}}{\text{image\_width}}$
+
 * $\Delta\vec{v}_{\text{pixel}} \leftarrow \frac{\vec{v}_{\text{viewport}}}{\text{image\_height}}$
 
 
 5. **Position Viewport Boundaries**
+
 * $\text{viewport\_center} \leftarrow \text{camera\_center} - (0,\ 0,\ \text{focal\_length})$
+
 * $\text{viewport\_upper\_left} \leftarrow \text{viewport\_center} - \frac{\vec{u}_{\text{viewport}}}{2} - \frac{\vec{v}_{\text{viewport}}}{2}$
 
 
 6. **Locate Center of Pixel $(0, 0)$**
+
 * $\text{pixel00\_loc} \leftarrow \text{viewport\_upper\_left} + 0.5 \times (\Delta\vec{u}_{\text{pixel}} + \Delta\vec{v}_{\text{pixel}})$
 
 
@@ -51,8 +61,11 @@ Here is the clean, structured algorithm based on the camera initialization steps
 The setup yields:
 
 * **Camera Origin:** $\text{camera\_center}$
+
 * **Starting Pixel Center:** $\text{pixel00\_loc}$
+
 * **Horizontal Delta Vector:** $\Delta\vec{u}_{\text{pixel}}$
+
 * **Vertical Delta Vector:** $\Delta\vec{v}_{\text{pixel}}$
 
 *(For any pixel $(i, j)$, its exact 3D center location is computed as: $\text{pixel00\_loc} + (i \times \Delta\vec{u}_{\text{pixel}}) + (j \times \Delta\vec{v}_{\text{pixel}})$)*
