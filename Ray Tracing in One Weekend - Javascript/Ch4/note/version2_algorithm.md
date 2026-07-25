@@ -1,359 +1,141 @@
-# Camera Initialization Algorithm
-
-## Input Parameters
-
-- `image_width`: Target image width in pixels
-- `image_height`: Target image height in pixels
-- `focal_length`: Distance from the camera origin to the virtual image plane (default: `1.0`)
-- `viewport_height`: Physical height of the virtual screen in world units (default: `2.0`)
+# Ray Tracing Camera Setup & Orthonormal Basis Derivation
 
 ---
 
-## Algorithm
+## 1. Camera Initialization Algorithm
 
-### 1. Define Camera Position
+### Input Parameters
 
-- $$
-  \text{camera center} \leftarrow (0, 0, 0)
-  $$
-
----
-
-### 2. Determine Viewport Dimensions
-
-- $$
-  \text{aspect ratio} \leftarrow
-  \frac{\text{image width}}{\text{image height}}
-  $$
-
-- $$
-  \text{viewport width}
-  \leftarrow
-  \text{viewport height}
-  \times
-  \text{aspect ratio}
-  $$
+* `image_width`: Target image width in pixels
+* `image_height`: Target image height in pixels
+* `focal_length`: Distance from the camera origin to the virtual image plane *(default: `1.0`)*
+* `viewport_height`: Physical height of the virtual screen in world units *(default: `2.0`)*
 
 ---
 
-### 3. Define Viewport Spatial Edge Vectors
+### Algorithm Steps
 
-- $$
-  \vec{u}_{\text{viewport}}
-  \leftarrow
-  (\text{viewport width},\ 0,\ 0)
-  $$
+1. **Define Camera Position:**  
+   $\text{camera\_center} \leftarrow (0, 0, 0)$
 
-- $$
-  \vec{v}_{\text{viewport}}
-  \leftarrow
-  (0,\ -\text{viewport height},\ 0)
-  $$
+2. **Determine Viewport Dimensions:**  
+   $\text{aspect\_ratio} \leftarrow \frac{\text{image\_width}}{\text{image\_height}}$  
+   $\text{viewport\_width} \leftarrow \text{viewport\_height} \times \text{aspect\_ratio}$
 
-  *(Negative $Y$ ensures top-to-bottom scanlines.)*
+3. **Define Viewport Spatial Edge Vectors:**  
+   $\vec{u}_{\text{viewport}} \leftarrow (\text{viewport\_width},\ 0,\ 0)$  
+   $\vec{v}_{\text{viewport}} \leftarrow (0,\ -\text{viewport\_height},\ 0)$ *(Negative $Y$ ensures top-to-bottom scanlines)*
 
----
+4. **Compute Per-Pixel Step Vectors:**  
+   $\Delta\vec{u}_{\text{pixel}} \leftarrow \frac{\vec{u}_{\text{viewport}}}{\text{image\_width}}$  
+   $\Delta\vec{v}_{\text{pixel}} \leftarrow \frac{\vec{v}_{\text{viewport}}}{\text{image\_height}}$
 
-### 4. Compute Per-Pixel Step Vectors
+5. **Position Viewport Boundaries:**  
+   $\text{viewport\_center} \leftarrow \text{camera\_center} - (0,\ 0,\ \text{focal\_length})$  
+   $\text{viewport\_upper\_left} \leftarrow \text{viewport\_center} - \frac{\vec{u}_{\text{viewport}}}{2} - \frac{\vec{v}_{\text{viewport}}}{2}$
 
-- $$
-  \Delta\vec{u}_{\text{pixel}}
-  \leftarrow
-  \frac{\vec{u}_{\text{viewport}}}
-       {\text{image width}}
-  $$
-
-- $$
-  \Delta\vec{v}_{\text{pixel}}
-  \leftarrow
-  \frac{\vec{v}_{\text{viewport}}}
-       {\text{image height}}
-  $$
+6. **Locate Center of Pixel $(0, 0)$:**  
+   $\text{pixel00\_loc} \leftarrow \text{viewport\_upper\_left} + 0.5 \times (\Delta\vec{u}_{\text{pixel}} + \Delta\vec{v}_{\text{pixel}})$
 
 ---
 
-### 5. Position Viewport Boundaries
+### Output State
 
-- $$
-  \text{viewport center}
-  \leftarrow
-  \text{camera center}
-  -
-  (0,\ 0,\ \text{focal length})
-  $$
+The camera setup yields the following vectors and points:
 
-- $$
-  \text{viewport upper left}
-  \leftarrow
-  \text{viewport center}
-  -
-  \frac{\vec{u}_{\text{viewport}}}{2}
-  -
-  \frac{\vec{v}_{\text{viewport}}}{2}
-  $$
+* **Camera Origin:** $\text{camera\_center}$
+* **Starting Pixel Center:** $\text{pixel00\_loc}$
+* **Horizontal Delta Vector:** $\Delta\vec{u}_{\text{pixel}}$
+* **Vertical Delta Vector:** $\Delta\vec{v}_{\text{pixel}}$
+
+> **Pixel Location Formula:**  
+> For any pixel at coordinate $(i, j)$, its exact 3D center location is given by:  
+> $\text{pixel\_center}(i, j) = \text{pixel00\_loc} + (i \cdot \Delta\vec{u}_{\text{pixel}}) + (j \cdot \Delta\vec{v}_{\text{pixel}})$
 
 ---
 
-### 6. Locate Center of Pixel $(0,0)$
+## 2. Mathematical Proof: Simple Camera from General ONB
 
-- $$
-  \text{pixel00 loc}
-  \leftarrow
-  \text{viewport upper left}
-  +
-  0.5
-  \times
-  \left(
-  \Delta\vec{u}_{\text{pixel}}
-  +
-  \Delta\vec{v}_{\text{pixel}}
-  \right)
-  $$
+To prove that simple axis-aligned camera vectors are a direct mathematical consequence of the general camera formulation, we evaluate the general **Orthonormal Basis (ONB)** equations using baseline camera parameters.
 
 ---
 
-## Output State
+### Baseline Parameters
 
-The setup yields:
-
-- **Camera Origin**
-
-  $$
-  \text{camera center}
-  $$
-
-- **Starting Pixel Center**
-
-  $$
-  \text{pixel00 loc}
-  $$
-
-- **Horizontal Delta Vector**
-
-  $$
-  \Delta\vec{u}_{\text{pixel}}
-  $$
-
-- **Vertical Delta Vector**
-
-  $$
-  \Delta\vec{v}_{\text{pixel}}
-  $$
-
-For any pixel $(i,j)$, its exact 3D center location is
-
-$$
-\text{pixel00 loc}
-+
-(i \times \Delta\vec{u}_{\text{pixel}})
-+
-(j \times \Delta\vec{v}_{\text{pixel}})
-$$
+1. **Camera Position ($\mathbf{E}$):** $(0, 0, 0)$
+2. **Target Point ($\mathbf{T}$):** Looking down the negative $Z$-axis $\rightarrow (0, 0, -1)$
+3. **World Up Vector ($\vec{v}_{\text{up}}$):** $(0, 1, 0)$
 
 ---
 
-# Proof Using the General Camera Formulation (ONB)
+### Step-by-Step Proof
 
-To prove that the simple axis-aligned camera vectors are a direct mathematical consequence of the general camera formulation, we evaluate the general **Orthonormal Basis (ONB)** equations using the baseline camera parameters.
+#### **Step 1: Compute Unit Vector $\vec{w}$ (Local $Z$-axis)**
 
----
+The vector $\vec{w}$ points opposite to the camera's view direction:
 
-## Given Parameters for the Simple Camera
+$$\mathbf{E} - \mathbf{T} = (0, 0, 0) - (0, 0, -1) = (0, 0, 1)$$
 
-1. **Camera Position ($\mathbf{E}$):**
+Normalizing to a unit vector:
 
-   $$
-   (0,0,0)
-   $$
-
-2. **Target Point ($\mathbf{T}$):**
-
-   Looking down the negative $Z$-axis
-
-   $$
-   (0,0,-1)
-   $$
-
-3. **World Up Vector ($\vec{v}_{\text{up}}$):**
-
-   $$
-   (0,1,0)
-   $$
+$$\vec{w} = \frac{(0, 0, 1)}{\|(0, 0, 1)\|} = (0, 0, 1)$$
 
 ---
 
-## Step 1: Compute Unit Vector $\vec{w}$ (Local $Z$-Axis)
+#### **Step 2: Compute Unit Vector $\vec{u}$ (Local $X$-axis)**
 
-The vector $\vec{w}$ points in the direction opposite to where the camera is looking.
+$\vec{u}$ represents the camera's local **Right** direction, obtained via cross product $\vec{v}_{\text{up}} \times \vec{w}$:
 
-$$
-\mathbf{E}-\mathbf{T}
-=
-(0,0,0)
--
-(0,0,-1)
-=
-(0,0,1)
-$$
-
-Normalize the vector:
-
-$$
-\vec{w}
-=
-\frac{(0,0,1)}
-{\|(0,0,1)\|}
-=
-(0,0,1)
-$$
-
----
-
-## Step 2: Compute Unit Vector $\vec{u}$ (Local $X$-Axis)
-
-$\vec{u}$ represents the camera's local **Right** direction.
-
-$$
-\vec{u}_{\text{raw}}
-=
-\vec{v}_{\text{up}}
-\times
-\vec{w}
-=
-\begin{vmatrix}
-\mathbf{i} & \mathbf{j} & \mathbf{k} \\
-0 & 1 & 0 \\
-0 & 0 & 1
-\end{vmatrix}
-$$
+$$\vec{u}_{\text{raw}} = \vec{v}_{\text{up}} \times \vec{w} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{vmatrix}$$
 
 Expanding the determinant:
 
-$$
-\vec{u}_{\text{raw}}
-=
-\mathbf{i}(1\cdot1-0\cdot0)
--
-\mathbf{j}(0\cdot1-0\cdot0)
-+
-\mathbf{k}(0\cdot0-1\cdot0)
-=
-(1,0,0)
-$$
+$$\vec{u}_{\text{raw}} = \mathbf{i}(1 \cdot 1 - 0 \cdot 0) - \mathbf{j}(0 \cdot 1 - 0 \cdot 0) + \mathbf{k}(0 \cdot 0 - 1 \cdot 0) = (1, 0, 0)$$
 
-Normalize:
+Normalizing:
 
-$$
-\vec{u}
-=
-\frac{(1,0,0)}
-{\|(1,0,0)\|}
-=
-(1,0,0)
-$$
+$$\vec{u} = \frac{(1, 0, 0)}{\|(1, 0, 0)\|} = (1, 0, 0)$$
 
 ---
 
-## Step 3: Compute Unit Vector $\vec{v}$ (Local $Y$-Axis)
+#### **Step 3: Compute Unit Vector $\vec{v}$ (Local $Y$-axis)**
 
-$\vec{v}$ represents the camera's local **Up** direction.
+$\vec{v}$ represents the camera's local **Up** direction, given by $\vec{w} \times \vec{u}$:
 
-$$
-\vec{v}
-=
-\vec{w}
-\times
-\vec{u}
-=
-\begin{vmatrix}
-\mathbf{i} & \mathbf{j} & \mathbf{k} \\
-0 & 0 & 1 \\
-1 & 0 & 0
-\end{vmatrix}
-$$
+$$\vec{v} = \vec{w} \times \vec{u} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{vmatrix}$$
 
 Expanding the determinant:
 
-$$
-\vec{v}
-=
-\mathbf{i}(0\cdot0-1\cdot0)
--
-\mathbf{j}(0\cdot0-1\cdot1)
-+
-\mathbf{k}(0\cdot0-0\cdot1)
-=
-(0,1,0)
-$$
+$$\vec{v} = \mathbf{i}(0 \cdot 0 - 1 \cdot 0) - \mathbf{j}(0 \cdot 0 - 1 \cdot 1) + \mathbf{k}(0 \cdot 0 - 0 \cdot 1) = (0, 1, 0)$$
 
 ---
 
-## Step 4: Scale by Viewport Dimensions
+#### **Step 4: Scale by Viewport Dimensions**
 
-Plugging $\vec{u}=(1,0,0)$ and $\vec{v}=(0,1,0)$ into the generalized viewport equations:
+Plugging $\vec{u} = (1, 0, 0)$ and $\vec{v} = (0, 1, 0)$ into the generalized viewport equations:
 
-### Horizontal Edge Vector
+1. **Horizontal Edge Vector:**  
+   $\vec{u}_{\text{viewport}} = \text{viewport\_width} \cdot \vec{u} = \text{viewport\_width} \cdot (1, 0, 0) = (\text{viewport\_width},\ 0,\ 0)$
 
-$$
-\vec{u}_{\text{viewport}}
-=
-\text{viewport width}
-\cdot
-\vec{u}
-=
-\text{viewport width}
-\cdot
-(1,0,0)
-=
-(\text{viewport width},\ 0,\ 0)
-$$
+2. **Vertical Edge Vector:**  
+   $\vec{v}_{\text{viewport}} = -\text{viewport\_height} \cdot \vec{v} = -\text{viewport\_height} \cdot (0, 1, 0) = (0,\ -\text{viewport\_height},\ 0)$
 
-### Vertical Edge Vector
-
-$$
-\vec{v}_{\text{viewport}}
-=
--
-\text{viewport height}
-\cdot
-\vec{v}
-=
--
-\text{viewport height}
-\cdot
-(0,1,0)
-=
-(0,\ -\text{viewport height},\ 0)
-$$
-
-$$
-\blacksquare
-$$
+$$\blacksquare$$
 
 ---
 
-## Conclusion
+### Conclusion
 
-This completes the proof.
-
-The simple hardcoded vectors
-
-$$
-(\text{viewport width},\ 0,\ 0)
-$$
-
-and
-
-$$
-(0,\ -\text{viewport height},\ 0)
-$$
-
-are **not arbitrary rules of thumb**. They are the exact mathematical result of applying an **Orthonormal Basis (ONB)** to a camera at the origin looking down the negative $Z$-axis.
+The simple hardcoded vectors $(\text{viewport\_width},\ 0,\ 0)$ and $(0,\ -\text{viewport\_height},\ 0)$ are not arbitrary shortcuts — they are the exact mathematical output of an **Orthonormal Basis (ONB)** constructed at the origin looking down $-Z$.
 
 ---
 
-## Reference
-
-**How to Make a Basis Orthonormal**
+## 3. Related Resources
 
 [![How to Make a Basis Orthonormal](https://thumbs.video-to-markdown.com/73ff2b11.jpg)](https://youtu.be/ZlQHxWjAT8E)
+
+* **Video Tutorial:** [How to Make a Basis Orthonormal (YouTube)](http://www.youtube.com/watch?v=ZlQHxWjAT8E)
+* **Key Topics Covered:**
+  * Definition of orthogonality and unit normalization
+  * Why orthonormal bases simplify linear coordinate systems
+  * The Gram-Schmidt orthogonalization process
