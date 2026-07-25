@@ -5,3 +5,5 @@
 3. [The vec3 Class](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch3/main.html)
 4. [Rays, a Simple Camera, and Background](https://rawcdn.githack.com/engineer-e/Real-Time-Rendering/160088ed0a93ac7785df785ad72c56668b79558c/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch4/main.html), [Changes](../Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch4/note/changes.md), [Metric](../Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch4/note/performance_metric.md)
 5. [Adding a Sphere](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch5/main.html)
+6. Surface Normal
+   1. [Shading with Surface Normals](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch6-A/main.html)
