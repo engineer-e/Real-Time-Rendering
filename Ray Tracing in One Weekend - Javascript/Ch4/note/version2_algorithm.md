@@ -8,40 +8,25 @@
 
 * `image_width`: Target image width in pixels
 * `image_height`: Target image height in pixels
-* `focal_length`: Distance from the camera origin to the virtual image plane *(default: `1.0`)*
-* `viewport_height`: Physical height of the virtual screen in world units *(default: `2.0`)*
+* `focal_length`: Distance from camera origin to virtual image plane *(default: `1.0`)*
+* `viewport_height`: Physical height of virtual screen in world units *(default: `2.0`)*
 
 ---
 
 ### Algorithm Steps
 
-1. **Define Camera Position:**  
-   $\text{camera\_center} \leftarrow (0, 0, 0)$
-
-2. **Determine Viewport Dimensions:**  
-   $\text{aspect\_ratio} \leftarrow \frac{\text{image\_width}}{\text{image\_height}}$  
-   $\text{viewport\_width} \leftarrow \text{viewport\_height} \times \text{aspect\_ratio}$
-
-3. **Define Viewport Spatial Edge Vectors:**  
-   $\vec{u}_{\text{viewport}} \leftarrow (\text{viewport\_width},\ 0,\ 0)$  
-   $\vec{v}_{\text{viewport}} \leftarrow (0,\ -\text{viewport\_height},\ 0)$ *(Negative $Y$ ensures top-to-bottom scanlines)*
-
-4. **Compute Per-Pixel Step Vectors:**  
-   $\Delta\vec{u}_{\text{pixel}} \leftarrow \frac{\vec{u}_{\text{viewport}}}{\text{image\_width}}$  
-   $\Delta\vec{v}_{\text{pixel}} \leftarrow \frac{\vec{v}_{\text{viewport}}}{\text{image\_height}}$
-
-5. **Position Viewport Boundaries:**  
-   $\text{viewport\_center} \leftarrow \text{camera\_center} - (0,\ 0,\ \text{focal\_length})$  
-   $\text{viewport\_upper\_left} \leftarrow \text{viewport\_center} - \frac{\vec{u}_{\text{viewport}}}{2} - \frac{\vec{v}_{\text{viewport}}}{2}$
-
-6. **Locate Center of Pixel $(0, 0)$:**  
-   $\text{pixel00\_loc} \leftarrow \text{viewport\_upper\_left} + 0.5 \times (\Delta\vec{u}_{\text{pixel}} + \Delta\vec{v}_{\text{pixel}})$
+| Step | Operation | Formula |
+| :--- | :--- | :--- |
+| **1** | **Define Camera Position** | $\text{camera\_center} \leftarrow (0, 0, 0)$ |
+| **2** | **Determine Viewport Dimensions** | $\text{aspect\_ratio} \leftarrow \frac{\text{image\_width}}{\text{image\_height}}$ <br> $\text{viewport\_width} \leftarrow \text{viewport\_height} \times \text{aspect\_ratio}$ |
+| **3** | **Define Viewport Edge Vectors** | $\vec{u}_{\text{viewport}} \leftarrow (\text{viewport\_width},\ 0,\ 0)$ <br> $\vec{v}_{\text{viewport}} \leftarrow (0,\ -\text{viewport\_height},\ 0)$ |
+| **4** | **Compute Per-Pixel Step Vectors** | $\Delta\vec{u}_{\text{pixel}} \leftarrow \frac{\vec{u}_{\text{viewport}}}{\text{image\_width}}$ <br> $\Delta\vec{v}_{\text{pixel}} \leftarrow \frac{\vec{v}_{\text{viewport}}}{\text{image\_height}}$ |
+| **5** | **Position Viewport Boundaries** | $\text{viewport\_center} \leftarrow \text{camera\_center} - (0,\ 0,\ \text{focal\_length})$ <br> $\text{viewport\_upper\_left} \leftarrow \text{viewport\_center} - \frac{\vec{u}_{\text{viewport}}}{2} - \frac{\vec{v}_{\text{viewport}}}{2}$ |
+| **6** | **Locate Center of Pixel $(0, 0)$** | $\text{pixel00\_loc} \leftarrow \text{viewport\_upper\_left} + 0.5 \times (\Delta\vec{u}_{\text{pixel}} + \Delta\vec{v}_{\text{pixel}})$ |
 
 ---
 
 ### Output State
-
-The camera setup yields the following vectors and points:
 
 * **Camera Origin:** $\text{camera\_center}$
 * **Starting Pixel Center:** $\text{pixel00\_loc}$
@@ -63,7 +48,7 @@ To prove that simple axis-aligned camera vectors are a direct mathematical conse
 ### Baseline Parameters
 
 1. **Camera Position ($\mathbf{E}$):** $(0, 0, 0)$
-2. **Target Point ($\mathbf{T}$):** Looking down the negative $Z$-axis $\rightarrow (0, 0, -1)$
+2. **Target Point ($\mathbf{T}$):** Looking down negative $Z$-axis $\rightarrow (0, 0, -1)$
 3. **World Up Vector ($\vec{v}_{\text{up}}$):** $(0, 1, 0)$
 
 ---
@@ -135,7 +120,3 @@ The simple hardcoded vectors $(\text{viewport\_width},\ 0,\ 0)$ and $(0,\ -\text
 [![How to Make a Basis Orthonormal](https://thumbs.video-to-markdown.com/73ff2b11.jpg)](https://youtu.be/ZlQHxWjAT8E)
 
 * **Video Tutorial:** [How to Make a Basis Orthonormal (YouTube)](http://www.youtube.com/watch?v=ZlQHxWjAT8E)
-* **Key Topics Covered:**
-  * Definition of orthogonality and unit normalization
-  * Why orthonormal bases simplify linear coordinate systems
-  * The Gram-Schmidt orthogonalization process
