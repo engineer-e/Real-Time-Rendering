@@ -1,13 +1,15 @@
 class HitRecord{
-    constructor(p,N,t){
-        this.p = p
-        this.N = N 
-        this.t = t
+    constructor(){
+        this.p = new Point3(0.0,0.0,0.0)
+        this.N = new Vec3(0.0,0.0,0.0) 
+        this.t = 0.0
     }
 }
 
 class Hittable{
-    hit(r,ray_tmin,ray_tmax,rec){}
+    constructor(){}
+
+    hit(r,ray_tmin,ray_tmax,hit_record){}
 }
 
 window.HitRecord = HitRecord
