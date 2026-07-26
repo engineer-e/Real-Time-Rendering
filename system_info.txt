@@ -1,0 +1,20 @@
+OS Name: Microsoft Windows 11 Home Single Language
+OS Version: 10.0.26200 Build 26200
+
+System Manufacturer: Dell Inc.
+System Model: Dell G15 5530
+System Type: x64-based PC
+
+Processor:
+Intel Core i5 (13th Gen) @ 2.40 GHz
+
+Memory:
+16 GB RAM
+
+GPU:
+NVIDIA GeForce RTX 3050 6GB Laptop GPU
+Driver Version: 596.49
+CUDA Version: 13.2
+
+Virtualization-based Security: Running
+Hyper-V: Enabled

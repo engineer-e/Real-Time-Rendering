@@ -1,8 +1,10 @@
 # Real-Time-Rendering
 
 
-- I am Gobal Krishnan V. I just doing for my learning purpose. 
-- I Using material [RayTracingInOneWeekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html#overview), they done in C++, But I doing in Python & Javascript.
+* 👋 I am **Gobal Krishnan V**. I am doing this for learning purposes. 📚
+* 💻 I am using the material [RayTracing](https://raytracing.github.io/). It is written in C++, but I am implementing it in **Python** & **JavaScript**. 🚀
+* ⚠️ [My device](https://github.com/engineer-e/LLM-Python/blob/main/the_computer_i_used.md) was damaged due to voltage fluctuations. 💥💻 I am using my younger brother's laptop, ["Kishore Kumar V" 💻 Laptop](https://github.com/engineer-e/LLM-Python/blob/main/the_computer_i_using.md). ❤️ [system info](../Real-Time-Rendering/system_info.txt) ❤️, [gpu info](../Real-Time-Rendering//gpu_info.txt) ❤️
+* 🩺 Due to health issues, I resigned from my job in **June 2025**. 💼 I have been searching for a job for the past **1 year**, but I have not gotten one yet. 🙏
 
 
 ![book cover](image/bookcover.png)
