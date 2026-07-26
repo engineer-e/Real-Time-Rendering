@@ -20,6 +20,6 @@
 7. [Camera ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch7/main.html)
 8. [Antialiasing ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch8/main.html)
       - **Note:** Right-click the rendered image and choose "Save image as...". Compare the outputs of Chapter 7 (Camera) and Chapter 8 (Antialiasing) by zooming in. The Chapter 8 image should have noticeably smoother edges and fewer jagged artifacts, confirming that antialiasing is working correctly. [www.img2go.com](https://www.img2go.com/compare-image),[scanly.co](https://scanly.co/image-comparison)
-
+      - [![Watch the video](https://img.youtube.com/vi/Xch17MA2F94/maxresdefault.jpg)](https://youtu.be/Xch17MA2F94?si=MGR9ywGuinl98VmF)
 
    
