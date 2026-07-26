@@ -18,6 +18,8 @@
           - 6.7 Common Constants and Utility Functions
           - 6.8 An Interval Class
 7. [Camera ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch7/main.html)
+8. [Antialiasing ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch8/main.html)
+      - **Note:** Right-click the rendered image and choose "Save image as...". Compare the outputs of Chapter 7 (Camera) and Chapter 8 (Antialiasing) by zooming in. The Chapter 8 image should have noticeably smoother edges and fewer jagged artifacts, confirming that antialiasing is working correctly.
 
 
    
