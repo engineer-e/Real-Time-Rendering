@@ -58,6 +58,23 @@ class HelloWorld{
         return Vec3.add(c1, c2);
     }
 
+    ray_color(r, world) {
+    var rec = new HitRecord();
+    if (world.hit(r, 0, Number.MAX_VALUE, (temp_rec)=>{rec = temp_rec})) {
+       return Vec3.mul({t:0.5,v:Vec3.add(rec.N,new Vec3(1,1,1))})
+    }
+
+    
+    const unit_direction = Vec3.unit_vector(r.direction());
+    const t = 0.5 * (unit_direction.y() + 1.0);
+    
+    // Lerp formula: (1 - t) * Color1 + t * Color2
+    const c1 = Vec3.mul({ t: 1.0 - t, v: new Vec3(1.0, 1.0, 1.0) });
+    const c2 = Vec3.mul({ t: t, v: new Vec3(0.5, 0.7, 1.0) });
+    
+    return Vec3.add(c1, c2);
+}
+
     write_color(pixel_color){
         var r = pixel_color.x()
         var g = pixel_color.y()
@@ -82,8 +99,16 @@ class HelloWorld{
         var origin = new Vec3(0.0,0.0,0.0)
 
         var output = new Vec3(0,0,0)
+
+
+          // World
+
+    var objects = [new Sphere(new Point3(0,0,-1), 0.5),new Sphere(new Point3(0,-100.5,-1), 100)]
+    var world = new HittableList(objects);
+
+
         
-         for (var j = 0; j <= image_height; ++j) {
+    for (var j = 0; j <= image_height; ++j) {
            //std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
             progress(Math.floor((j / image_height) * 100),image_height - j);   // Progress %
 
@@ -119,7 +144,7 @@ class HelloWorld{
 
              // var pixel_color = new Vec3(r,g,b)
 
-              var pixel_color = this.ray_color(ray)
+              var pixel_color = this.ray_color(ray,world)
 
 
               render(j*4,i,this.write_color(pixel_color))

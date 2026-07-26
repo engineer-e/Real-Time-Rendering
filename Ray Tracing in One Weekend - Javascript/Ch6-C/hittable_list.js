@@ -14,11 +14,10 @@ class HittableList extends Hittable{
        var closest_so_far = Number.MAX_VALUE
 
        for(var object in this.objects){
-          if(object.hit(r, ray_tmin, closest_so_far, (rec)=>{temp_rec=rec})){
+          if(this.objects[object].hit(r, ray_tmin, closest_so_far, (rec)=>{temp_rec=rec})){
             hit_anything = true;
             closest_so_far = temp_rec.t;
-            rec = temp_rec;
-            hit_record(rec)
+            hit_record(temp_rec)
           }
        }
 
@@ -28,3 +27,5 @@ class HittableList extends Hittable{
 
 
 }
+
+window.HittableList = HittableList
