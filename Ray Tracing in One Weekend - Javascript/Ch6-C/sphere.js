@@ -26,7 +26,13 @@ class Sphere extends Hittable{
                 return false;
         }
 
-        hit_record({t:root,p:r.at(root),N:Vec3.div(Vec3.sub(r.at(root),center)/radius)})
+        var rec = new HitRecord()
+        rec.t = root 
+        rec.p = r.at(rec.t);
+        var outward_normal = Vec3.div(Vec3.sub(rec.p,center),radius)
+        rec.set_face_normal(r,outward_normal)
+        hit_record(rec)
+
         return true
    }
 
