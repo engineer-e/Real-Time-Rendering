@@ -6,7 +6,7 @@ class Sphere extends Hittable{
     this.radius = Math.max(0,radius)
    }
 
-   hit(r,ray_tmin,ray_tmax,hit_record){
+   hit(r,ray_t,hit_record){
     //super(r,ray_tmin,ray_tmax,rec)
         var oc = Vec3.sub(this.center,r.origin())
         var a = r.direction().length_squared();
@@ -22,12 +22,22 @@ class Sphere extends Hittable{
 
 
         var root = (h - sqrtd) / a;
-        
+      
+        /*
         if (root <= ray_tmin || ray_tmax <= root) {
             root = (h + sqrtd) / a;
             if (root <= ray_tmin || ray_tmax <= root)
                 return false;
         }
+            */
+
+        if (!ray_t.surrounds(root)) {
+            root = (h + sqrtd) / a;
+            if (!ray_t.surrounds(root))
+                return false;
+        }
+
+
 
         var rec = new HitRecord()
         rec.t = root 

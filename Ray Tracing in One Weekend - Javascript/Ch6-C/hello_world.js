@@ -60,7 +60,7 @@ class HelloWorld{
 
     ray_color(r, world) {
     var rec = new HitRecord();
-    if (world.hit(r, 0, Number.MAX_VALUE, (temp_rec)=>{rec = temp_rec})) {
+    if (world.hit(r, new Interval(0, Number.MAX_VALUE), (temp_rec)=>{rec = temp_rec})) {
        return Vec3.mul({t:0.5,v:Vec3.add(rec.N,new Vec3(1,1,1))})
     }
 

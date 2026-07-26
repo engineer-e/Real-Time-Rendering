@@ -18,7 +18,7 @@ class HitRecord{
 class Hittable{
     constructor(){}
 
-    hit(r,ray_tmin,ray_tmax,hit_record){}
+    hit(r,ray_t,hit_record){}
 }
 
 window.HitRecord = HitRecord
