@@ -21,5 +21,8 @@
 8. [Antialiasing ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch8/main.html)
       - **Note:** Right-click the rendered image and choose "Save image as...". Compare the outputs of Chapter 7 (Camera) and Chapter 8 (Antialiasing) by zooming in. The Chapter 8 image should have noticeably smoother edges and fewer jagged artifacts, confirming that antialiasing is working correctly. [www.img2go.com](https://www.img2go.com/compare-image),[scanly.co](https://scanly.co/image-comparison)
       - [![Watch the video](https://img.youtube.com/vi/Xch17MA2F94/maxresdefault.jpg)](https://youtu.be/Xch17MA2F94?si=MGR9ywGuinl98VmF)
-
-   
+      - **Note:** In the Controls, *Ray Hit Pixel* represents the `sampleOffset` ($O$) for ray hit position, and *Pixelated* represents the `pixelBlockSize` ($S$) for pixel enlargement visualization. I added additional algorithmic steps because these pixel zooming and visualization algorithms are not explained in the book.
+      - **Note on Optimizations (Coarse Pixel Shading):**
+        - **Sampling Stride (`pixelBlockSize` / $S$):** Defines the macroblock step size (e.g., $4 \times 4$) across the scanline grid (represented in UI controls as *Pixelated*).
+        - **Grid Phase Offset (`sampleOffset` / $O$):** Defines the anchor coordinate inside each block where full ray evaluation triggers (represented in UI controls as *Ray Hit Pixel*).
+        - **Academic Reference:** For theoretical foundations on strided sampling and coarse pixel shading, refer to *Real-Time Rendering* (4th Edition) by Tomas Akenine-Möller et al.
