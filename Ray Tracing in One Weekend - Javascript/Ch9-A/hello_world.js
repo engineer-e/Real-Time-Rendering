@@ -68,7 +68,7 @@ class HelloWorld{
 
        this.camera_ctrl.add( cam, 'focal_length', 0, 1,this.step ).name("Focal Length").onChange(update)      
        this.camera_ctrl.add( cam, 'viewport_height', 0, 2, this.step ).name("Viewport Height").onChange(update); 
-       this.camera_ctrl.add( cam, 'samples_per_pixel', 0, 10, 1 ).name("Samples Per Pixel").onChange(update); 
+       this.camera_ctrl.add( cam, 'samples_per_pixel', 0, 100, 1 ).name("Samples Per Pixel").onChange(update); 
        this.camera_ctrl.add( cam, 'pl', 0, 100,1).name("Ray Hit Pixel").onChange(update); 
        this.camera_ctrl.add( cam, 'pix', 0, 100, 1 ).name("Pixalated").onChange(update); 
        this.camera_ctrl.add( cam, 'Acne').name("Acne - Performance").onChange(update); 
