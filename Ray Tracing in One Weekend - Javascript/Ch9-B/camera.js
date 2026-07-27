@@ -5,6 +5,7 @@ class Camera{
         this.focal_length = 1.0
         this.viewport_height = 2.0
         this.samples_per_pixel =1
+        this.max_depth = 50
 
         this.pix=1
         this.pl = 0
@@ -49,7 +50,12 @@ class Camera{
     }
 
 
-    ray_color(r, world) {
+    ray_color(r, depth, world) {
+
+        if(depth<=0){
+            return new Vec3(0,0,0)
+        }
+
        var rec = new HitRecord();
        if (world.hit(r, new Interval(0, Number.MAX_VALUE), (temp_rec)=>{
         rec = temp_rec;
@@ -58,7 +64,7 @@ class Camera{
          // console.log("out ",rec.N);
           var direction = Vec3.random_on_hemisphere(rec.N) 
           //return Vec3.mul({t:0.5,v:Vec3.add(rec.N,new Vec3(1,1,1))})
-          return Vec3.mul({t:0.5,v:this.ray_color(new Ray(rec.p,direction),world)})
+          return Vec3.mul({t:0.5,v:this.ray_color(new Ray(rec.p,direction),depth-1,world)})
 
         }
    
@@ -144,11 +150,11 @@ class Camera{
                      this.ui = i
                      this.vi = j 
                      var r = this.get_ray(i, j);
-                     pixel_color.add_eq(this.ray_color(r, world));
+                     pixel_color.add_eq(this.ray_color(r,this.max_depth, world));
 
                     }else{
                      r = this.get_ray(this.ui, this.vi);
-                     pixel_color.add_eq(this.ray_color(r, world));
+                     pixel_color.add_eq(this.ray_color(r,this.max_depth, world));
                     }
                 }
                

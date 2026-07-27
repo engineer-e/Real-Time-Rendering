@@ -32,5 +32,5 @@
       </details>
 9. Diffuse Materials
   - 9.1 [A Simple Diffuse Material ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-A/main.html)
-  - 9.2 [Limiting the Number of Child Rays](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-B/main.html)
+  - 9.2 [Limiting the Number of Child Rays ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-B/main.html)
         
