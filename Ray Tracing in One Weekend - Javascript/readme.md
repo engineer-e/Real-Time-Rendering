@@ -35,9 +35,9 @@
     
     - 9.1 [A Simple Diffuse Material ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-A/main.html)
     - 9.2 [Limiting the Number of Child Rays ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-B/main.html)
-    - 9.3 [Fixing Shadow Acne ✔️](https://engineer-e.github.io/Real-Time-Rendering/ Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-C/main.html)      
-    - 9.4 [True Lambertian Reflection ✔️](https://engineer-e.github.io/Real-Time-Rendering/ Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-D/main.html)
-    - 9.5 [Using Gamma Correction for Accurate Color Intensity ✔️](https://engineer-e.github.io/  Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-E/main.html)
+    - 9.3 [Fixing Shadow Acne ✔️](https://engineer-e.github.io/Real-Time-RenderingRay%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-C/main.html)      
+    - 9.4 [True Lambertian Reflection ✔️](https://engineer-e.github.io/Real-Time-RenderingRay%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-D/main.html)
+    - 9.5 [Using Gamma Correction for Accurate Color Intensity ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-E/main.html)
     
     [![Watch the video](https://img.youtube.com/vi/NRuh2A7UIcs/maxresdefault.jpg)](https://youtu.be/NRuh2A7UIcs?si=me6q_5Ys8_aKqByl) 
   </details>
