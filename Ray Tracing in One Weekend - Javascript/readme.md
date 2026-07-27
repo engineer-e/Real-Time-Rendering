@@ -36,4 +36,5 @@
   - 9.3 [Fixing Shadow Acne ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-C/main.html)      
   - 9.4 [True Lambertian Reflection ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-D/main.html)
   - 9.5 [Using Gamma Correction for Accurate Color Intensity](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-D/main.html)
+
   

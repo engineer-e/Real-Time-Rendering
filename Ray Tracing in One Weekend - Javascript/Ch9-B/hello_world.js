@@ -72,6 +72,7 @@ class HelloWorld{
        this.camera_ctrl.add( cam, 'max_depth', 0, 100, 1 ).name("Max Depth").onChange(update); 
        this.camera_ctrl.add( cam, 'pl', 0, 100,1).name("Ray Hit Pixel").onChange(update); 
        this.camera_ctrl.add( cam, 'pix', 0, 100, 1 ).name("Pixalated").onChange(update); 
+       this.camera_ctrl.add( cam, 'Acne').name("Acne - Performance").onChange(update); 
 
 
        

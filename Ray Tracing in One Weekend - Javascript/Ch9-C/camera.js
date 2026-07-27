@@ -9,6 +9,8 @@ class Camera{
 
         this.pix=1
         this.pl = 0
+        this.Acne = 0.00000001
+
     }
 
     initialize(){
@@ -56,9 +58,8 @@ class Camera{
             return new Vec3(0,0,0)
         }
 
-       var Acne=0.00000001 
        var rec = new HitRecord();
-       if (world.hit(r, new Interval(0.001, Number.MAX_VALUE), (temp_rec)=>{
+       if (world.hit(r, new Interval(this.Acne, Number.MAX_VALUE), (temp_rec)=>{
         rec = temp_rec;
         //console.log("in ",rec.N);
 })) {

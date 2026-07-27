@@ -10,7 +10,6 @@ class Camera{
         this.pix=1
         this.pl = 0
         this.Acne = 0.00000001
-
     }
 
     initialize(){
@@ -53,7 +52,7 @@ class Camera{
 
 
     ray_color(r, depth, world) {
-
+ // If we've exceeded the ray bounce limit, no more light is gathered.
         if(depth<=0){
             return new Vec3(0,0,0)
         }
@@ -64,11 +63,13 @@ class Camera{
         //console.log("in ",rec.N);
 })) {
          // console.log("out ",rec.N);
-          var direction = Vec3.random_on_hemisphere(rec.N) 
+          //var direction = Vec3.random_on_hemisphere(rec.N) 
           //return Vec3.mul({t:0.5,v:Vec3.add(rec.N,new Vec3(1,1,1))})
+          var direction = Vec3.add(rec.N , Vec3.random_unit_vector());
           return Vec3.mul({t:0.5,v:this.ray_color(new Ray(rec.p,direction),depth-1,world)})
-
         }
+
+
    
        const unit_direction = Vec3.unit_vector(r.direction());
        const t = 0.5 * (unit_direction.y + 1.0);
@@ -85,6 +86,12 @@ class Camera{
         var g = pixel_color.y
         var b = pixel_color.z
 
+        // Apply a linear to gamma transform for gamma 2
+        r = this.linear_to_gamma(r);
+        g = this.linear_to_gamma(g);
+        b = this.linear_to_gamma(b);
+
+
         var intensity = new Interval(0.000, 0.999)
 
 
@@ -97,6 +104,13 @@ class Camera{
         return new Color(ir,ig,ib,255)
     }
 
+
+    linear_to_gamma(linear_component){
+        if (linear_component > 0)
+           return Math.sqrt(linear_component);
+
+        return 0;
+    }
 
     scanline(world,render,progress){
         this.initialize();
