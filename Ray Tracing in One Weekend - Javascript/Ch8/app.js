@@ -6,6 +6,8 @@ class App {
         this.pos = 0;
         this.flip = 1;
 
+        
+
         this.resize = new Resize({
             canvas: this.canvas,
             $2: this.$2
@@ -16,7 +18,10 @@ class App {
             $2: this.$2
         });
 
+
         this.init();
+
+        
     }
 
     init() {
@@ -45,7 +50,15 @@ class App {
             $2: this.$2,
             width: 1200
         });
+
+        
+
+
+
+    
+
         const progress = new ProgressUI(this.canvas);
+
 
         for (let x = 0; x <= screen.width * 4; x++) {
             for (let y = 0; y <= screen.height; y++) {
@@ -68,6 +81,8 @@ class App {
         progress.close();
 
         screen.render({});
+
+
     }
 
     animate() {

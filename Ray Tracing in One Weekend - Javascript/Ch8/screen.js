@@ -31,6 +31,9 @@ class Screen{
                this.imageData[scan+1] = color.g
                this.imageData[scan+2] = color.b
                this.imageData[scan+3] = color.a
+
+             
+             
                
     }
 
@@ -45,6 +48,7 @@ class Screen{
 
         this.$2.putImageData(this.image,x+half,y+half)
 
+        
 
 
     }

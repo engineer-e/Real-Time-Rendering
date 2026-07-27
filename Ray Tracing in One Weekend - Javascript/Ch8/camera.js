@@ -4,7 +4,10 @@ class Camera{
         this.height=0
         this.focal_length = 1.0
         this.viewport_height = 2.0
-        this.samples_per_pixel =10
+        this.samples_per_pixel =1
+
+        this.pix=5
+        this.pl = 0
     }
 
     initialize(){
@@ -82,7 +85,13 @@ class Camera{
 
     scanline(world,render,progress){
         this.initialize();
-
+         
+        this.ui = 0
+        this.vi = 0
+        this.uj = 0
+        this.vj = 0
+        
+        
         for (var j = 0; j <= this.height; ++j) {
            //std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
             progress(Math.floor((j / this.height) * 100),this.height - j);   // Progress %
@@ -121,14 +130,34 @@ class Camera{
 
               //var pixel_color = this.ray_color(ray,world)
 
+
                for (var sample = 0; sample < this.samples_per_pixel; sample++) {
-                    var r = this.get_ray(i, j);
-                    pixel_color.add_eq(this.ray_color(r, world));
+                    if( (i%this.pix == this.pl) || (j%this.pix==this.pl) ){
+            
+                     this.ui = i
+                     this.vi = j 
+                     var r = this.get_ray(i, j);
+                     pixel_color.add_eq(this.ray_color(r, world));
+
+                    }else{
+                     r = this.get_ray(this.ui, this.vi);
+                     pixel_color.add_eq(this.ray_color(r, world));
+                    }
                 }
+               
+                 render(j*4,i,this.write_color(Vec3.mul({v:pixel_color,t:this.pixel_samples_scale})))
 
 
-              render(j*4,i,this.write_color(Vec3.mul({v:pixel_color,t:this.pixel_samples_scale})))
+            //     if( (i%this.pix == this.pl)  (j%this.pix==this.pl) ){
 
+            //     this.uj = j*4
+            //     this.vj = i    
+            //     render(j*4,i,this.write_color(Vec3.mul({v:pixel_color,t:this.pixel_samples_scale})))
+            //    }
+            //     else{
+            //       render(this.uj,this.vj,this.write_color(Vec3.mul({v:pixel_color,t:this.pixel_samples_scale})))
+                    
+            //     }
         }
     }
 

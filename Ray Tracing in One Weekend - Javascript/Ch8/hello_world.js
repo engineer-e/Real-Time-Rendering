@@ -6,6 +6,15 @@ class HelloWorld{
         this.$2 = $2
         this.screen = screen
 
+    //     this.viewport = new Viewport(
+    //     this.canvas,
+    //     this.$2
+    //    );
+
+       
+
+
+  
         this.gui = new GUI();
         this.gui.add( document, 'title' );
         this.camera_ctrl = this.gui.addFolder( 'Camera' );
@@ -47,11 +56,7 @@ class HelloWorld{
         this.objects = [new Sphere(new Point3(0,0,-1), 0.5),new Sphere(new Point3(0,-100.5,-1), 100)]
         var world = new HittableList(this.objects);
 
-
-       
-
-
-        // Camera
+       // Camera
        var cam = new Camera() 
        cam.width = image_width
        cam.height = image_height
@@ -63,12 +68,26 @@ class HelloWorld{
 
        this.camera_ctrl.add( cam, 'focal_length', 0, 1,this.step ).name("Focal Length").onChange(update)      
        this.camera_ctrl.add( cam, 'viewport_height', 0, 2, this.step ).name("Viewport Height").onChange(update); 
+       this.camera_ctrl.add( cam, 'samples_per_pixel', 0, 10, 1 ).name("Samples Per Pixel").onChange(update); 
+       this.camera_ctrl.add( cam, 'pl', 0, 100,1).name("Ray Hit Pixel").onChange(update); 
+       this.camera_ctrl.add( cam, 'pix', 0, 100, 1 ).name("Pixalated").onChange(update); 
+
+       
+
+       
+
        this.objectUi(update)
 
        cam.scanline(world,(i,j,c)=>{render(i,j,c)},(i,j)=>{progress(i,j)})
 
         
 
+    //     this.viewport.drawGrid(
+    //     screen.width,
+    //     screen.height
+    //   );
+
+       //this.viewport.apply(update);
 
         
         
