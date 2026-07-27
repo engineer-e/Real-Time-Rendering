@@ -40,14 +40,16 @@
     - 9.5 [Using Gamma Correction for Accurate Color Intensity ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch9-E/main.html)
     
     [![Watch the video](https://img.youtube.com/vi/NRuh2A7UIcs/maxresdefault.jpg)](https://youtu.be/NRuh2A7UIcs?si=me6q_5Ys8_aKqByl) 
-  </details>
-10. <details>
-    <summary>Metal ✔️</summary>
+  
+   </details>
+10. <details> 
+     <summary>Metal ✔️</summary>
     
     - 10.1 An Abstract Class for Materials 
     - 10.2 A Data Structure to Describe Ray-Object Intersections
     - 10.3 Modeling Light Scatter and Reflectance
     - 10.4 Mirrored Light Reflection
+    - **Note:** Chapters 10.1–10.4 define the core material system (material abstraction, hit records, light scattering, and reflection). These implementations are used together to render the final scenes in 10.5 (A Scene with Metal Spheres) and 10.6 (Fuzzy Reflection).
     - 10.5 [A Scene with Metal Spheres ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch10/main.html)
     - 10.6 [Fuzzy Reflection ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch10-F/main.html)
     
