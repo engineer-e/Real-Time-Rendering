@@ -52,6 +52,8 @@
     - **Note:** Chapters 10.1–10.4 define the core material system (material abstraction, hit records, light scattering, and reflection). These implementations are used together to render the final scenes in 10.5 (A Scene with Metal Spheres) and 10.6 (Fuzzy Reflection).
     - 10.5 [A Scene with Metal Spheres ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch10/main.html)
     - 10.6 [Fuzzy Reflection ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch10-F/main.html)
+
+    [![Watch the video](https://img.youtube.com/vi/pfESOQ1LOk8/maxresdefault.jpg)](https://youtu.be/pfESOQ1LOk8?si=1URfi-VcRNXzPQfN)
     
     </details>  
 
