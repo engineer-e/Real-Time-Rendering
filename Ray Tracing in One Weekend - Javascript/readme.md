@@ -77,4 +77,14 @@
         
     </details> 
 
+13. <details> 
+     <summary>Defocus Blur ✔️</summary>
+
+    - 13.1 A Thin Lens Approximation
+    - 13.2 [Generating Sample Rays ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch13/main.html)
+    
+        
+    </details> 
+
+
   
