@@ -68,4 +68,13 @@
         
     </details>  
 
+12. <details> 
+     <summary>Positionable Camera ✔️</summary>
+    
+    - 12.1 [Camera Viewing Geometry ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch12-A/main.html) 
+    - 12.2 [Positioning and Orienting the Camera ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch12-B/main.html)
+    
+        
+    </details> 
+
   
