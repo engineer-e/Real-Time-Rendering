@@ -57,4 +57,15 @@
     
     </details>  
 
+11. <details> 
+     <summary>Dielectrics ✔️</summary>
+    
+    - 11.1 Refraction 
+    - 11.2 [Snell's Law ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch11-A/main.html)
+    - 11.3 [Total Internal Reflection ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch11-B/main.html)
+    - 11.4 Schlick Approximation
+    - 11.5 [Modeling a Hollow Glass Sphere ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch11-C/main.html)
+        
+    </details>  
+
   
