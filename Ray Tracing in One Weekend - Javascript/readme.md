@@ -99,7 +99,7 @@
 * 🩺 Due to health issues, I resigned from my job in **June 2025**. 💼 I have been searching for a job for the past **1 year**, but I have not gotten one yet. 🙏
 
 
-![book cover](image/bookcover.png)
+![book cover](https://raw.githubusercontent.com/engineer-e/Real-Time-Rendering/refs/heads/main/image/bookcover.png)
 
 
 [![Electronic Profile](https://img.shields.io/badge/Electronic%20Profile-engineer--e-181717?logo=github)](https://github.com/engineer-e/) 
