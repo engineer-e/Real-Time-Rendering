@@ -28,3 +28,167 @@ Gobal was testing his JavaScript ray tracer by running the same scene through fi
 | Next optimization step     | Redesign `Vec3` memory usage and reduce temporary object allocations         |
 
 **Conclusion:** The five trials confirm that the renderer's main performance issue is the current vector object architecture rather than scene intersection speed. The profiling data should be used first to optimize `Vec3` allocation before introducing BVH or spatial acceleration.
+
+----
+
+# 🤔 We find issue in vec3 class, but not get check on material, hitrecord, ? did is need that in this stage?
+
+Yes, **Material and HitRecord should also be checked**, but **not before fixing the Vec3 issue**. The profiling order should follow the evidence from your statistics.
+
+From your current data:
+
+| Component               | Evidence from profiler                                                            | Current priority   |
+| ----------------------- | --------------------------------------------------------------------------------- | ------------------ |
+| Vec3 class              | ~250 million `Vec3` objects created per render                                    | 🔴 First priority  |
+| Vec3 operations         | `length_squared()` ~400 million, `dot()` ~200 million, `sub()` ~200 million calls | 🔴 First priority  |
+| Material                | `scatterCalls` ~1.1–1.2 million                                                   | 🟡 Second priority |
+| HitRecord               | ~2 million hit tests                                                              | 🟡 Second priority |
+| BVH / Spatial Structure | Only ~100 objects                                                                 | 🟢 Later           |
+
+Your current bottleneck is happening **below Material and HitRecord**.
+
+The ray flow is:
+
+```
+Camera
+  |
+  v
+Ray
+  |
+  v
+World.hit()
+  |
+  +--> HitRecord creation/update
+  |
+  v
+Material.scatter()
+  |
+  +--> Vec3 calculations
+          |
+          +--> add
+          +--> sub
+          +--> dot
+          +--> length_squared
+          +--> normalize
+```
+
+Even when Material.scatter() is called, most of its work is Vec3 mathematics.
+
+Example:
+
+Lambertian:
+
+```javascript
+scatter(r_in, rec)
+{
+    var scatter_direction =
+        Vec3.add(
+            rec.normal,
+            Vec3.random_unit_vector()
+        );
+
+    scattered = new Ray(
+        rec.p,
+        scatter_direction
+    );
+
+    attenuation = this.albedo;
+}
+```
+
+The expensive part is not the material itself. It is:
+
+```
+Vec3.add()
+random_unit_vector()
+length_squared()
+unit_vector()
+new Vec3()
+```
+
+---
+
+### Recommended profiling order
+
+| Stage | Component      | What to measure                                      |
+| ----- | -------------- | ---------------------------------------------------- |
+| 1     | Vec3           | Allocation count, temporary objects, operation count |
+| 2     | HitRecord      | Object creation, copying, normal calculations        |
+| 3     | Material       | Scatter frequency, random sampling cost              |
+| 4     | Ray            | Construction and direction calculations              |
+| 5     | Camera         | Ray generation overhead                              |
+| 6     | World/Hittable | Intersection algorithms                              |
+| 7     | BVH            | Only after object count increases                    |
+
+---
+
+### Why check HitRecord later?
+
+Your current:
+
+```
+hitTests ≈ 2 million
+```
+
+but:
+
+```
+Vec3 operations:
+dot ≈ 200 million
+length_squared ≈ 400 million
+sub ≈ 200 million
+```
+
+The ratio is very high:
+
+```
+1 hit test
+    creates many vector operations
+```
+
+So optimizing HitRecord now may only save a small amount.
+
+Example:
+
+If HitRecord creation takes 5% of the time:
+
+```
+Render = 7 seconds
+
+HitRecord optimization:
+5% improvement
+
+Saving = 0.35 seconds
+```
+
+But if Vec3 allocation is the cause:
+
+```
+250 million allocations
+```
+
+reducing that can affect the whole renderer.
+
+---
+
+## For Chapter 15 documentation, I would add this note:
+
+### Profiling Scope
+
+The first profiling phase identified the Vec3 architecture as the primary optimization target.
+
+Although other components such as HitRecord, Material, Ray, and Hittable objects contribute to rendering cost, they depend heavily on vector mathematics internally.
+
+Therefore, optimization is performed in dependency order:
+
+1. Vec3 mathematical architecture
+2. HitRecord data handling
+3. Material scattering implementation
+4. Ray and Camera construction
+5. Geometry acceleration structures
+
+> This prevents premature optimization of higher-level systems while lower-level mathematical operations dominate execution cost.
+
+> So yes, **Material and HitRecord need profiling**, but your current evidence says **do not optimize them yet**. First understand and redesign the Vec3 data path.
+
+---
