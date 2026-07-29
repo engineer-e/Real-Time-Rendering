@@ -1,19 +1,26 @@
 class Sphere extends Hittable{
    
-    constructor(center, radius, material){
-    super()
-    this.center = center
-    this.radius = Math.max(0,radius)
-    this.material = material
-   }
+  
+   constructor({
+  center1,
+  center2=new Vec3(0,0,0),
+  radius,
+  material
+}) {
+  super();
+
+  this.center = new Ray({origin:center1,direction:Vec3.sub(center1, center2)});
+  this.radius = Math.max(0, radius);
+  this.material = material;
+} 
+
 
    hit(r,ray_t,hit_record){
     //super(r,ray_tmin,ray_tmax,rec)
 
-              if(r.origin()===null) return false
+        var current_center = this.center.at(r.time())
 
-
-        var oc = Vec3.sub(this.center,r.origin())
+        var oc = Vec3.sub(current_center,r.origin())
         //console.log(r.direction())
         var a = r.direction().length_squared();
         var h = Vec3.dot(r.direction(), oc);
@@ -48,8 +55,11 @@ class Sphere extends Hittable{
         var rec = new HitRecord()
         rec.t = root 
         rec.p = r.at(rec.t);
-        var outward_normal = Vec3.div(Vec3.sub(rec.p,this.center),this.radius)
+        var outward_normal = Vec3.div(Vec3.sub(rec.p,current_center),this.radius)
         rec.set_face_normal(r,outward_normal)
+        
+        //get_sphere_uv(outward_normal,rec.u,rec.v)
+
         rec.material = this.material
         hit_record(rec)
 

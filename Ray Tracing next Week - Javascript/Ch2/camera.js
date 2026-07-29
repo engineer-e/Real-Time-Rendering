@@ -20,8 +20,8 @@ class Camera {
     this.pl = 0;
     this.Acne = 0.00000001;
 
-    this.enableStats = true;
-    this.enableDetailedStats = true;
+    this.enableStats = false;
+    this.enableDetailedStats = false;
     this.enableVec3Timing = false;
 
     // // Renderer Performance Statistics
@@ -436,8 +436,8 @@ class Camera {
     var ray_origin =
       this.defocus_angle <= 0 ? this.camera_center : this.defocus_disk_sample();
     var ray_direction = Vec3.sub(pixel_sample, ray_origin);
-
-    return new Ray(ray_origin, ray_direction);
+    var ray_time = Math.random()
+    return new Ray({origin:ray_origin, direction:ray_direction,time:ray_time});
   }
 
   sample_square() {

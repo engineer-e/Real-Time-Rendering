@@ -1,6 +1,25 @@
 # Ray Tracing: The Next Week - Javascript
 
 1. [Overview](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch1/main.html)
+2. <details>
+     <summary><a href="https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch2/main.html">Motion Blur</a> </summary>
+   
+   **Note** - If you understand this part, you can find how Stars in Sky or Universe is Visible to human species eye.
+   
+   🌟 **Fun Fact:** The stars we see in the night sky are actually huge glowing balls of gas, but they look like tiny dots because they are extremely far away. ✨ Their light travels across space for years before reaching our eyes, allowing us to see the beautiful universe above us. 🌌👀
+
+   🚀 **Amazing thought:** When you look at a star, you are seeing a little piece of light that started its journey a long time ago! ⭐
+   - 2.1. Introduction of SpaceTime Ray Tracing
+   - 2.2. Managing Time 
+   - 2.3. Updating the Camera to Simulate Motion Blur
+   - 2.4. Adding Moving Spheres
+   - 2.5. Tracking the Time of Ray Intersection
+   - 2.6. Putting Everything Together
+   </details> 
+
+   
+   
+
 
 
 ---

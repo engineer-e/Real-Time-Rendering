@@ -21,7 +21,7 @@ class Lamberiant extends Material{
              scatter_direction = rec.N;
          }
 
-        scattered(new Ray(rec.p, scatter_direction));
+        scattered(new Ray({origin:rec.p, direction:scatter_direction, time:r_in.time()}));
         attenuation(this.albedo);
         isScatter(false)
     }
@@ -40,7 +40,7 @@ class Metal extends Material{
 
         var reflected = Vec3.reflect(r_in.direction(),rec.N)
         reflected = Vec3.add(Vec3.unit_vector(reflected) , Vec3.mul({t:this.fuzz , v:Vec3.random_unit_vector()}));
-        var scattering = new Ray(rec.p, reflected)
+        var scattering = new Ray({origin:rec.p,direction:reflected,time:r_in.time()})
         scattered(scattering);
         attenuation(this.albedo);
         isScatter(Vec3.dot(scattering.direction(), rec.N) > 0)
@@ -77,14 +77,14 @@ class Dielectric extends Material{
 
 
         var cannot_refract = ri * sin_theta > 1.0;
-        var direction;
+        var direction_dielectric;
 
         if (cannot_refract || (this.reflectance(cos_theta,ri)> Vec3.random_double()))
-            direction = Vec3.reflect(unit_direction, rec.N);
+            direction_dielectric = Vec3.reflect(unit_direction, rec.N);
         else
-            direction = Vec3.refract(unit_direction, rec.N, ri);
+            direction_dielectric = Vec3.refract(unit_direction, rec.N, ri);
 
-        var scattering = new Ray(rec.p, direction)
+        var scattering = new Ray({origin:rec.p, direction:direction_dielectric,time:r_in.time()})
         scattered(scattering);
         isScatter(true)
 

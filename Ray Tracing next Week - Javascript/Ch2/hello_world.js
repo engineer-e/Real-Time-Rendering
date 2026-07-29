@@ -34,9 +34,9 @@ class HelloWorld{
             this.obj_ctrl = this.object_ctrl.addFolder( obj.constructor.name+"-"+object );
             this.obj_translate =  this.obj_ctrl.addFolder("Translate");
 
-            this.obj_translate.add(obj.center,'x',-this.translate_range, this.translate_range,this.step).name("x").onChange(update)
-            this.obj_translate.add(obj.center,'y',-this.translate_range, this.translate_range,this.step).name("y").onChange(update)
-            this.obj_translate.add(obj.center,'z',-this.translate_range, this.translate_range,this.step).name("x").onChange(update)
+            this.obj_translate.add(obj.center.A,'x',-this.translate_range, this.translate_range,this.step).name("x").onChange(update)
+            this.obj_translate.add(obj.center.A,'y',-this.translate_range, this.translate_range,this.step).name("y").onChange(update)
+            this.obj_translate.add(obj.center.A,'z',-this.translate_range, this.translate_range,this.step).name("z").onChange(update)
             
 
             this.obj_ctrl.add(obj,'radius',0, obj.radius,this.step).onChange(update)
@@ -48,7 +48,7 @@ class HelloWorld{
         this.obj_translate =  this.object_ctrl.addFolder("Translate");
         this.obj_translate.add(obj,'x',-10, 10,this.step).name("x").onChange(update)
         this.obj_translate.add(obj,'y',-10, 10,this.step).name("y").onChange(update)
-        this.obj_translate.add(obj,'z',-10, 10,this.step).name("x").onChange(update)
+        this.obj_translate.add(obj,'z',-10, 10,this.step).name("z").onChange(update)
             
 
     }
@@ -94,7 +94,7 @@ class HelloWorld{
 
         this.objects=[]
         var ground_material = new Lamberiant(new Vec3(0.5, 0.5, 0.5));
-        this.objects.push(new Sphere(new Point3(0,-1000,0), 1000, ground_material));
+        this.objects.push(new Sphere({center1:new Point3(0,-1000,0), radius:1000, material:ground_material}));
 
 
         var count = 5
@@ -112,7 +112,9 @@ class HelloWorld{
                 //diffuse 
                 var albedo = Vec3.mul({u:Vec3.random(-1,1),v:Vec3.random(-1,1)})
                 this.sphere_material = new Lamberiant(albedo)
-                 this.objects.push(new Sphere(center, 0.2, this.sphere_material));
+                var center2 = Vec3.add(center , new Vec3(0, Vec3.random_double(0,.5), 0));
+
+                 this.objects.push(new Sphere({center1:center,center2:center2, radius:0.2, material:this.sphere_material}));
 
 
              }
@@ -121,14 +123,13 @@ class HelloWorld{
                 var albedo = Vec3.random(0.5,1)
                 var fuzz = Vec3.random_double(0, 0.5)
                 this.sphere_material = new Metal(albedo,fuzz)
-
-                this.objects.push(new Sphere(center, 0.2, this.sphere_material));
+                this.objects.push(new Sphere({center1:center, radius:0.2, material:this.sphere_material}));
 
              }
              else {
 
                 this.sphere_material = new Dielectric(1.5)
-                this.objects.push(new Sphere(center, 0.2, this.sphere_material));
+                this.objects.push(new Sphere({center1:center, radius:0.2, material:this.sphere_material}));
 
              }
          }
@@ -140,13 +141,13 @@ class HelloWorld{
 
 
        var material1 = new Dielectric(1.5);
-       this.objects.push( new Sphere(new Point3(0, 1, 0), 1.0, material1));
+       this.objects.push( new Sphere({center1:new Point3(0, 1, 0), radius:1.0, material:material1}));
 
         var material2 = new Lamberiant(new Vec3(0.4, 0.2, 0.1));
-       this.objects.push( new Sphere(new Point3(-4, 1, 0), 1.0, material2));
+       this.objects.push( new Sphere({center1:new Point3(-4, 1, 0), radius:1.0, material:material2}));
 
         var material3 = new Metal(new Vec3(0.7, 0.6, 0.5),0.0);
-       this.objects.push( new Sphere(new Point3(4, 1, 0), 1.0, material3));
+       this.objects.push( new Sphere({center1:new Point3(4, 1, 0), radius:1.0, material:material3}));
 
 
 
@@ -175,6 +176,7 @@ class HelloWorld{
 
     cam.defocus_angle = 0.6;
     cam.focus_dist    = 10.0;
+    
        
        var update = ()=>{
         cam.scanline(world,(i,j,c)=>{render(i,j,c)},(i,j)=>{progress(i,j)})
@@ -208,7 +210,7 @@ class HelloWorld{
 
        
 
-       this.objectUi(update)
+      // this.objectUi(update)
 
        cam.scanline(world,(i,j,c)=>{render(i,j,c)},(i,j)=>{progress(i,j)})
 

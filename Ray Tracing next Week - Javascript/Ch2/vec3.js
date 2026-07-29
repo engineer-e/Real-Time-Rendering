@@ -122,16 +122,38 @@ class Vec3 {
     return new Vec3(u.e[0] - v.e[0], u.e[1] - v.e[1], u.e[2] - v.e[2]);
   }
 
-  static mul({ t = 1, u = new Vec3(1, 1, 1), v }) {
-    if (window.camera && window.camera.enableDetailedStats)
-      window.camera.stats.vectorOperations.mul++;
+  // static mul({ t = 1, u = new Vec3(1, 1, 1), v }) {
+  //   if (window.camera && window.camera.enableDetailedStats)
+  //     window.camera.stats.vectorOperations.mul++;
 
+  //   return new Vec3(
+  //     t * u.e[0] * v.e[0],
+  //     t * u.e[1] * v.e[1],
+  //     t * u.e[2] * v.e[2],
+  //   );
+  // }
+
+
+  static mul({ t = 1, u = null, v = null }) {
+    if (window.camera && window.camera.enableDetailedStats)
+        window.camera.stats.vectorOperations.mul++;
+
+    // scalar * vector
+    if (v && !u) {
+        return new Vec3(
+            t * v.e[0],
+            t * v.e[1],
+            t * v.e[2]
+        );
+    }
+
+    // vector * vector
     return new Vec3(
-      t * u.e[0] * v.e[0],
-      t * u.e[1] * v.e[1],
-      t * u.e[2] * v.e[2],
+        t * u.e[0] * v.e[0],
+        t * u.e[1] * v.e[1],
+        t * u.e[2] * v.e[2]
     );
-  }
+}
 
   static div(v, t) {
     if (window.camera && window.camera.enableDetailedStats)
