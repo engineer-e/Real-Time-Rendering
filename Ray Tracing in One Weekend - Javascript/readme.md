@@ -88,6 +88,74 @@
 14. Where Next?
     - 14.1 [A Final Render ✔️](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/Ch14/main.html)
 
+
+15. <details>
+      <summary>Renderer Analysis and Optimization Research</summary>
+    After Chapter 14 (`Where Next?`), you can add a new section describing your **engineering          analysis and optimization research**. Since the book ends with a final render, this is a       natural    place to document improvements beyond the original tutorial.
+         
+    Suggested addition:
+         
+    ```md
+         15. Renderer Analysis and Optimization Research
+         
+            After completing the Ray Tracing in One Weekend implementation, I started analyzing the          internal performance characteristics of the JavaScript renderer.
+         
+            - Performance Profiling
+              - Added renderer statistics collection:
+                - Ray generation count
+                - Recursive ray color calls
+                - Hit test count
+                - Material scatter count
+                - Vec3 object allocation count
+                - Vector operation frequency
+         
+            - Vec3 Architecture Analysis
+              - The current implementation uses an object-oriented Vec3 class.
+              - Performance measurements show that a single render can create approximately 250       million    temporary Vec3 objects.
+              - Detailed profiling shows that vector operations such as:
+                - `length_squared()`
+                - `dot()`
+                - `sub()`
+                - `mul()`
+                are executed hundreds of millions of times.
+              - The analysis indicates that vector object creation and temporary memory allocation       are    major optimization targets.
+         
+            - Statistical Benchmarking
+              - Since path tracing is a stochastic algorithm, individual renders can produce       different    execution paths due to random sampling.
+              - A single benchmark result is not sufficient to prove an optimization.
+              - Proper validation requires multiple independent benchmark runs and statistical       analysis.
+              - For reliable comparison, experiments should be repeated many times (for example, 100,      000    runs) and analyzed using probability models such as Bernoulli/binomial       distribution to    estimate the probability that one implementation consistently       outperforms another.
+         
+            - Future Optimization Areas
+              - Reduce temporary Vec3 object allocation.
+              - Investigate data-oriented vector storage approaches.
+              - Compare object-based Vec3 architecture with typed-array based implementations.
+              - Profile memory allocation and garbage collection overhead.
+              - Apply acceleration structures such as BVH only when scene complexity becomes the       dominant    bottleneck.
+         
+            - Optimization Priority
+              1. Vector mathematics architecture
+              2. Memory allocation reduction
+              3. Garbage collection impact
+              4. Parallel computation approaches
+              5. Spatial acceleration structures (BVH, KD-tree, etc.) for large scenes
+         
+            Note:
+            Optimization decisions are based on measured profiling data rather than assumptions.       The    renderer should be analyzed first at the algorithmic and data-structure level       before    introducing complex acceleration techniques.
+    ```
+         
+    This placement is better than putting BVH directly after Chapter 14 because you current          evidence shows:
+    
+    * Scene size: ~100 objects → BVH is not yet the dominant issue.
+    * Vec3 creation: ~250 million objects/render → immediate architecture issue.
+    * Vector operations: hundreds of millions → computation/data layout issue.
+    * Random sampling: requires statistical validation.
+    
+    So Chapter 15 becomes a **"Research and Optimization After Ray Tracing in One Weekend"**       section    rather than just another tutorial chapter.
+      
+</details>
+
+
 ---
 
 # Real-Time-Rendering
