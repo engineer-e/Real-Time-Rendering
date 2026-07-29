@@ -17,7 +17,6 @@
 
 
 
-1. Ray Tracing in One Weekend [Python](Ray%20Tracing%20in%20One%20Weekend%20-%20Python/ray_tracing_in_one_weekend.md),  [Javascript](Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/readme.md)
-2. [Ray Tracing: The Next Week](Ray%20Tracing%20next%20Week/ray_tracing_next_week.md)
-3. [Ray Tracing: The Rest of Your Life](Ray%20Tracing%20the%20rest%20of%20your%20life/ray_tracing_the_rest_of_your_life.md)
-
+1. Ray Tracing in One Weekend -  [Python](Ray%20Tracing%20in%20One%20Weekend%20-%20Python/ray_tracing_in_one_weekend.md),  [Javascript](Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/readme.md)
+2. Ray Tracing: The Next Week - Python, [Javascript](Ray%20Tracing%20next%20Week%20-%20Javascript/readme.md)
+3. Ray Tracing: The Rest of Your Life
