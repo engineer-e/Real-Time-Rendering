@@ -1,0 +1,30 @@
+Gobal was testing his JavaScript ray tracer by running the same scene through five different trials and collecting detailed performance statistics before making any major optimization decisions. The scene contained around 100 objects, and every trial generated the same 811,876 primary rays, but the internal ray paths changed slightly because of random scattering, reflection, and refraction. Across the five trials, the renderer consistently performed around 1.95–2.02 million `ray_color` calls and created approximately 248–259 million `Vec3` objects per render. The render time stayed in the range of about 6–7 seconds, showing that the overall workload was stable. When Gobal compared the vector operations, he discovered that the largest mathematical workload was not object searching but repeated vector calculations: around 400 million `length_squared()` operations, around 200 million `dot()` operations, and around 200 million `sub()` operations in each detailed-stat trial. The most important discovery was that the current `Vec3` architecture was creating a huge number of temporary objects because every operation such as addition, subtraction, multiplication, and division returned a new `Vec3` instance. Even though the scene only had about 100 objects, the renderer was creating hundreds of millions of small vector objects during one image render. The comparison between trials showed that the variation in operation counts was caused by different random ray bounce paths, not by a change in the architecture or scene complexity. The statistics proved that the first optimization target should not be BVH or spatial partitioning, because object intersection was not the main bottleneck at this stage. The real problem was the mathematical layer itself: the `Vec3` design was causing excessive memory allocation and garbage collection pressure. Therefore, the next step in improving the renderer is to redesign the vector system by reducing temporary `Vec3` creation, introducing reusable or mutable vector operations, and measuring the performance again before moving to advanced acceleration structures like BVH.
+
+---
+
+### Ray Tracer Performance Testing — 5 Trial Comparison Notes
+
+| Trial   | Configuration                                                                        | Purpose / Note                                                                                                                                                                                                    |
+| ------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Trial 1 | `enableStats = true`<br>`enableDetailedStats = false`<br>`enableVec3Timing = false`  | Basic renderer profiling enabled. Measures overall render time, ray count, hit tests, recursion, and Vec3 allocation count. Vector operation counters are disabled. Used as baseline with lightweight statistics. |
+| Trial 2 | `enableStats = false`<br>`enableDetailedStats = false`<br>`enableVec3Timing = false` | Pure rendering test without profiling overhead. Used to measure the fastest possible execution time without statistics collection. Vec3 creation and operation data are not recorded.                             |
+| Trial 3 | `enableStats = true`<br>`enableDetailedStats = true`<br>`enableVec3Timing = false`   | Full profiling mode. Tracks every vector operation (`add`, `sub`, `mul`, `dot`, `length_squared`, `reflect`, `refract`, etc.) to identify mathematical workload and architecture bottlenecks.                     |
+| Trial 4 | `enableStats = true`<br>`enableDetailedStats = true`<br>`enableVec3Timing = false`   | Repeated detailed profiling run with the same architecture. Used to compare variation caused by random ray scattering, reflection, and refraction paths.                                                          |
+| Trial 5 | `enableStats = true`<br>`enableDetailedStats = true`<br>`enableVec3Timing = false`   | Third detailed profiling run. Used to validate whether vector operation counts and Vec3 allocation behavior remain consistent across different random ray paths.                                                  |
+
+### Overall Testing Note
+
+| Observation                | Result                                                                       |
+| -------------------------- | ---------------------------------------------------------------------------- |
+| Primary rays               | Constant across all trials: **811,876 rays**                                 |
+| Scene complexity           | Around **100–103 objects**                                                   |
+| Render time range          | Approximately **6–7 seconds**                                                |
+| Ray recursion workload     | Around **1.95–2.02 million `ray_color()` calls**                             |
+| Vec3 allocation            | Approximately **248–259 million Vec3 objects per render**                    |
+| Largest vector workload    | `length_squared()` ≈ **400 million calls**                                   |
+| Major arithmetic workload  | `dot()` and `sub()` ≈ **200 million calls each**                             |
+| Main bottleneck identified | Excessive temporary `Vec3` object creation                                   |
+| BVH decision               | Not the first optimization target because object count is low (~100 objects) |
+| Next optimization step     | Redesign `Vec3` memory usage and reduce temporary object allocations         |
+
+**Conclusion:** The five trials confirm that the renderer's main performance issue is the current vector object architecture rather than scene intersection speed. The profiling data should be used first to optimize `Vec3` allocation before introducing BVH or spatial acceleration.
