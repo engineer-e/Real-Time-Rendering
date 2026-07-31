@@ -42,7 +42,7 @@
      - 4.3 [Rendering the Solid Checker Texture](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch4-B/main.html)
      - 4.4 Texture Coordinates for Spheres 
      - 4.5 Accessing Texture Image Data 
-     - 4.6 Rendering The Image Texture
+     - 4.6 [Rendering The Image Texture](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch4-C/main.html)
     
    </details> 
 
