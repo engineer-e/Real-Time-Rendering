@@ -38,7 +38,7 @@
      <summary>Texture Mapping </summary>
 
      - 4.1 Constant Color Texture
-     - 4.2 [Solid Textures: A Checker Texture](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch1/main.html)
+     - 4.2 [Solid Textures: A Checker Texture](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch4-A/main.html)
      - 4.3 Rendering the Solid Checker Texture
      - 4.4 Texture Coordinates for Spheres 
      - 4.5 Accessing Texture Image Data 
