@@ -50,12 +50,12 @@
      <summary>Perlin Noise</summary>
 
      - 5.1 [Using Blocks of Random Numbers](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch5-A/main.html)
-     - 5.2 Smoothing out the Result
-     - 5.3 Improvement with Hermitian Smoothing
-     - 5.4 Tweaking The Frequency
-     - 5.5 Using Random Vectors on the Lattice Points
-     - 5.6 Introducing Turbulence 
-     - 5.7 Adjusting the Phase
+     - 5.2 [Smoothing out the Result](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch5-B/main.html)
+     - 5.3 [Improvement with Hermitian Smoothing](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch5-C/main.html)
+     - 5.4 [Tweaking The Frequency](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch5-D/main.html)
+     - 5.5 [Using Random Vectors on the Lattice Points](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch5-E/main.html)
+     - 5.6 [Introducing Turbulence](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch5-F/main.html) 
+     - 5.7 [Adjusting the Phase](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch5-G/main.html)
      
    </details> 
    
