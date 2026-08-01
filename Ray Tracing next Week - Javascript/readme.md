@@ -58,8 +58,51 @@
      - 5.7 [Adjusting the Phase](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch5-G/main.html)
      
    </details> 
+
+6. <details>
+     <summary>Quadrilaterals</summary>
+
+     - 7.1 Defining the Quadrilateral
+     - 7.2 Ray-Plane Intersection
+     - 7.3 Finding the Plane That Contains a Given Quadrilaterial
+     - 7.4 Orienting Points on the Plane
+     - 6.5 Deriving the Planar Coordinates
+     - 6.6 [Interior Testing of the Intersection using UV Coordinates](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch6/main.html) 
+     - 6.7 Additional 2D Primitives
+     
+   </details> 
    
+
+7. <details>
+     <summary>Lights</summary>
+
+     - 7.1 Emissive Materials
+     - 7.2 Adding Background Color to the Ray Color Function
+     - 7.3 Turning Objects into Lights
+     - 7.4 Creating an Empty “Cornell Box”
+
+   </details> 
    
+
+8. <details>
+     <summary>Instances</summary>
+
+     - 8.1 Instance Translation
+     - 8.2 Instance Rotation
+     
+
+   </details> 
+
+9. <details>
+     <summary>Volumes</summary>
+
+     - 9.1 Constant Density Mediums
+     - 9.2 Rendering a Cornell Box with Smoke and Fog Boxes
+     
+
+   </details> 
+
+10. A Scene Testing All New Features
 
 
 
