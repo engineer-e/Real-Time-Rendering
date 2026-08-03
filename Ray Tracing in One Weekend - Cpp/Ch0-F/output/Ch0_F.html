@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Emscripten Slider Demo</title>
+
+<style>
+body{
+    font-family:Arial;
+    margin:30px;
+}
+
+input[type=range]{
+    width:300px;
+}
+
+button{
+    margin-top:10px;
+    margin-right:10px;
+}
+
+pre{
+    background:#eee;
+    padding:10px;
+    height:250px;
+    overflow:auto;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Emscripten Slider Example</h2>
+
+<p>
+Slider Value:
+<span id="sliderValue">50</span>
+</p>
+
+<input
+type="range"
+id="slider"
+min="0"
+max="100"
+value="50"
+oninput="sliderChanged(this.value)"
+>
+
+<br><br>
+
+<button onclick="writeSlider()">Write Slider Value</button>
+<button onclick="readText()">Read File</button>
+
+<pre id="output"></pre>
+
+<script>
+
+var currentValue = 50;
+
+var Module = {
+
+    print: function(text)
+    {
+        document.getElementById("output").textContent += text + "\n";
+    },
+
+    printErr: function(text)
+    {
+        document.getElementById("output").textContent += text + "\n";
+    },
+
+    onRuntimeInitialized: function()
+    {
+        console.log("Runtime initialized");
+
+        Module._init_fs();
+
+        Module._set_slider_value(currentValue);
+    }
+
+};
+
+function sliderChanged(value)
+{
+    currentValue = value;
+
+    document.getElementById("sliderValue").textContent = value;
+
+    Module._set_slider_value(Number(value));
+}
+
+function writeSlider()
+{
+    const ptr = Module.stringToNewUTF8(currentValue.toString());
+
+    Module._write_file(ptr);
+
+    Module._free(ptr);
+}
+
+function readText()
+{
+    document.getElementById("output").textContent = "";
+
+    Module._read_file();
+}
+
+</script>
+
+<script src="Ch0_F.js"></script>
+
+</body>
+</html>
