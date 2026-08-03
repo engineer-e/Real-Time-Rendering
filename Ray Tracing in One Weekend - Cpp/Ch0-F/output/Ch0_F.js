@@ -4231,6 +4231,67 @@ var UTF8Decoder = globalThis.TextDecoder && new TextDecoder();
   var __abort_js = () =>
       abort('native code called abort()');
 
+  
+  var stringToUTF8 = (str, outPtr, maxBytesToWrite) => {
+      assert(typeof maxBytesToWrite == 'number', 'stringToUTF8 requires a third parameter that specifies the length of the output buffer');
+      return stringToUTF8Array(str, HEAPU8, outPtr, maxBytesToWrite);
+    };
+  
+  
+  
+  var __tzset_js = (timezone, daylight, std_name, dst_name) => {
+      // TODO: Use (malleable) environment variables instead of system settings.
+      var currentYear = new Date().getFullYear();
+      var winter = new Date(currentYear, 0, 1);
+      var summer = new Date(currentYear, 6, 1);
+      var winterOffset = winter.getTimezoneOffset();
+      var summerOffset = summer.getTimezoneOffset();
+  
+      // Local standard timezone offset. Local standard time is not adjusted for
+      // daylight savings.  This code uses the fact that getTimezoneOffset returns
+      // a greater value during Standard Time versus Daylight Saving Time (DST).
+      // Thus it determines the expected output during Standard Time, and it
+      // compares whether the output of the given date the same (Standard) or less
+      // (DST).
+      var stdTimezoneOffset = Math.max(winterOffset, summerOffset);
+  
+      // timezone is specified as seconds west of UTC ("The external variable
+      // `timezone` shall be set to the difference, in seconds, between
+      // Coordinated Universal Time (UTC) and local standard time."), the same
+      // as returned by stdTimezoneOffset.
+      // See http://pubs.opengroup.org/onlinepubs/009695399/functions/tzset.html
+      HEAPU32[((timezone)>>2)] = stdTimezoneOffset * 60;
+  
+      HEAP32[((daylight)>>2)] = Number(winterOffset != summerOffset);
+  
+      var extractZone = (timezoneOffset) => {
+        // Why inverse sign?
+        // Read here https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset
+        var sign = timezoneOffset >= 0 ? '-' : '+';
+  
+        var absOffset = Math.abs(timezoneOffset)
+        var hours = String(Math.floor(absOffset / 60)).padStart(2, '0');
+        var minutes = String(absOffset % 60).padStart(2, '0');
+  
+        return `UTC${sign}${hours}${minutes}`;
+      }
+  
+      var winterName = extractZone(winterOffset);
+      var summerName = extractZone(summerOffset);
+      assert(winterName);
+      assert(summerName);
+      assert(lengthBytesUTF8(winterName) <= 16, `timezone name truncated to fit in TZNAME_MAX (${winterName})`);
+      assert(lengthBytesUTF8(summerName) <= 16, `timezone name truncated to fit in TZNAME_MAX (${summerName})`);
+      if (summerOffset < winterOffset) {
+        // Northern hemisphere
+        stringToUTF8(winterName, std_name, 17);
+        stringToUTF8(summerName, dst_name, 17);
+      } else {
+        stringToUTF8(winterName, dst_name, 17);
+        stringToUTF8(summerName, std_name, 17);
+      }
+    };
+
   var readEmAsmArgsArray = [];
   
   
@@ -4358,6 +4419,66 @@ var UTF8Decoder = globalThis.TextDecoder && new TextDecoder();
       }
       err(`Failed to grow the heap from ${oldSize} bytes to ${newSize} bytes, not enough memory!`);
       return false;
+    };
+
+  var ENV = {
+  };
+  
+  var getExecutableName = () => thisProgram;
+  var getEnvStrings = () => {
+      if (!getEnvStrings.strings) {
+        // Default values.
+        var lang = (globalThis.navigator?.language ?? 'C').replace('-', '_') + '.UTF-8';
+        var env = {
+          'USER': 'web_user',
+          'LOGNAME': 'web_user',
+          'PATH': '/',
+          'PWD': '/',
+          'HOME': '/home/web_user',
+          'LANG': lang,
+          '_': getExecutableName()
+        };
+        // Apply the user-provided values, if any.
+        for (var x in ENV) {
+          // x is a key in ENV; if ENV[x] is undefined, that means it was
+          // explicitly set to be so. We allow user code to do that to
+          // force variables with default values to remain unset.
+          if (ENV[x] === undefined) delete env[x];
+          else env[x] = ENV[x];
+        }
+        var strings = [];
+        for (var x in env) {
+          strings.push(`${x}=${env[x]}`);
+        }
+        getEnvStrings.strings = strings;
+      }
+      return getEnvStrings.strings;
+    };
+  
+  
+  var _environ_get = (__environ, environ_buf) => {
+      var bufSize = 0;
+      var envp = 0;
+      for (var string of getEnvStrings()) {
+        var ptr = environ_buf + bufSize;
+        HEAPU32[(((__environ)+(envp))>>2)] = ptr;
+        bufSize += stringToUTF8(string, ptr, Infinity) + 1;
+        envp += 4;
+      }
+      return 0;
+    };
+
+  
+  
+  var _environ_sizes_get = (penviron_count, penviron_buf_size) => {
+      var strings = getEnvStrings();
+      HEAPU32[((penviron_count)>>2)] = strings.length;
+      var bufSize = 0;
+      for (var string of strings) {
+        bufSize += lengthBytesUTF8(string) + 1;
+      }
+      HEAPU32[((penviron_buf_size)>>2)] = bufSize;
+      return 0;
     };
 
   function _fd_close(fd) {
@@ -4488,11 +4609,6 @@ var UTF8Decoder = globalThis.TextDecoder && new TextDecoder();
 
 
   
-  
-  var stringToUTF8 = (str, outPtr, maxBytesToWrite) => {
-      assert(typeof maxBytesToWrite == 'number', 'stringToUTF8 requires a third parameter that specifies the length of the output buffer');
-      return stringToUTF8Array(str, HEAPU8, outPtr, maxBytesToWrite);
-    };
   
   var stringToNewUTF8 = (str) => {
       var size = lengthBytesUTF8(str) + 1;
@@ -5128,7 +5244,6 @@ if (Module['printErr']) err = Module['printErr'];
   'writeSockaddr',
   'runMainThreadEmAsm',
   'jstoi_q',
-  'getExecutableName',
   'autoResumeAudioContext',
   'getDynCaller',
   'dynCall',
@@ -5210,7 +5325,6 @@ if (Module['printErr']) err = Module['printErr'];
   'jsStackTrace',
   'getCallstack',
   'convertPCtoSourceLocation',
-  'getEnvStrings',
   'checkWasiClock',
   'wasiRightsToMuslOFlags',
   'wasiOFlagsToMuslOFlags',
@@ -5309,6 +5423,7 @@ missingLibrarySymbols.forEach(missingLibrarySymbol)
   'readEmAsmArgsArray',
   'readEmAsmArgs',
   'runEmAsmFunction',
+  'getExecutableName',
   'handleException',
   'keepRuntimeAlive',
   'callUserCallback',
@@ -5340,6 +5455,7 @@ missingLibrarySymbols.forEach(missingLibrarySymbol)
   'restoreOldWindowedStyle',
   'UNWIND_CACHE',
   'ExitStatus',
+  'getEnvStrings',
   'doReadv',
   'doWritev',
   'initRandomFill',
@@ -5532,14 +5648,16 @@ function checkIncomingModuleAPI() {
   ignoredModuleProp('wasmBinary');
 }
 var ASM_CONSTS = {
-  68800: () => { if (!FS.analyzePath('/data').exists) FS.mkdir('/data'); FS.mount(IDBFS, {}, '/data'); FS.syncfs(true, function(err) { if(err) console.log(err); else console.log("Loaded"); }); },  
- 68980: () => { FS.syncfs(false,function(err) { if(err) console.log(err); else console.log("Saved"); }); }
+  80836: () => { if (!FS.analyzePath('/data').exists) FS.mkdir('/data'); FS.mount(IDBFS, {}, '/data'); FS.syncfs(true,function(err) { if(err) console.log(err); else console.log("Loaded"); }); },  
+ 81015: () => { FS.syncfs(false,function(err) { if(err) console.log(err); else console.log("Saved"); }); }
 };
 
 // Imports from the Wasm binary.
 var _init_fs = Module['_init_fs'] = makeInvalidEarlyAccess('_init_fs');
 var _set_slider_value = Module['_set_slider_value'] = makeInvalidEarlyAccess('_set_slider_value');
 var _set_checkbox_value = Module['_set_checkbox_value'] = makeInvalidEarlyAccess('_set_checkbox_value');
+var _button_click = Module['_button_click'] = makeInvalidEarlyAccess('_button_click');
+var _textarea_input = Module['_textarea_input'] = makeInvalidEarlyAccess('_textarea_input');
 var _write_file = Module['_write_file'] = makeInvalidEarlyAccess('_write_file');
 var _read_file = Module['_read_file'] = makeInvalidEarlyAccess('_read_file');
 var _fflush = makeInvalidEarlyAccess('_fflush');
@@ -5561,6 +5679,8 @@ function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['init_fs'] != 'undefined', 'missing Wasm export: init_fs');
   assert(typeof wasmExports['set_slider_value'] != 'undefined', 'missing Wasm export: set_slider_value');
   assert(typeof wasmExports['set_checkbox_value'] != 'undefined', 'missing Wasm export: set_checkbox_value');
+  assert(typeof wasmExports['button_click'] != 'undefined', 'missing Wasm export: button_click');
+  assert(typeof wasmExports['textarea_input'] != 'undefined', 'missing Wasm export: textarea_input');
   assert(typeof wasmExports['write_file'] != 'undefined', 'missing Wasm export: write_file');
   assert(typeof wasmExports['read_file'] != 'undefined', 'missing Wasm export: read_file');
   assert(typeof wasmExports['fflush'] != 'undefined', 'missing Wasm export: fflush');
@@ -5579,6 +5699,8 @@ function assignWasmExports(wasmExports) {
   _init_fs = Module['_init_fs'] = createExportWrapper('init_fs', wasmExports['init_fs'], 0);
   _set_slider_value = Module['_set_slider_value'] = createExportWrapper('set_slider_value', wasmExports['set_slider_value'], 1);
   _set_checkbox_value = Module['_set_checkbox_value'] = createExportWrapper('set_checkbox_value', wasmExports['set_checkbox_value'], 1);
+  _button_click = Module['_button_click'] = createExportWrapper('button_click', wasmExports['button_click'], 1);
+  _textarea_input = Module['_textarea_input'] = createExportWrapper('textarea_input', wasmExports['textarea_input'], 1);
   _write_file = Module['_write_file'] = createExportWrapper('write_file', wasmExports['write_file'], 1);
   _read_file = Module['_read_file'] = createExportWrapper('read_file', wasmExports['read_file'], 0);
   _fflush = createExportWrapper('fflush', wasmExports['fflush'], 1);
@@ -5606,9 +5728,15 @@ var wasmImports = {
   /** @export */
   _abort_js: __abort_js,
   /** @export */
+  _tzset_js: __tzset_js,
+  /** @export */
   emscripten_asm_const_int: _emscripten_asm_const_int,
   /** @export */
   emscripten_resize_heap: _emscripten_resize_heap,
+  /** @export */
+  environ_get: _environ_get,
+  /** @export */
+  environ_sizes_get: _environ_sizes_get,
   /** @export */
   fd_close: _fd_close,
   /** @export */

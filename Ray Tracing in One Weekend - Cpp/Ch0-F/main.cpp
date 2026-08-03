@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <string.h>
+#include <iostream>
+#include <string>
 #include <emscripten.h>
 
 
@@ -17,7 +18,7 @@ void init_fs()
 
         FS.mount(IDBFS, {}, '/data');
 
-        FS.syncfs(true, function(err)
+        FS.syncfs(true,function(err)
         {
             if(err)
                 console.log(err);
@@ -33,7 +34,9 @@ void init_fs()
 EMSCRIPTEN_KEEPALIVE
 void set_slider_value(int value)
 {
-    printf("Slider Value = %d\n", value);
+    std::cout << "Slider Value = "
+              << value
+              << std::endl;
 }
 
 
@@ -42,22 +45,44 @@ EMSCRIPTEN_KEEPALIVE
 void set_checkbox_value(int checked)
 {
     if(checked)
-        printf("Checkbox ON\n");
+        std::cout << "Checkbox ON" << std::endl;
     else
-        printf("Checkbox OFF\n");
+        std::cout << "Checkbox OFF" << std::endl;
 }
+
+
+
+
+// Button calls this function
+EMSCRIPTEN_KEEPALIVE
+void button_click(const char* message)
+{
+    std::cout << "Button pressed" << std::endl;
+
+    std::cout << "Message from HTML: "
+              << message
+              << std::endl;
+}
+
+EMSCRIPTEN_KEEPALIVE
+void textarea_input(const char* text)
+{
+    std::cout << "Textarea:" << std::endl;
+    std::cout << text << std::endl;
+}
+
 
 
 
 EMSCRIPTEN_KEEPALIVE
 void write_file(const char* text)
 {
-    FILE *file = fopen("/data/output.txt", "a");
+    FILE *file=fopen("/data/output.txt","a");
 
 
     if(!file)
     {
-        printf("Cannot open file\n");
+        std::cout<<"Cannot open file"<<std::endl;
         return;
     }
 
@@ -81,7 +106,9 @@ void write_file(const char* text)
     });
 
 
-    printf("Saved: %s\n",text);
+    std::cout<<"Saved: "
+             <<text
+             <<std::endl;
 }
 
 
@@ -90,12 +117,12 @@ void write_file(const char* text)
 EMSCRIPTEN_KEEPALIVE
 void read_file()
 {
-    FILE *file = fopen("/data/output.txt","r");
+    FILE *file=fopen("/data/output.txt","r");
 
 
     if(!file)
     {
-        printf("No file\n");
+        std::cout<<"No file"<<std::endl;
         return;
     }
 
@@ -103,16 +130,18 @@ void read_file()
     char buffer[256];
 
 
-    printf("------ FILE ------\n");
+    std::cout<<"------ FILE ------"
+             <<std::endl;
 
 
     while(fgets(buffer,sizeof(buffer),file))
     {
-        printf("%s",buffer);
+        std::cout<<buffer;
     }
 
 
-    printf("------------------\n");
+    std::cout<<"------------------"
+             <<std::endl;
 
 
     fclose(file);
