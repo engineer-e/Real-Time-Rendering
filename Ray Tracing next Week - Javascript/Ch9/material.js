@@ -211,15 +211,21 @@ class DiffuseLight extends Material{
 }
 
 class Isotropic extends Material {
+
     constructor(albedoOrTexture) {
         super();
 
-        if (albedoOrTexture instanceof Texture) {
+        if (
+            albedoOrTexture &&
+            typeof albedoOrTexture.value === "function"
+        ) {
             this.tex = albedoOrTexture;
-        } else {
+        } 
+        else {
             this.tex = new SolidColor(albedoOrTexture);
         }
     }
+
 
     scatter(r_in, rec, attenuation, scattered, isScatter) {
 
@@ -231,6 +237,7 @@ class Isotropic extends Material {
             })
         );
 
+
         attenuation(
             this.tex.value(
                 rec.u,
@@ -238,6 +245,7 @@ class Isotropic extends Material {
                 rec.p
             )
         );
+
 
         isScatter(true);
 

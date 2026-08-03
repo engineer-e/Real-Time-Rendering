@@ -5,7 +5,7 @@ class Camera {
     this.height = 0;
     this.focal_length = 1.0;
     this.viewport_height = 2.0;
-    this.samples_per_pixel = 1;
+    this.samples_per_pixel = 10;
     this.max_depth = 50;
     this.background = new Vec3(0.7, 0.8, 1.0);
 

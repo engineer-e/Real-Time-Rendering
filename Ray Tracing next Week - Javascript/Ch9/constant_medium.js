@@ -1,21 +1,25 @@
 class ConstantMedium extends Hittable {
 
     constructor(boundary, density, textureOrColor) {
+
         super();
 
         this.boundary = boundary;
 
-        // -1 / density
         this.neg_inv_density = -1 / density;
 
-        // isotropic phase function
-        this.phase_function = new Isotropic(textureOrColor);
+        this.phase_function =
+            new Isotropic(textureOrColor);
     }
+
 
 
     bounding_box() {
+
         return this.boundary.bounding_box();
+
     }
+
 
 
     hit(r, ray_t, hit_record) {
@@ -24,7 +28,8 @@ class ConstantMedium extends Hittable {
         let rec2 = null;
 
 
-        // Find first intersection with boundary
+
+        // First boundary hit
         if (
             !this.boundary.hit(
                 r,
@@ -42,7 +47,7 @@ class ConstantMedium extends Hittable {
 
 
 
-        // Find second intersection with boundary
+        // Second boundary hit
         if (
             !this.boundary.hit(
                 r,
@@ -60,86 +65,92 @@ class ConstantMedium extends Hittable {
 
 
 
-        // Clamp to ray interval
 
-        if (rec1.t < ray_t.min) {
-            rec1.t = ray_t.min;
-        }
-
-
-        if (rec2.t > ray_t.max) {
-            rec2.t = ray_t.max;
-        }
+        let t1 = Math.max(
+            rec1.t,
+            ray_t.min
+        );
 
 
+        let t2 = Math.min(
+            rec2.t,
+            ray_t.max
+        );
 
-        if (rec1.t >= rec2.t) {
+
+
+        if (t1 >= t2)
             return false;
-        }
 
 
 
-        if (rec1.t < 0) {
-            rec1.t = 0;
-        }
+        if (t1 < 0)
+            t1 = 0;
 
 
 
-        // Distance travelled inside the medium
 
-        const ray_length = r.direction().length();
-
-
-        const distance_inside_boundary =
-            (rec2.t - rec1.t) * ray_length;
+        let ray_length =
+            r.direction().length();
 
 
 
-        // Random scattering distance
+        let distance_inside_boundary =
+            (t2 - t1) * ray_length;
 
-        const hit_distance =
+
+
+        let hit_distance =
             this.neg_inv_density *
-            Math.log(Math.random());
+            Math.log(
+                Math.max(Math.random(), 1e-12)
+            );
 
 
 
-        if (hit_distance > distance_inside_boundary) {
+        if (hit_distance > distance_inside_boundary)
             return false;
-        }
 
 
-
-        // Create medium hit record
 
         let rec = new HitRecord();
 
 
+
         rec.t =
-            rec1.t +
+            t1 +
             hit_distance / ray_length;
 
 
-        rec.p = r.at(rec.t);
+        rec.p =
+            r.at(rec.t);
 
 
 
-        // Arbitrary normal for volume hit
+        // Required for volume material
+        rec.u = 0;
+        rec.v = 0;
 
-        rec.N = new Vec3(1, 0, 0);
 
 
-        // Volume hits are always considered front face
+        // Arbitrary normal
+        rec.N =
+            new Vec3(1, 0, 0);
+
+
 
         rec.front_face = true;
 
 
 
-        // Isotropic material
+        // IMPORTANT: use your HitRecord name
+        rec.material =
+            this.phase_function;
 
-        rec.mat = this.phase_function;
 
 
         hit_record(rec);
+
 
         return true;
     }

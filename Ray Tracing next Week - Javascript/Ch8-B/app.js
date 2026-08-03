@@ -48,7 +48,7 @@ class App {
         const screen = new Screen({
             canvas: this.canvas,
             $2: this.$2,
-            width: 1200
+            width: 400
         });
 
         

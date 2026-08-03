@@ -309,7 +309,6 @@ class Isotropic extends Material {
 
 
 window.Isotropic = Isotropic;
-
 window.Material = Material
 window.Lamberiant = Lamberiant
 window.Metal = Metal
