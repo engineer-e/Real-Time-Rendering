@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Ch0 WebAssembly</h2>
+
+<button onclick="run(1)">Render</button>
+<button onclick="run(2)">Settings</button>
+
+<div id="output"></div>
+
+<script src="Ch0_B.js"></script>
+
+<script>
+
+let app;
+
+Ch0().then(Module =>
+{
+    app = Module;
+});
+
+
+function run(value)
+{
+    app.ccall(
+        "menu",
+        null,
+        ["number"],
+        [value]
+    );
+
+    document.getElementById("output").innerHTML +=
+        "menu called: " + value + "<br>";
+}
+
+</script>
+
+</body>
+</html>
