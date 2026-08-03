@@ -85,16 +85,16 @@
    
 
 8. <details>
-     <summary>Instances</summary>
+     <summary><a href="https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch8-A/main.html">Instances</a></summary>
 
      - 8.1 Instance Translation
-     - 8.2 Instance Rotation
+     - 8.2 [Instance Rotation](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch8-B/main.html)
      
 
    </details> 
 
 9. <details>
-     <summary>Volumes</summary>
+     <summary><a href="https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch9/main.html">Volumes</a></summary>
 
      - 9.1 Constant Density Mediums
      - 9.2 Rendering a Cornell Box with Smoke and Fog Boxes
@@ -102,7 +102,7 @@
 
    </details> 
 
-10. A Scene Testing All New Features
+10. [A Scene Testing All New Features](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Javascript/Ch10/main.html)
 
 
 
