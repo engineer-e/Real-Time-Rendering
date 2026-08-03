@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include <SDL/SDL.h>
 
 #include <vector>
@@ -15,23 +18,31 @@
 
 
 
-SDL_Surface *screen;
+SDL_Surface *screen = nullptr;
 
 
-int image_width;
-int image_height;
+int image_width = 0;
+int image_height = 0;
 
+
+std::vector<unsigned char> rgb_pixels;
 
 std::vector<Uint32> pixels;
 
 
 
-bool parsePPM(
+
+// ------------------------------------------------------
+// Read P3 PPM
+// ------------------------------------------------------
+
+bool loadPPM(
     const char *data,
     int size
 )
 {
-    std::stringstream ss(
+
+    std::stringstream file(
         std::string(data,size)
     );
 
@@ -39,24 +50,89 @@ bool parsePPM(
     std::string magic;
 
 
-    ss >> magic;
+    file >> magic;
+
 
 
     if(magic != "P3")
     {
-        printf("Only P3 ppm supported\n");
+        printf(
+            "Unsupported PPM format: %s\n",
+            magic.c_str()
+        );
+
         return false;
     }
+
 
 
     int maxColor;
 
 
-    ss >> image_width;
-    ss >> image_height;
-    ss >> maxColor;
+
+    file >> image_width;
+    file >> image_height;
+    file >> maxColor;
 
 
+
+    printf(
+        "PPM Size : %d x %d\n",
+        image_width,
+        image_height
+    );
+
+
+
+    rgb_pixels.resize(
+        image_width *
+        image_height *
+        3
+    );
+
+
+
+    for(int i=0;i<image_width*image_height;i++)
+    {
+
+        int r;
+        int g;
+        int b;
+
+
+        file >> r >> g >> b;
+
+
+
+        rgb_pixels[i*3+0] =
+            (unsigned char)r;
+
+
+        rgb_pixels[i*3+1] =
+            (unsigned char)g;
+
+
+        rgb_pixels[i*3+2] =
+            (unsigned char)b;
+
+    }
+
+
+
+    return true;
+
+}
+
+
+
+
+
+// ------------------------------------------------------
+// Convert RGB data to SDL pixels
+// ------------------------------------------------------
+
+void createSDLImage()
+{
 
     pixels.resize(
         image_width *
@@ -67,45 +143,86 @@ bool parsePPM(
 
     for(int i=0;i<image_width*image_height;i++)
     {
-        int r,g,b;
-
-
-        ss >> r >> g >> b;
-
 
         pixels[i] =
             SDL_MapRGB(
                 screen->format,
-                r,
-                g,
-                b
+                rgb_pixels[i*3+0],
+                rgb_pixels[i*3+1],
+                rgb_pixels[i*3+2]
             );
+
     }
 
-
-    return true;
 }
 
 
 
+
+
+// ------------------------------------------------------
+// Emscripten download
+// ------------------------------------------------------
 
 #ifdef __EMSCRIPTEN__
 
 
-void download_success(
+void fetch_success(
     emscripten_fetch_t *fetch
 )
 {
 
     printf(
-        "Downloaded ppm\n"
+        "Download success\n"
     );
 
 
-    parsePPM(
+
+    if(loadPPM(
         fetch->data,
         fetch->numBytes
-    );
+    ))
+    {
+
+
+        SDL_FreeSurface(screen);
+
+
+
+        screen =
+            SDL_SetVideoMode(
+                image_width,
+                image_height,
+                32,
+                SDL_SWSURFACE
+            );
+
+
+
+        if(!screen)
+        {
+            printf(
+                "SDL window creation failed\n"
+            );
+
+            emscripten_fetch_close(fetch);
+            return;
+        }
+
+
+
+        createSDLImage();
+
+
+
+        printf(
+            "Window resized : %dx%d\n",
+            image_width,
+            image_height
+        );
+
+    }
+
 
 
     emscripten_fetch_close(fetch);
@@ -114,23 +231,36 @@ void download_success(
 
 
 
-void download_error(
+
+
+void fetch_error(
     emscripten_fetch_t *fetch
 )
 {
-    printf(
-        "Failed loading image\n"
-    );
+
+   printf("Download failed\n");
+printf("URL         : %s\n", fetch->url);
+printf("HTTP Status : %d\n", fetch->status);
 
     emscripten_fetch_close(fetch);
+
 }
 
 
 
-void loadURL(
+
+
+void downloadImage(
     const char *url
 )
 {
+
+    printf(
+        "Loading URL:\n%s\n",
+        url
+    );
+
+
 
     emscripten_fetch_attr_t attr;
 
@@ -140,22 +270,27 @@ void loadURL(
     );
 
 
+
     strcpy(
         attr.requestMethod,
         "GET"
     );
 
 
+
     attr.attributes =
         EMSCRIPTEN_FETCH_LOAD_TO_MEMORY;
 
 
+
     attr.onsuccess =
-        download_success;
+        fetch_success;
+
 
 
     attr.onerror =
-        download_error;
+        fetch_error;
+
 
 
 
@@ -167,11 +302,61 @@ void loadURL(
 }
 
 
+
 #endif
 
 
 
 
+
+
+// ------------------------------------------------------
+// Get URL parameter
+// ------------------------------------------------------
+
+#ifdef __EMSCRIPTEN__
+
+// std::string getImageURL()
+// {
+
+//     const char *url =
+//         emscripten_run_script_string(
+//             "new URLSearchParams(window.location.search).get('image')"
+//         );
+
+
+
+//     if(url)
+//         return std::string(url);
+
+
+
+//     return "";
+
+// }
+
+std::string getImageURL()
+{
+    char buffer[4096];
+
+    EM_ASM({
+        const value = new URLSearchParams(window.location.search).get("image") || "";
+        stringToUTF8(value, $0, $1);
+    }, buffer, sizeof(buffer));
+
+    return std::string(buffer);
+}
+
+#endif
+
+
+
+
+
+
+// ------------------------------------------------------
+// Draw
+// ------------------------------------------------------
 
 void render()
 {
@@ -191,11 +376,13 @@ void render()
 
 
 
+
     memcpy(
         buffer,
         pixels.data(),
         pixels.size()*sizeof(Uint32)
     );
+
 
 
 
@@ -211,17 +398,25 @@ void render()
 
 
 
-void loop()
+
+// ------------------------------------------------------
+// Loop
+// ------------------------------------------------------
+
+void main_loop()
 {
 
     SDL_Event event;
 
 
+
     while(SDL_PollEvent(&event))
     {
 
-        if(event.type==SDL_QUIT)
+        if(event.type == SDL_QUIT)
         {
+
+
 #ifdef __EMSCRIPTEN__
 
             emscripten_cancel_main_loop();
@@ -231,9 +426,11 @@ void loop()
             exit(0);
 
 #endif
+
         }
 
     }
+
 
 
     render();
@@ -243,35 +440,18 @@ void loop()
 
 
 
-std::string getURLParameter()
-{
 
-#ifdef __EMSCRIPTEN__
-
-    char buffer[1024];
-
-
-    emscripten_run_script_string(
-        "new URLSearchParams(window.location.search).get('image')"
-    );
-
-
-#endif
-
-
-    return "";
-}
-
-
-
-
+// ------------------------------------------------------
+// Main
+// ------------------------------------------------------
 
 int main()
 {
 
     printf(
-        "PPM Viewer\n"
+        "SDL PPM Viewer\n"
     );
+
 
 
     SDL_Init(
@@ -280,46 +460,89 @@ int main()
 
 
 
+    /*
+       Temporary surface.
+       Needed before loading because SDL requires
+       a pixel format.
+    */
+
     screen =
         SDL_SetVideoMode(
-            800,
-            600,
+            1,
+            1,
             32,
             SDL_SWSURFACE
         );
 
 
 
+    if(!screen)
+    {
+
+        printf(
+            "SDL init failed\n"
+        );
+
+        return 1;
+
+    }
+
+
+
+
+
 #ifdef __EMSCRIPTEN__
 
 
-    // Example:
-    // Ch2_A.html?image=/images/test.ppm
+    std::string url =
+        getImageURL();
 
-    loadURL(
-        "/images/test.ppm"
+        printf("Image URL = %s\n", url.c_str());
+
+
+    if(url.empty())
+    {
+
+        printf(
+            "Missing ?image URL\n"
+        );
+
+        return 1;
+
+    }
+
+
+
+    downloadImage(
+        url.c_str()
     );
+
 
 
     emscripten_set_main_loop(
-        loop,
+        main_loop,
         0,
         1
     );
+
+    return 0;
 
 
 #else
 
 
-    // Desktop loading
-    FILE *f =
-        fopen(
-            "images/test.ppm",
-            "rb"
-        );
+    printf(
+        "Desktop loader not implemented\n"
+    );
+
+       SDL_Quit();
+
+
+    return 0;
 
 #endif
 
 
-    return 0;
+
+ 
 }

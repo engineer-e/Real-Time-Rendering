@@ -500,13 +500,13 @@ function updateMemoryViews() {
   HEAP8 = new Int8Array(b);
   HEAP16 = new Int16Array(b);
   HEAPU8 = new Uint8Array(b);
-  
+  HEAPU16 = new Uint16Array(b);
   HEAP32 = new Int32Array(b);
   HEAPU32 = new Uint32Array(b);
   HEAPF32 = new Float32Array(b);
-  
+  HEAPF64 = new Float64Array(b);
   HEAP64 = new BigInt64Array(b);
-  
+  HEAPU64 = new BigUint64Array(b);
 }
 
 // include: memoryprofiler.js
@@ -2982,6 +2982,10 @@ var _proc_exit = (code) => {
       // backing the page canvas element
     };
 
+  var _SDL_FreeSurface = (surf) => {
+      if (surf) SDL.freeSurface(surf);
+    };
+
   
   /** @param{number} initFlags */
   var _SDL_Init = (initFlags) => {
@@ -3035,6 +3039,24 @@ var _proc_exit = (code) => {
     };
 
   var _SDL_PollEvent = (ptr) => SDL.pollEvent(ptr);
+
+  var _SDL_AudioQuit = () => {
+      for (var i = 0; i < SDL.numChannels; ++i) {
+        var chan = /** @type {{ audio: (HTMLMediaElement|undefined) }} */ (SDL.channels[i]);
+        if (chan.audio) {
+          chan.audio.pause();
+          chan.audio = undefined;
+        }
+      }
+      var audio = /** @type {HTMLMediaElement} */ (SDL.music.audio);
+      audio?.pause();
+      SDL.music.audio = undefined;
+    };
+  
+  var _SDL_Quit = () => {
+      _SDL_AudioQuit();
+      out('SDL_Quit called (and ignored)');
+    };
 
   var GLctx;
   
@@ -3783,6 +3805,38 @@ var _proc_exit = (code) => {
       }
       err(`Failed to grow the heap from ${oldSize} bytes to ${newSize} bytes, not enough memory!`);
       return false;
+    };
+
+  
+  
+  
+  
+  
+  
+  
+  /** @type {!Uint16Array} */
+  var HEAPU16;
+  
+  
+  
+  
+  /** @type {!Float64Array} */
+  var HEAPF64;
+  
+  
+  /** not-@type {!BigUint64Array} */
+  var HEAPU64;
+  var _emscripten_run_script_string = (ptr) => {
+      var s = eval(UTF8ToString(ptr));
+      if (s == null) {
+        return 0;
+      }
+      s += '';
+      var me = _emscripten_run_script_string;
+      me.bufferSize = lengthBytesUTF8(s) + 1;
+      me.buffer = _realloc(me.buffer ?? 0, me.bufferSize)
+      stringToUTF8(s, me.buffer, me.bufferSize);
+      return me.buffer;
     };
 
   
@@ -5065,6 +5119,8 @@ var wasmImports = {
   /** @export */
   SDL_Flip: _SDL_Flip,
   /** @export */
+  SDL_FreeSurface: _SDL_FreeSurface,
+  /** @export */
   SDL_Init: _SDL_Init,
   /** @export */
   SDL_LockSurface: _SDL_LockSurface,
@@ -5072,6 +5128,8 @@ var wasmImports = {
   SDL_MapRGB: _SDL_MapRGB,
   /** @export */
   SDL_PollEvent: _SDL_PollEvent,
+  /** @export */
+  SDL_Quit: _SDL_Quit,
   /** @export */
   SDL_SetVideoMode: _SDL_SetVideoMode,
   /** @export */
@@ -5090,6 +5148,8 @@ var wasmImports = {
   emscripten_is_main_browser_thread: _emscripten_is_main_browser_thread,
   /** @export */
   emscripten_resize_heap: _emscripten_resize_heap,
+  /** @export */
+  emscripten_run_script_string: _emscripten_run_script_string,
   /** @export */
   emscripten_set_main_loop: _emscripten_set_main_loop,
   /** @export */
