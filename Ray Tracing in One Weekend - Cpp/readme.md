@@ -36,8 +36,8 @@
       ```
       for you device. want to change that.
 
-      - 0.1 [Cin/Cout as Button in Console](href="https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch0-A/output/Ch0_A.html)
-      - 0.2 [Cin/Cout as Button inside html](href="https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch0-A/output/Ch0_A.html)
+      - 0.1 [Cin/Cout as Button in Console](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch0-A/output/Ch0_A.html)
+      - 0.2 [Cin/Cout as Button inside html](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch0-B/output/Ch0_B.html)
       
 
       
