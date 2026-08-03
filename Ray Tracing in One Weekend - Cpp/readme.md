@@ -47,7 +47,17 @@
       
       **Note :** **"Emscripten does not support `std::cin` as a normal terminal input mechanism because WebAssembly runs inside a browser environment, not a native command-line terminal. For terminal-based input/output, build the application as a native C++ executable. For Emscripten/WebAssembly builds, input must be provided through JavaScript, HTML, or another browser-based interface."**
 
+      # PPM File Viewer
+
+      ### Example:
+      
+      https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/image.ppm
+
 
   </details>
 
-   
+1. C++ Code & Overview
+2. Output an Image
+   - 2.1 [The PPM Image Format](https://en.wikipedia.org/wiki/Netpbm)
+   - 2.2 [Creating an Image File](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/image.ppm)
+   - 2.3 [Adding a Progress Indicator]
