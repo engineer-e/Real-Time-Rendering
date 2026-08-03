@@ -38,7 +38,9 @@
 
       - 0.1 [Cin/Cout as Button in Console](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch0-A/output/Ch0_A.html)
       - 0.2 [Cin/Cout as Button inside html](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch0-B/output/Ch0_B.html)
+      - 0.3 [SDL Setup](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch0-C/output/Ch0_C.html)
       
+        - **NOTE:** This project uses SDL 1.2 compatibility (`-sUSE_SDL=1`); for new projects, SDL2 (`-sUSE_SDL=2`) is recommended.
 
       
       **Note :** **"Emscripten does not support `std::cin` as a normal terminal input mechanism because WebAssembly runs inside a browser environment, not a native command-line terminal. For terminal-based input/output, build the application as a native C++ executable. For Emscripten/WebAssembly builds, input must be provided through JavaScript, HTML, or another browser-based interface."**

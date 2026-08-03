@@ -1,0 +1,28 @@
+NOTE:
+For Emscripten applications that use a standard C/C++ main() entry point,
+do not use -sMODULARIZE=1 or -sEXPORT_NAME.
+
+-sMODULARIZE and -sEXPORT_NAME are only required when creating a custom
+JavaScript-loadable WebAssembly module where exported C/C++ functions are
+called manually from JavaScript.
+
+For SDL applications using:
+    int main(int argc, char** argv)
+
+Emscripten should generate a normal HTML launcher:
+
+    Ch0_C.html
+    Ch0_C.js
+    Ch0_C.wasm
+
+Therefore use:
+    -sUSE_SDL=1
+    -sWASM=1
+    -sALLOW_MEMORY_GROWTH=1
+
+and avoid:
+    -sMODULARIZE=1
+    -sEXPORT_NAME=<name>
+    --no-entry
+
+unless the application is converted into a library-style WASM module.
