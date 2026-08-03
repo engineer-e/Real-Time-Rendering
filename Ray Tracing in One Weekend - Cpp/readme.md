@@ -25,6 +25,11 @@
       ```
       for you device. want to change that.
 
+      - 0.1 [Cin/Cout as Button](href="https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch0-A/output/Ch0_A.html)
+      
+      **Note :** **"Emscripten does not support `std::cin` as a normal terminal input mechanism because WebAssembly runs inside a browser environment, not a native command-line terminal. For terminal-based input/output, build the application as a native C++ executable. For Emscripten/WebAssembly builds, input must be provided through JavaScript, HTML, or another browser-based interface."**
+
+
   </details>
 
    
