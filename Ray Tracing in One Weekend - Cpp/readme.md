@@ -60,4 +60,4 @@
 2. Output an Image
    - 2.1 [The PPM Image Format](https://en.wikipedia.org/wiki/Netpbm)
    - 2.2 [Creating an Image File](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A/output/image.ppm)
-   - 2.3 [Adding a Progress Indicator]()
+   - 2.3 [Adding a Progress Indicator](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-B/output/image.ppm)
