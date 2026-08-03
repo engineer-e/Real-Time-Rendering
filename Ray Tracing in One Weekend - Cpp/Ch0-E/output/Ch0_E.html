@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Emscripten File Demo</title>
+</head>
+
+<body>
+
+<h2>Emscripten File Demo</h2>
+
+<input id="text" type="text" placeholder="Enter text">
+<button onclick="writeText()">Write</button>
+<button onclick="readText()">Read</button>
+
+<pre id="output"></pre>
+
+<script>
+var Module = {
+    print: function(text) {
+        document.getElementById("output").textContent += text + "\n";
+    },
+
+    printErr: function(text) {
+        document.getElementById("output").textContent += text + "\n";
+    },
+
+    onRuntimeInitialized: function() {
+        console.log("Runtime initialized");
+
+        if (Module._init_fs)
+            Module._init_fs();
+    }
+};
+
+function writeText() {
+
+    const text = document.getElementById("text").value;
+
+    const ptr = Module.stringToNewUTF8(text);
+
+    Module._write_file(ptr);
+
+    // Optional if _free is exported:
+    // Module._free(ptr);
+}
+
+function readText() {
+
+    Module._read_file();
+}
+</script>
+
+<script src="Ch0_E.js"></script>
+
+</body>
+</html>
