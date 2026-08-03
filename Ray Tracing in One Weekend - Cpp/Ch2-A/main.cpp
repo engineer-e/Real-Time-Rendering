@@ -4,8 +4,9 @@ int main() {
 
     // Image
 
-    int image_width = 256;
-    int image_height = 256;
+    int image_width = 1920;
+    double aspect_ratio = 16.0 / 9.0;
+    int image_height = int(image_width / aspect_ratio);
 
     // Render
 
