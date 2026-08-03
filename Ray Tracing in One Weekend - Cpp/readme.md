@@ -42,7 +42,7 @@
         - **NOTE:** This project uses SDL 1.2 compatibility (`-sUSE_SDL=1`); for new projects, SDL2 (`-sUSE_SDL=2`) is recommended.
       - 0.4 [Text File Read](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch0-D/output/Ch0_D.html)
       - 0.5 [Text File Read/Write](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch0-E/output/Ch0_E.html)
-      - 0.6 [Slider](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch0-F/output/Ch0_F.html)
+      - 0.6 [Slider,CheckBox](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch0-F/output/Ch0_F.html)
 
       
       **Note :** **"Emscripten does not support `std::cin` as a normal terminal input mechanism because WebAssembly runs inside a browser environment, not a native command-line terminal. For terminal-based input/output, build the application as a native C++ executable. For Emscripten/WebAssembly builds, input must be provided through JavaScript, HTML, or another browser-based interface."**

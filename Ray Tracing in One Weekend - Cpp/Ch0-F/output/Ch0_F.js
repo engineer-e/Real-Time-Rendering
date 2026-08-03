@@ -5532,13 +5532,14 @@ function checkIncomingModuleAPI() {
   ignoredModuleProp('wasmBinary');
 }
 var ASM_CONSTS = {
-  68784: () => { if (!FS.analyzePath('/data').exists) FS.mkdir('/data'); FS.mount(IDBFS, {}, '/data'); FS.syncfs(true, function(err) { if(err) console.log(err); else console.log("Loaded"); }); },  
- 68964: () => { FS.syncfs(false, function(err) { if(err) console.log(err); else console.log("Saved"); }); }
+  68800: () => { if (!FS.analyzePath('/data').exists) FS.mkdir('/data'); FS.mount(IDBFS, {}, '/data'); FS.syncfs(true, function(err) { if(err) console.log(err); else console.log("Loaded"); }); },  
+ 68980: () => { FS.syncfs(false,function(err) { if(err) console.log(err); else console.log("Saved"); }); }
 };
 
 // Imports from the Wasm binary.
 var _init_fs = Module['_init_fs'] = makeInvalidEarlyAccess('_init_fs');
 var _set_slider_value = Module['_set_slider_value'] = makeInvalidEarlyAccess('_set_slider_value');
+var _set_checkbox_value = Module['_set_checkbox_value'] = makeInvalidEarlyAccess('_set_checkbox_value');
 var _write_file = Module['_write_file'] = makeInvalidEarlyAccess('_write_file');
 var _read_file = Module['_read_file'] = makeInvalidEarlyAccess('_read_file');
 var _fflush = makeInvalidEarlyAccess('_fflush');
@@ -5559,6 +5560,7 @@ var wasmMemory = makeInvalidEarlyAccess('wasmMemory');
 function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['init_fs'] != 'undefined', 'missing Wasm export: init_fs');
   assert(typeof wasmExports['set_slider_value'] != 'undefined', 'missing Wasm export: set_slider_value');
+  assert(typeof wasmExports['set_checkbox_value'] != 'undefined', 'missing Wasm export: set_checkbox_value');
   assert(typeof wasmExports['write_file'] != 'undefined', 'missing Wasm export: write_file');
   assert(typeof wasmExports['read_file'] != 'undefined', 'missing Wasm export: read_file');
   assert(typeof wasmExports['fflush'] != 'undefined', 'missing Wasm export: fflush');
@@ -5576,6 +5578,7 @@ function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['__indirect_function_table'] != 'undefined', 'missing Wasm export: __indirect_function_table');
   _init_fs = Module['_init_fs'] = createExportWrapper('init_fs', wasmExports['init_fs'], 0);
   _set_slider_value = Module['_set_slider_value'] = createExportWrapper('set_slider_value', wasmExports['set_slider_value'], 1);
+  _set_checkbox_value = Module['_set_checkbox_value'] = createExportWrapper('set_checkbox_value', wasmExports['set_checkbox_value'], 1);
   _write_file = Module['_write_file'] = createExportWrapper('write_file', wasmExports['write_file'], 1);
   _read_file = Module['_read_file'] = createExportWrapper('read_file', wasmExports['read_file'], 0);
   _fflush = createExportWrapper('fflush', wasmExports['fflush'], 1);

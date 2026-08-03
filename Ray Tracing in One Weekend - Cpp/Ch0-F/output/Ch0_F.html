@@ -1,42 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
+
 <meta charset="UTF-8">
-<title>Emscripten Slider Demo</title>
+
+<title>
+Emscripten Slider Checkbox Demo
+</title>
+
 
 <style>
-body{
+
+body
+{
     font-family:Arial;
     margin:30px;
 }
 
-input[type=range]{
+
+input[type=range]
+{
     width:300px;
 }
 
-button{
-    margin-top:10px;
-    margin-right:10px;
+
+button
+{
+    margin-top:15px;
+    padding:8px;
 }
 
-pre{
-    background:#eee;
+
+pre
+{
+    background:#eeeeee;
     padding:10px;
     height:250px;
     overflow:auto;
 }
+
+
 </style>
+
 
 </head>
 
+
 <body>
 
-<h2>Emscripten Slider Example</h2>
 
-<p>
-Slider Value:
-<span id="sliderValue">50</span>
-</p>
+<h2>
+Emscripten Controls Demo
+</h2>
+
+
+
+<h3>
+Slider
+</h3>
+
 
 <input
 type="range"
@@ -47,68 +70,191 @@ value="50"
 oninput="sliderChanged(this.value)"
 >
 
+
+<p>
+Value:
+<span id="sliderValue">
+50
+</span>
+</p>
+
+
+
+
+<h3>
+Checkbox
+</h3>
+
+
+<label>
+
+<input
+type="checkbox"
+id="checkbox"
+onchange="checkboxChanged()"
+>
+
+Enable Feature
+
+</label>
+
+
+
 <br><br>
 
-<button onclick="writeSlider()">Write Slider Value</button>
-<button onclick="readText()">Read File</button>
+
+<button onclick="saveData()">
+Write Values
+</button>
+
+
+<button onclick="readData()">
+Read File
+</button>
+
+
 
 <pre id="output"></pre>
 
+
+
 <script>
 
-var currentValue = 50;
 
-var Module = {
+let sliderValue = 50;
 
-    print: function(text)
-    {
-        document.getElementById("output").textContent += text + "\n";
-    },
+let checkboxValue = 0;
 
-    printErr: function(text)
-    {
-        document.getElementById("output").textContent += text + "\n";
-    },
 
-    onRuntimeInitialized: function()
-    {
-        console.log("Runtime initialized");
 
-        Module._init_fs();
+var Module =
+{
 
-        Module._set_slider_value(currentValue);
-    }
+
+print:function(text)
+{
+    document.getElementById("output").textContent += text+"\n";
+},
+
+
+printErr:function(text)
+{
+    document.getElementById("output").textContent += text+"\n";
+},
+
+
+onRuntimeInitialized:function()
+{
+
+    console.log("Runtime Ready");
+
+
+    Module._init_fs();
+
+
+    Module._set_slider_value(50);
+
+
+    Module._set_checkbox_value(0);
+
+}
+
 
 };
 
+
+
+
+
 function sliderChanged(value)
 {
-    currentValue = value;
 
-    document.getElementById("sliderValue").textContent = value;
+    sliderValue = value;
+
+
+    document.getElementById("sliderValue").textContent=value;
+
 
     Module._set_slider_value(Number(value));
+
 }
 
-function writeSlider()
+
+
+
+
+
+function checkboxChanged()
 {
-    const ptr = Module.stringToNewUTF8(currentValue.toString());
+
+    let box=document.getElementById("checkbox");
+
+
+    if(box.checked)
+    {
+        checkboxValue=1;
+    }
+    else
+    {
+        checkboxValue=0;
+    }
+
+
+    Module._set_checkbox_value(checkboxValue);
+
+}
+
+
+
+
+
+
+function saveData()
+{
+
+    let text =
+    "Slider="
+    +sliderValue
+    +" Checkbox="
+    +checkboxValue;
+
+
+
+    let ptr =
+    Module.stringToNewUTF8(text);
+
+
 
     Module._write_file(ptr);
 
+
     Module._free(ptr);
+
 }
 
-function readText()
+
+
+
+
+
+function readData()
 {
-    document.getElementById("output").textContent = "";
+
+    document.getElementById("output").textContent="";
+
 
     Module._read_file();
+
 }
+
 
 </script>
 
+
+
 <script src="Ch0_F.js"></script>
 
+
 </body>
+
 </html>
