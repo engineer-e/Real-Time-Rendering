@@ -1,7 +1,7 @@
 # Ray Tracing in One Weekend - Cpp
 
 0. <details>
-     <summary><a href="">Initial Setup Check</a></summary>
+     <summary><a href="https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch0/output/Ch0.html">Initial Setup Check</a></summary>
  
       - [CMake](https://visualstudio.microsoft.com/downloads/)
       - [Emscripten](https://emscripten.org/docs/getting_started/downloads.html) ,

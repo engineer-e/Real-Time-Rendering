@@ -7,15 +7,28 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(Ch0 main.cpp)
 
 if(EMSCRIPTEN)
+
+    #set_target_properties(Ch0 PROPERTIES
+    #    SUFFIX ".html"
+    #)
+
+
     set_target_properties(Ch0 PROPERTIES
-        SUFFIX ".html"
+        SUFFIX ".js"
     )
 
     target_link_options(Ch0 PRIVATE
-        "-sALLOW_MEMORY_GROWTH=1"
+
+        "-sMODULARIZE=1"
+        "-sEXPORT_NAME=Ch0"
+
+        "-sEXPORTED_FUNCTIONS=['_menu']"
+
+        "-sEXPORTED_RUNTIME_METHODS=['ccall']"
     )
 
-     # Output folder
+
+    # Output folder
     set(WASM_OUTPUT_DIR "${CMAKE_SOURCE_DIR}/output")
 
     add_custom_command(TARGET Ch0 POST_BUILD
@@ -35,4 +48,5 @@ if(EMSCRIPTEN)
 
         COMMENT "Copying Emscripten files to output folder"
     )
+
 endif()

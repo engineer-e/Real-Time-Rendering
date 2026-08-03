@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Ray Tracing Menu</h2>
+
+<button onclick="callMenu(1)">
+Start Rendering
+</button>
+
+<button onclick="callMenu(2)">
+Settings
+</button>
+
+<button onclick="callMenu(3)">
+Exit
+</button>
+
+
+<script src="Ch0.js"></script>
+
+<script>
+
+let app;
+
+Ch0().then(Module =>
+{
+    app = Module;
+    console.log("WASM Loaded");
+});
+
+
+function callMenu(value)
+{
+    app.ccall(
+        "menu",
+        null,
+        ["number"],
+        [value]
+    );
+}
+
+</script>
+
+</body>
+</html>
