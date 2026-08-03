@@ -45,44 +45,109 @@ EMSCRIPTEN_KEEPALIVE
 void set_checkbox_value(int checked)
 {
     if(checked)
-        std::cout << "Checkbox ON" << std::endl;
+        std::cout << "Checkbox ON"
+                  << std::endl;
     else
-        std::cout << "Checkbox OFF" << std::endl;
+        std::cout << "Checkbox OFF"
+                  << std::endl;
 }
 
 
 
 
-// Button calls this function
 EMSCRIPTEN_KEEPALIVE
 void button_click(const char* message)
 {
-    std::cout << "Button pressed" << std::endl;
+    std::cout << "Button pressed"
+              << std::endl;
+
 
     std::cout << "Message from HTML: "
               << message
               << std::endl;
 }
 
+
+
+
+
 EMSCRIPTEN_KEEPALIVE
 void textarea_input(const char* text)
 {
-    std::cout << "Textarea:" << std::endl;
-    std::cout << text << std::endl;
+    std::cout << "Textarea:"
+              << std::endl;
+
+
+    std::cout << text
+              << std::endl;
 }
 
 
 
 
+
+
+// Save browser selected file into /data/output.txt
 EMSCRIPTEN_KEEPALIVE
-void write_file(const char* text)
+void import_file(const char* text)
 {
-    FILE *file=fopen("/data/output.txt","a");
+
+    FILE *file =
+    fopen("/data/output.txt","w");
 
 
     if(!file)
     {
-        std::cout<<"Cannot open file"<<std::endl;
+        std::cout<<"Cannot create file"
+                 <<std::endl;
+        return;
+    }
+
+
+    fprintf(file,"%s",text);
+
+
+    fclose(file);
+
+
+
+    EM_ASM({
+
+        FS.syncfs(false,function(err)
+        {
+            if(err)
+                console.log(err);
+            else
+                console.log("Imported file saved");
+        });
+
+    });
+
+
+
+    std::cout<<"File imported successfully"
+             <<std::endl;
+
+}
+
+
+
+
+
+
+// Existing append write
+EMSCRIPTEN_KEEPALIVE
+void write_file(const char* text)
+{
+
+    FILE *file =
+    fopen("/data/output.txt","a");
+
+
+    if(!file)
+    {
+        std::cout<<"Cannot open file"
+                 <<std::endl;
         return;
     }
 
@@ -91,6 +156,7 @@ void write_file(const char* text)
 
 
     fclose(file);
+
 
 
     EM_ASM({
@@ -109,7 +175,10 @@ void write_file(const char* text)
     std::cout<<"Saved: "
              <<text
              <<std::endl;
+
 }
+
+
 
 
 
@@ -117,12 +186,15 @@ void write_file(const char* text)
 EMSCRIPTEN_KEEPALIVE
 void read_file()
 {
-    FILE *file=fopen("/data/output.txt","r");
+
+    FILE *file =
+    fopen("/data/output.txt","r");
 
 
     if(!file)
     {
-        std::cout<<"No file"<<std::endl;
+        std::cout<<"No file"
+                 <<std::endl;
         return;
     }
 
@@ -145,7 +217,55 @@ void read_file()
 
 
     fclose(file);
+
 }
+
+
+
+
+
+
+// Export file content to JavaScript
+EMSCRIPTEN_KEEPALIVE
+const char* export_file()
+{
+
+    static std::string data;
+
+
+    data.clear();
+
+
+
+    FILE *file =
+    fopen("/data/output.txt","r");
+
+
+    if(!file)
+    {
+        return "";
+    }
+
+
+
+    char buffer[256];
+
+
+    while(fgets(buffer,sizeof(buffer),file))
+    {
+        data += buffer;
+    }
+
+
+
+    fclose(file);
+
+
+
+    return data.c_str();
+
+}
+
 
 
 }

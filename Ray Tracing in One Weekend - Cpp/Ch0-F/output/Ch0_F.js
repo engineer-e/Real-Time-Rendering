@@ -4617,6 +4617,7 @@ var UTF8Decoder = globalThis.TextDecoder && new TextDecoder();
       return ret;
     };
 
+
   var handleException = (e) => {
       // Certain exception types we do not treat as errors since they are used for
       // internal control flow.
@@ -5210,6 +5211,7 @@ if (Module['printErr']) err = Module['printErr'];
 // Begin runtime exports
   Module['addRunDependency'] = addRunDependency;
   Module['removeRunDependency'] = removeRunDependency;
+  Module['UTF8ToString'] = UTF8ToString;
   Module['stringToNewUTF8'] = stringToNewUTF8;
   Module['requestFullscreen'] = requestFullscreen;
   Module['FS_preloadFile'] = FS_preloadFile;
@@ -5443,7 +5445,6 @@ missingLibrarySymbols.forEach(missingLibrarySymbol)
   'PATH_FS',
   'UTF8Decoder',
   'UTF8ArrayToString',
-  'UTF8ToString',
   'stringToUTF8Array',
   'stringToUTF8',
   'lengthBytesUTF8',
@@ -5648,8 +5649,9 @@ function checkIncomingModuleAPI() {
   ignoredModuleProp('wasmBinary');
 }
 var ASM_CONSTS = {
-  80836: () => { if (!FS.analyzePath('/data').exists) FS.mkdir('/data'); FS.mount(IDBFS, {}, '/data'); FS.syncfs(true,function(err) { if(err) console.log(err); else console.log("Loaded"); }); },  
- 81015: () => { FS.syncfs(false,function(err) { if(err) console.log(err); else console.log("Saved"); }); }
+  80884: () => { if (!FS.analyzePath('/data').exists) FS.mkdir('/data'); FS.mount(IDBFS, {}, '/data'); FS.syncfs(true,function(err) { if(err) console.log(err); else console.log("Loaded"); }); },  
+ 81063: () => { FS.syncfs(false,function(err) { if(err) console.log(err); else console.log("Imported file saved"); }); },  
+ 81170: () => { FS.syncfs(false,function(err) { if(err) console.log(err); else console.log("Saved"); }); }
 };
 
 // Imports from the Wasm binary.
@@ -5658,8 +5660,10 @@ var _set_slider_value = Module['_set_slider_value'] = makeInvalidEarlyAccess('_s
 var _set_checkbox_value = Module['_set_checkbox_value'] = makeInvalidEarlyAccess('_set_checkbox_value');
 var _button_click = Module['_button_click'] = makeInvalidEarlyAccess('_button_click');
 var _textarea_input = Module['_textarea_input'] = makeInvalidEarlyAccess('_textarea_input');
+var _import_file = Module['_import_file'] = makeInvalidEarlyAccess('_import_file');
 var _write_file = Module['_write_file'] = makeInvalidEarlyAccess('_write_file');
 var _read_file = Module['_read_file'] = makeInvalidEarlyAccess('_read_file');
+var _export_file = Module['_export_file'] = makeInvalidEarlyAccess('_export_file');
 var _fflush = makeInvalidEarlyAccess('_fflush');
 var _free = Module['_free'] = makeInvalidEarlyAccess('_free');
 var _malloc = makeInvalidEarlyAccess('_malloc');
@@ -5681,8 +5685,10 @@ function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['set_checkbox_value'] != 'undefined', 'missing Wasm export: set_checkbox_value');
   assert(typeof wasmExports['button_click'] != 'undefined', 'missing Wasm export: button_click');
   assert(typeof wasmExports['textarea_input'] != 'undefined', 'missing Wasm export: textarea_input');
+  assert(typeof wasmExports['import_file'] != 'undefined', 'missing Wasm export: import_file');
   assert(typeof wasmExports['write_file'] != 'undefined', 'missing Wasm export: write_file');
   assert(typeof wasmExports['read_file'] != 'undefined', 'missing Wasm export: read_file');
+  assert(typeof wasmExports['export_file'] != 'undefined', 'missing Wasm export: export_file');
   assert(typeof wasmExports['fflush'] != 'undefined', 'missing Wasm export: fflush');
   assert(typeof wasmExports['free'] != 'undefined', 'missing Wasm export: free');
   assert(typeof wasmExports['malloc'] != 'undefined', 'missing Wasm export: malloc');
@@ -5701,8 +5707,10 @@ function assignWasmExports(wasmExports) {
   _set_checkbox_value = Module['_set_checkbox_value'] = createExportWrapper('set_checkbox_value', wasmExports['set_checkbox_value'], 1);
   _button_click = Module['_button_click'] = createExportWrapper('button_click', wasmExports['button_click'], 1);
   _textarea_input = Module['_textarea_input'] = createExportWrapper('textarea_input', wasmExports['textarea_input'], 1);
+  _import_file = Module['_import_file'] = createExportWrapper('import_file', wasmExports['import_file'], 1);
   _write_file = Module['_write_file'] = createExportWrapper('write_file', wasmExports['write_file'], 1);
   _read_file = Module['_read_file'] = createExportWrapper('read_file', wasmExports['read_file'], 0);
+  _export_file = Module['_export_file'] = createExportWrapper('export_file', wasmExports['export_file'], 0);
   _fflush = createExportWrapper('fflush', wasmExports['fflush'], 1);
   _free = Module['_free'] = createExportWrapper('free', wasmExports['free'], 1);
   _malloc = createExportWrapper('malloc', wasmExports['malloc'], 1);

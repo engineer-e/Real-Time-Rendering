@@ -24,7 +24,8 @@ target_link_options(Ch0_F PRIVATE
 
     "-lidbfs.js"
 
-    "-sEXPORTED_RUNTIME_METHODS=['FS','stringToNewUTF8']"
+    
+    "-sEXPORTED_RUNTIME_METHODS=['FS','stringToNewUTF8','UTF8ToString']"
 
     "-sEXPORTED_FUNCTIONS=['_free']"
 
