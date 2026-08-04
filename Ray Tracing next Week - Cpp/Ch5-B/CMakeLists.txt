@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 
-project(Ch5-A)
+project(Ch5-B)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -10,7 +10,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${OUTPUT_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${OUTPUT_DIR})
 
-add_executable(Ch5-A
+add_executable(Ch5-B
     main.cpp
     progress.h
     vec3.h
@@ -33,9 +33,9 @@ add_executable(Ch5-A
 
 # Run program after build to create image.ppm
 add_custom_command(
-    TARGET Ch5-A
+    TARGET Ch5-B
     POST_BUILD
-    COMMAND ${OUTPUT_DIR}/Ch5-A.exe > image.ppm
+    COMMAND ${OUTPUT_DIR}/Ch5-B.exe > image.ppm
     WORKING_DIRECTORY ${OUTPUT_DIR}
     COMMENT "Generating image.ppm..."
 )
