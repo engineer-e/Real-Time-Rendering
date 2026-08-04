@@ -68,7 +68,7 @@
    - 4.2 [Sending Rays Into the Scene](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch4/output/image.ppm)
 5. Adding a Sphere
    - 5.1 Ray-Sphere Intersection 
-   - 5.2 Creating Our First Raytraced Image 
+   - 5.2 [Creating Our First Raytraced Image](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch5/output/image.ppm) 
 6. Surface Normals and Multiple Objects 
    - 6.1 Shading with Surface Normals
    - 6.2 Simplifying the Ray-Sphere Intersection Code
