@@ -93,14 +93,14 @@
    - 10.2 A Data Structure to Describe Ray-Object Intersections
    - 10.3 Modeling Light Scatter and Reflectance
    - 10.4 Mirrored Light Reflection 
-   - 10.5 A Scene with Metal Spheres 
-   - 10.6 Fuzzy Reflection
+   - 10.5 [A Scene with Metal Spheres](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch10-A/output/image.ppm) 
+   - 10.6 [Fuzzy Reflection](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch10-B/output/image.ppm)
 11. Dielectrics 
    - 11.1 Refraction
-   - 11.2 Snell's Law
-   - 11.3 Total Internal Reflection 
+   - 11.2 [Snell's Law](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch11-A/output/image.ppm)
+   - 11.3 [Total Internal Reflection](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch11-B/output/image.ppm) 
    - 11.4 Schlick Approximation 
-   - 11.5 Modeling a Hollow Glass Sphere
+   - 11.5 [Modeling a Hollow Glass Sphere](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch11-C/output/image.ppm)
 12. Positionable Camera 
    - 12.1 Camera Viewing Geometry
    - 12.2 Positioning and Orienting the Camera
