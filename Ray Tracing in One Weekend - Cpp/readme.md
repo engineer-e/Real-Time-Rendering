@@ -77,7 +77,7 @@
    - 6.5 A List of Hittable Objects 
    - 6.6 Some New C++ Features 
    - 6.7 Common Constants and Utility Functions 
-   - 6.8 An Interval Class 
+   - 6.8 [An Interval Class](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch6-C/output/image.ppm) 
 7. Moving Camera Code Into Its Own Class
 8. Antialiasing 
    - 8.1 Some Random Number Utilities 
