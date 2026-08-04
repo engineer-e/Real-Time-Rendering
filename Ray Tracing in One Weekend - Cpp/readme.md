@@ -81,7 +81,7 @@
 7. [Moving Camera Code Into Its Own Class](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch7/output/image.ppm)
 8. Antialiasing 
    - 8.1 Some Random Number Utilities 
-   - 8.2 Generating Pixels with Multiple Samples
+   - 8.2 [Generating Pixels with Multiple Samples](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch8/output/image.ppm)
 9. Diffuse Materials 
    - 9.1 A Simple Diffuse Material 
    - 9.2 Limiting the Number of Child Rays 
