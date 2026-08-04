@@ -22,7 +22,7 @@
 4. Texture Mapping
    - 4.1 Constant Color Texture
    - 4.2 [Solid Textures: A Checker Texture](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch4/output/image.ppm)
-   - 4.3 Rendering The Solid Checker Texture
+   - 4.3 [Rendering The Solid Checker Texture](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch4_A/output/image.ppm)
    - 4.4 Texture Coordinates for Spheres
    - 4.5 Accessing Texture Image Data
    - 4.6 Rendering The Image Data
