@@ -61,3 +61,51 @@
    - 2.1 [The PPM Image Format](https://en.wikipedia.org/wiki/Netpbm)
    - 2.2 [Creating an Image File](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A/output/image.ppm)
    - 2.3 [Adding a Progress Indicator](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-B/output/image.ppm)
+3. The *vec3* Class
+   - 3.1 [Color Utility Functions](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch3-A/output/image.ppm)
+4. Rays, a Simple Camera, and Background
+   - 4.1 The ray class 
+   - 4.2 Sending Rays Into the Scene
+5. Adding a Sphere
+   - 5.1 Ray-Sphere Intersection 
+   - 5.2 Creating Our First Raytraced Image 
+6. Surface Normals and Multiple Objects 
+   - 6.1 Shading with Surface Normals
+   - 6.2 Simplifying the Ray-Sphere Intersection Code
+   - 6.3 An Abstraction for Hittable Objects
+   - 6.4 Front Faces Versus Back Faces
+   - 6.5 A List of Hittable Objects 
+   - 6.6 Some New C++ Features 
+   - 6.7 Common Constants and Utility Functions 
+   - 6.8 An Interval Class 
+7. Moving Camera Code Into Its Own Class
+8. Antialiasing 
+   - 8.1 Some Random Number Utilities 
+   - 8.2 Generating Pixels with Multiple Samples
+9. Diffuse Materials 
+   - 9.1 A Simple Diffuse Material 
+   - 9.2 Limiting the Number of Child Rays 
+   - 9.3 Fixing Shadow Acne
+   - 9.4 True Lambertian Acne
+   - 9.5 Using Gamma Correction for Accurate Color Intensity
+10. Metals 
+   - 10.1 An Abstract Class for Materials 
+   - 10.2 A Data Structure to Describe Ray-Object Intersections
+   - 10.3 Modeling Light Scatter and Reflectance
+   - 10.4 Mirrored Light Reflection 
+   - 10.5 A Scene with Metal Spheres 
+   - 10.6 Fuzzy Reflection
+11. Dielectrics 
+   - 11.1 Refraction
+   - 11.2 Snell's Law
+   - 11.3 Total Internal Reflection 
+   - 11.4 Schlick Approximation 
+   - 11.5 Modeling a Hollow Glass Sphere
+12. Positionable Camera 
+   - 12.1 Camera Viewing Geometry
+   - 12.2 Positioning and Orienting the Camera
+13. Defocus Blur
+   - 13.1 A Thin Lens Approximation 
+   - 13.2 Generating Sample Rays
+14. What Next?
+   - 14.1 A Final Render
