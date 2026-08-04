@@ -28,7 +28,7 @@
    - 4.6 [Rendering The Image Data](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch4-B/output/image.ppm)
 5. Perlin Noise
    - 5.1 [Using Blocks of Random Numbers](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch5-A/output/image.ppm)
-   - 5.2 Smoothing out the Result
+   - 5.2 [Smoothing out the Result](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch5-B/output/image.ppm)
    - 5.3 Improvement with Hermitian Smoothing
    - 5.4 Tweaking The Frequency
    - 5.5 Using Random Vectors on the Lattice Points
