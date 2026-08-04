@@ -25,7 +25,7 @@
    - 4.3 [Rendering The Solid Checker Texture](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch4-A/output/image.ppm)
    - 4.4 Texture Coordinates for Spheres
    - 4.5 Accessing Texture Image Data
-   - 4.6 Rendering The Image Data
+   - 4.6 [Rendering The Image Data](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch4-B/output/image.ppm)
 5. Perlin Noise
    - 5.1 Using Blocks of Random Numbers
    - 5.2 Smoothing out the Result
