@@ -102,8 +102,8 @@
    - 11.4 Schlick Approximation 
    - 11.5 [Modeling a Hollow Glass Sphere](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch11-C/output/image.ppm)
 12. Positionable Camera 
-   - 12.1 Camera Viewing Geometry
-   - 12.2 Positioning and Orienting the Camera
+   - 12.1 [Camera Viewing Geometry](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch12-A/output/image.ppm)
+   - 12.2 [Positioning and Orienting the Camera](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch12-B/output/image.ppm)
 13. Defocus Blur
    - 13.1 A Thin Lens Approximation 
    - 13.2 Generating Sample Rays
