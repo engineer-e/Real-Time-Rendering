@@ -70,8 +70,8 @@
    - 5.1 Ray-Sphere Intersection 
    - 5.2 [Creating Our First Raytraced Image](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch5/output/image.ppm) 
 6. Surface Normals and Multiple Objects 
-   - 6.1 Shading with Surface Normals
-   - 6.2 Simplifying the Ray-Sphere Intersection Code
+   - 6.1 [Shading with Surface Normals](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch6-A/output/image.ppm)
+   - 6.2 [Simplifying the Ray-Sphere Intersection Code](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch6-B/output/image.ppm)
    - 6.3 An Abstraction for Hittable Objects
    - 6.4 Front Faces Versus Back Faces
    - 6.5 A List of Hittable Objects 
