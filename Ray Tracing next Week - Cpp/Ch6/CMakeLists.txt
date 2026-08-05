@@ -29,6 +29,7 @@ add_executable(Ch6
     rtw_stb_image.h
     stb_image.h
     perlin.h
+    quad.h
 )
 
 # Run program after build to create image.ppm
