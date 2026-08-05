@@ -47,12 +47,12 @@
    - 7.2 Adding Background Color to the Ray Color Function
    - 7.3 [Turning Objects into Lights](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch7-A/output/image.ppm)
    - 7.4 [Creating an Empty "Cornell Box"](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch7-B/output/image.ppm)
-8. Instances
+8. [Instances](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch8/output/image.ppm)
    - 8.1 Instance Translation
-   - 8.2 Instance Rotation
+   - 8.2 [Instance Rotation](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch8-A/output/image.ppm)
 9. Volumes
    - 9.1 Constant Density Mediums
-   - 9.2 Rendering a Cornell Box with Smoke and Fog Boxes
+   - 9.2 [Rendering a Cornell Box with Smoke and Fog Boxes](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch9/output/image.ppm)
 10. A Scene Testing All New Features
 
 
