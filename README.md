@@ -80,7 +80,7 @@ This structure removes duplicates and places each session where it is most usefu
 
 
 1. Ray Tracing in One Weekend -  [Python](Ray%20Tracing%20in%20One%20Weekend%20-%20Python/ray_tracing_in_one_weekend.md),  [Javascript](Ray%20Tracing%20in%20One%20Weekend%20-%20Javascript/readme.md), [cpp](Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/readme.md)
-2. Ray Tracing: The Next Week - Python, [Javascript](Ray%20Tracing%20next%20Week%20-%20Javascript/readme.md)
+2. Ray Tracing: The Next Week - Python, [Javascript](Ray%20Tracing%20next%20Week%20-%20Javascript/readme.md), [cpp](https://github.com/engineer-e/Real-Time-Rendering/blob/main/Ray%20Tracing%20next%20Week%20-%20Cpp/readme.md)
 3. Ray Tracing: The Rest of Your Life
 
 
