@@ -53,7 +53,7 @@
 9. Volumes
    - 9.1 Constant Density Mediums
    - 9.2 [Rendering a Cornell Box with Smoke and Fog Boxes](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch9/output/image.ppm)
-10. A Scene Testing All New Features
+10. [A Scene Testing All New Features](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch10/output/image10.ppm)
 
 
 
