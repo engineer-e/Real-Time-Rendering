@@ -46,7 +46,7 @@
    - 7.1 Emissive Materials
    - 7.2 Adding Background Color to the Ray Color Function
    - 7.3 [Turning Objects into Lights](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch7-A/output/image.ppm)
-   - 7.4 Creating an Empty "Cornell Box"
+   - 7.4 [Creating an Empty "Cornell Box"](https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20in%20One%20Weekend%20-%20Cpp/Ch2-A-Web/output/Ch2_A.html?image=https://engineer-e.github.io/Real-Time-Rendering/Ray%20Tracing%20next%20Week%20-%20Cpp/Ch7-B/output/image.ppm)
 8. Instances
    - 8.1 Instance Translation
    - 8.2 Instance Rotation
